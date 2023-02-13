@@ -5,5 +5,3 @@ This repository includes all the homework related to the course:
 * CSS
 * Node.js
 
-#### Week00
-#### Week01

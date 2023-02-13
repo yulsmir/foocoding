@@ -1,0 +1,48 @@
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 20%;
+    margin: 0 auto;
+}
+
+.bun-top, 
+.bun-bottom {
+    background-color: orange;
+    height: 80px;
+}
+
+.bun-top{
+    border-radius: 35px 35px 15px 15px;
+    height: 80px;
+}
+
+.bun-bottom {
+    border-radius: 15px 15px 35px 35px;
+}
+
+.ketchup {
+    background-color: red;
+    border-radius: 15px 15px 15px 15px;
+}
+
+.cheese {
+    background-color: yellow;
+    border-radius: 15px 15px 15px 15px;
+    height: 10px;
+}
+
+.meet {
+    background-color: brown;
+    border-radius: 15px 15px 15px 15px;
+    height: 40px;
+}
+
+.lettuce {
+    background-color: green;
+    border-radius: 15px 15px 15px 15px;
+    height: 20px;
+}

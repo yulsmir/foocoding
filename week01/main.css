@@ -28,8 +28,13 @@ h2 {
 
 /* IDs selectors */
 #profile-img {
-    width: 75%;
+    width: 55%;
     border-radius: 100%;
+}
+
+#profile-address > a,
+#profile-phone > a {
+    text-decoration: none
 }
 
 /* Classes */
@@ -46,16 +51,24 @@ header {
 }
 
 section {
-    padding: 3%;
+    padding: 1%;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .container {
-    margin: 0 auto;
+    display: grid;
+    grid-template-areas: "header"
+                         "content"
+                         "footer";
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
 }
 
 .content {
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: minmax(auto, max-content);
     justify-content: center;
     padding: 2%;
     border-style: solid;

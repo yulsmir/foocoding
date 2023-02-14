@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,300;1,400&display=swap');
 
-/* Resert margin & padding */
 *,
 *:before,
 *:after {
@@ -9,50 +8,72 @@
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    line-height: 1.5;
+    line-height: 2em;
     font-family: 'Ubuntu', open-sans;
 }
 
-.container {
-    border-style: solid;
-    border-color: black;
-    border-width: 1px;
-    /* padding: 8%; */
-    margin: 0 auto;
-    width: 70%;
-}
-
-h1, h2 {
+/* Inline style selectors */
+h1, h2, h5 {
     text-align: center;
+    text-transform: uppercase;
 }
 
-section {
-    border-style: solid;
-    border-width: 1px;
-    border-color: forestgreen;
-    padding: 3%;
+h1 {
+    font-size: xx-large;
+}
+
+h2 {
+    font-size: large;
+}
+
+/* IDs selectors */
+
+#profile-img {
+    width: 75%;
+    border-radius: 100%;
+}
+
+/* Classes */
+body {
+    background-color: aliceblue;
 }
 
 header {
     border-style: solid;
     border-width: 1px;
     border-color: orange;
+    background-color: white;
+    box-shadow: 10px 5px 5px gainsboro;
 }
 
-#profile-img {
-    width: 50%;
-    border-radius: 100%;
-}
-
-aside {
-    width: 30%;
+section {
+    padding: 3%;
 }
 
 article {
     display: grid;
     grid-template-columns: 20% 80%;
+    justify-content: center;
+    padding: 2%;
+    border-style: solid;
+    border-color: gainsboro;
+    border-width: 1px;
+    background-color: white;
+    box-shadow: 10px 5px 5px gainsboro;
+}
+
+.container {
+    margin: 0 auto;
+}
+
+.years {
+    padding-top: 1%;
 }
 
 .resources-list {
-    list-style-type: none;
+    margin-left: 2%;
+}
+
+footer {
+    background-color: white;
 }

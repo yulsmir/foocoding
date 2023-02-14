@@ -9,18 +9,50 @@
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    /* font-family: 'Ububntu', sans-serif; */
+    line-height: 1.5;
+    font-family: 'Ubuntu', open-sans;
 }
 
 .container {
     border-style: solid;
     border-color: black;
     border-width: 1px;
-    justify-content: center;
+    /* padding: 8%; */
+    margin: 0 auto;
+    width: 70%;
+}
+
+h1, h2 {
+    text-align: center;
 }
 
 section {
     border-style: solid;
     border-width: 1px;
     border-color: forestgreen;
+    padding: 3%;
+}
+
+header {
+    border-style: solid;
+    border-width: 1px;
+    border-color: orange;
+}
+
+#profile-img {
+    width: 50%;
+    border-radius: 100%;
+}
+
+aside {
+    width: 30%;
+}
+
+article {
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+.resources-list {
+    list-style-type: none;
 }

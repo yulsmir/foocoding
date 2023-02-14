@@ -59,10 +59,11 @@ section {
 .container {
     display: grid;
     grid-template-areas: "header"
-                         "content"
+                         "main"
                          "footer";
-    grid-template-rows: 1fr;
     grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    
 }
 
 .content {

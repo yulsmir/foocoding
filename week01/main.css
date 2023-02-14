@@ -27,7 +27,6 @@ h2 {
 }
 
 /* IDs selectors */
-
 #profile-img {
     width: 75%;
     border-radius: 100%;
@@ -50,9 +49,13 @@ section {
     padding: 3%;
 }
 
-article {
+.container {
+    margin: 0 auto;
+}
+
+.content {
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 30% 70%;
     justify-content: center;
     padding: 2%;
     border-style: solid;
@@ -60,10 +63,6 @@ article {
     border-width: 1px;
     background-color: white;
     box-shadow: 10px 5px 5px gainsboro;
-}
-
-.container {
-    margin: 0 auto;
 }
 
 .years {
@@ -77,3 +76,5 @@ article {
 footer {
     background-color: white;
 }
+
+

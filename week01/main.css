@@ -79,16 +79,14 @@ section {
     box-shadow: 10px 5px 5px gainsboro;
 }
 
-.years {
-    padding-top: 1%;
+.list {
+    margin-left: 6%;
 }
 
-.resources-list {
-    margin-left: 2%;
+.years {
+    padding-top: 1%;
 }
 
 footer {
     background-color: white;
 }
-
-

@@ -7,7 +7,5 @@ This repository includes all the homework related to the course:
 
 ===================================
 
-#### Week00
- - [x] Hamburger assignment(in class)
-#### Week01
- - [x] Web CV assignment (homework)
+https://github.com/yulsmir/foocoding-html-css/tree/master/week00
+https://github.com/yulsmir/foocoding-html-css/tree/master/week01

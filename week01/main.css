@@ -19,11 +19,11 @@ h1, h2, h5 {
 }
 
 h1 {
-    font-size: xx-large;
+    font-size: 2.2rem;
 }
 
 h2 {
-    font-size: large;
+    font-size: 1.3rem;
 }
 
 /* IDs selectors */
@@ -42,17 +42,18 @@ body {
     background-color: aliceblue;
 }
 
-header {
+header, .content, footer {
     border-style: solid;
     border-width: 1px;
-    border-color: orange;
-    background-color: white;
+    border-color: gainsboro;
     box-shadow: 10px 5px 5px gainsboro;
+    background-color: white;
 }
+
 
 section {
     padding: 1%;
-    width: 80%;
+    width: 75%;
     margin: 0 auto;
 }
 
@@ -72,11 +73,6 @@ section {
     grid-template-rows: minmax(auto, max-content);
     justify-content: center;
     padding: 2%;
-    border-style: solid;
-    border-color: gainsboro;
-    border-width: 1px;
-    background-color: white;
-    box-shadow: 10px 5px 5px gainsboro;
 }
 
 .list {
@@ -89,4 +85,5 @@ section {
 
 footer {
     background-color: white;
+    padding: 1% 0;
 }

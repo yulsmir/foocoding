@@ -1,0 +1,80 @@
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    grid-template-areas: "header"
+                         "main";
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    justify-content: center;
+}
+
+footer, header {
+    background-color: azure;
+}
+
+ul, li {
+    display: block;
+}
+
+img {
+    width: calc(100% - 67%);
+}
+
+#grid-floats, #grid-flex{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
+    gap: 0.25rem;
+}
+
+/* SMALL SIZE SCREEN DEVICES */
+@media(min-width: 0) and (max-width: 599px) {
+    #grid-floats,
+    #grid-flex {
+        grid-template-columns: 1fr 1fr;
+    }
+     
+    .grid-item:nth-child(1){
+        background-color: gray;
+        grid-column: span 2;
+    }
+
+}
+
+/* MEDIUM SIZE SCREEN DEVICES */
+@media(min-width: 600px) and (max-width: 811px){
+    #grid-floats,
+    #grid-flex{
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    .grid-item {
+        grid-column: span 2;
+    }
+
+    .grid-item:nth-child(1),
+    .grid-item:nth-child(2) {
+        background-color: lightgreen;
+        grid-column: span 3;
+    }
+
+}
+/* BIG SIZE SCREEN DEVICES */
+@media(min-width: 812px) {
+    #grid-floats,
+    #grid-flex {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .grid-item:nth-child(1) {
+        background-color: lightcoral;
+        grid-column: span 2;
+    }
+}
+

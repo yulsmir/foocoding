@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap');
+
 *,
 *:before,
 *:after {
@@ -12,43 +14,68 @@ body {
                          "main";
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    justify-content: center;
+    font-family: 'Open Sans', sans-serif;
+    min-height: 100vh;
+    margin: 0 auto;
+    background-color: hsl(0, 0%, 97%);
 }
 
-footer, header {
-    background-color: azure;
+section {
+    margin-bottom: 5%;
 }
 
 ul, li {
     display: block;
 }
 
+h3 {
+    padding: 1rem;
+}
+
 img {
-    width: calc(100% - 67%);
+    width: calc(100% - 51%);
+    display: block;
 }
 
 #grid-floats, #grid-flex{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
-    gap: 0.25rem;
+    grid-template-columns: repeat(auto-fill, minmax(0, 1fr));
+    gap: 2rem;
+    min-height: 0;
+    min-width: 0;
 }
 
-/* SMALL SIZE SCREEN DEVICES */
-@media(min-width: 0) and (max-width: 599px) {
+.grid-item {
+    background-color: white;
+    box-shadow: 1rem 0.5rem 0.5rem gainsboro;
+    border-radius: 1rem;
+    padding: 2rem 4rem;
+}
+
+/*---------- RESPONSIVENESS ----------*/
+/*----- SMALL SIZE SCREEN DEVICES -----*/
+@media(min-width: 0) and (max-width: 640px) {
+    body {
+        padding: 0.75rem 1.125rem;
+    }
+
     #grid-floats,
     #grid-flex {
         grid-template-columns: 1fr 1fr;
     }
      
     .grid-item:nth-child(1){
-        background-color: gray;
-        grid-column: span 2;
+        grid-column: 1 / span 2;
     }
 
 }
 
-/* MEDIUM SIZE SCREEN DEVICES */
-@media(min-width: 600px) and (max-width: 811px){
+/*-----MEDIUM SIZE SCREEN DEVICES -----*/
+@media(min-width: 641px) and (max-width: 1440px){
+    body {
+        padding: 1.5rem 2.75rem;
+    }
+
     #grid-floats,
     #grid-flex{
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -56,25 +83,72 @@ img {
 
     .grid-item {
         grid-column: span 2;
+        max-height: max-content;
     }
 
     .grid-item:nth-child(1),
     .grid-item:nth-child(2) {
-        background-color: lightgreen;
         grid-column: span 3;
     }
 
 }
-/* BIG SIZE SCREEN DEVICES */
-@media(min-width: 812px) {
+
+/*----- BIG SIZE SCREEN DEVICES -----*/
+@media(min-width: 1440px) {
+    body {
+        padding: 4rem 10rem;
+    }
+
     #grid-floats,
     #grid-flex {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 
     .grid-item:nth-child(1) {
-        background-color: lightcoral;
-        grid-column: span 2;
+        grid-column: 1 / span 2;
     }
 }
 
+/* ---------- Product card style ---------- */
+/* ----- Grid with flex ----- */
+#grid-flex .grid-item {
+    padding: 4% 8%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/*----- Grid with grid ----- */
+#grid-float .grid-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(30%, 1fr);
+    justify-content: center;
+    align-items: center;
+}
+
+/* ----- Arabic language ----- */
+.grid-item:nth-child(2) > p {
+    text-align: right;
+}
+
+/* ---------- Collapse text in item ---------- */
+/* .grid-item p.collapse:not(.show) {
+    display: block;
+    height: 3rem;
+    overflow: hidden;
+}
+
+.grid-item p.collapsing {
+    height: 3rem;
+}
+
+.grid-item p.collapsed::after {
+    content: '+ Show More';
+}
+
+.grid-item p:not(.collapsed)::after {
+    content: '- Show Less';
+} */
+/* ---------- Product card animation ---------- */

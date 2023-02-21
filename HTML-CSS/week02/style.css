@@ -19,7 +19,7 @@ body {
     margin: 0 auto;
     background-color: #F3F4F8;
     gap: 1rem;
-    font-size: 2rem;
+    /* font-size: 2rem; */
 }
 
 section {
@@ -51,11 +51,12 @@ img {
     /* width: min-content; */
 }
 
-.grid-item p {
+/* --- Limit p lines amount--- */
+p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
     overflow: hidden;
-    text-overflow: ellipsis;
-    max-height: 7.5ch;
-    /* display: none; */
 }
 
 #grid-floats, #grid-flex{
@@ -113,6 +114,7 @@ img {
 /*-----MEDIUM SIZE SCREEN DEVICES -----*/
 @media(min-width: 641px) and (max-width: 1024px){
     body {
+        font-size: 1rem;
         padding: 1.5rem 2.75rem;
     }
 

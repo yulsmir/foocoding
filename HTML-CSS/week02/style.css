@@ -19,7 +19,7 @@ body {
     margin: 0 auto;
     background-color: #F3F4F8;
     gap: 1rem;
-    /* font-size: 2rem; */
+    font-size: 1.2rem;
 }
 
 section {
@@ -38,8 +38,6 @@ h3 {
     padding: 1rem;
     margin: 0 auto;
     font-weight: 600;
-    /* grid-row: 3; */
-    /* align-self: ; */
     justify-self: center;
 }
 
@@ -48,10 +46,9 @@ img {
     width: calc(100% - 67%);
     margin: 0 auto;
     white-space: nowrap;
-    /* width: min-content; */
 }
 
-/* --- Limit p lines amount--- */
+/*----- Limit p lines amount -----*/
 p {
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -59,29 +56,30 @@ p {
     overflow: hidden;
 }
 
-#grid-floats, #grid-flex{
+#grid-floats, 
+#grid-flex{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(0, 1fr));
+    /* grid-template-columns: repeat(auto-fill, minmax(0, 1fr)); */
     gap: 2rem;
     min-height: 0;
     min-width: 0;
-    /* align-content: center;
-    align-items: center;
-    justify-content: center;
-    justify-items: center; */
-
 }
 
 .grid-item {
     background-color: white;
-    padding: 2rem;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
+    padding: 2% 6%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+    /* background-image: url('https://www.svgrepo.com/show/507333/grid.svg');
+    background-repeat: no-repeat; */
 }
 
 /*---------- RESPONSIVENESS ----------*/
@@ -89,7 +87,7 @@ p {
 @media(min-width: 0) and (max-width: 640px) {
     body {
         padding: 0.75rem 1.125rem;
-        font-size: 1rem;
+        font-size: 0.6rem;
     }
 
     #grid-floats,
@@ -105,27 +103,23 @@ p {
         padding: 1rem;
     }
 
-    p {
-        font-size: 0.8rem;
-    }
-
 }
 
 /*-----MEDIUM SIZE SCREEN DEVICES -----*/
 @media(min-width: 641px) and (max-width: 1024px){
     body {
-        font-size: 1rem;
-        padding: 1.5rem 2.75rem;
+        font-size: 0.75rem;
+        padding: 1rem 1.5rem;
     }
 
     #grid-floats,
-    #grid-flex{
+    #grid-flex {
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     }
 
     .grid-item {
         grid-column: span 2;
-        max-height: max-content;
+        /* max-height: max-content; */
     }
 
     .grid-item:nth-child(1),
@@ -138,7 +132,7 @@ p {
 /*----- BIG SIZE SCREEN DEVICES -----*/
 @media(min-width: 1025px) {
     body {
-        padding: 2rem 5rem;
+        padding: 3rem 6rem;
     }
 
     #grid-floats,
@@ -147,78 +141,57 @@ p {
     }
 
     .grid-item:nth-child(1) {
-        grid-column: 1 / span 2;
+        grid-column: span 2;
     }
 }
 
-/* ---------- Product card style ---------- */
-/* ----- Grid with flex ----- */
-#grid-flex .grid-item,
-#grid-float .grid-item {
-    padding: 4% 8%;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center;
-}
-
-/*----- Grid with grid ----- */
-/* #grid-float .grid-item {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(30%, 1fr);
-    justify-content: center;
-    align-items: center;
-} */
-
-/* ----- Arabic language ----- */
+/* ---------- Arabic language ---------- */
 .grid-item:nth-child(2) > p {
     text-align: right;
 }
 
-/* ---------- Collapse text in item ---------- */
-/* .grid-item p.collapse:not(.show) {
-    display: block;
-    height: 3rem;
-    overflow: hidden;
-}
-
-.grid-item p.collapsing {
-    height: 3rem;
-}
-
-.grid-item p.collapsed::after {
-    content: '+ Show More';
-}
-
-.grid-item p:not(.collapsed)::after {
-    content: '- Show Less';
-} */
-
-
 /* ---------- GRID ITEM ANIMATION ---------- */
-
 .grid-item::after {
     content: "";
-    border-radius: 5px;
+    border-radius: 0.4rem;
     position: absolute;
     z-index: -1;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.3);
     opacity: 0;
     -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .grid-item:hover {
-    -webkit-transform: scale(1.25, 1.25);
-    transform: scale(1.25, 1.25);
+    -webkit-transform: scale(1.3, 1.3);
+    transform: scale(1.3, 1.3);
 }
 
 .grid-item:hover::after {
     opacity: 1;
 
+}
+
+/*---------- H3 COLORED ANIMATION ----------*/
+h3 {
+    --b: 0.1em;   /* the thickness of the line */
+    --c: black; /* the color */
+
+    color: #0000;
+    padding-block: var(--b);
+    background: 
+        linear-gradient(var(--c) 50%,#000 0) 0% calc(100% - var(--_p,0%))/100% 200%,
+        linear-gradient(var(--c) 0 0) 0% var(--_p,0%)/var(--_p,0%) var(--b) no-repeat;
+    -webkit-background-clip: text,padding-box;
+            background-clip: text,padding-box;
+    transition: .3s var(--_s,0s) linear,background-size .3s calc(.3s - var(--_s,0s));
+  }
+
+h3:hover {
+    --_p: 100%;
+    --_s: .3s;
 }

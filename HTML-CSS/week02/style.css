@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap');
 
+/*---- GENERAL STYLE RESET  ----*/
 *,
 *:before,
 *:after {
@@ -8,6 +9,7 @@
     box-sizing: border-box;
 }
 
+/*---- PAGE LAYOUT SETUP ----*/
 body {
     display: grid;
     grid-template-areas: "header"
@@ -20,71 +22,83 @@ body {
     background-color: #F3F4F8;
     gap: 1rem;
     font-size: 1.2rem;
+    
 }
 
 section {
     margin-bottom: 5%;
 }
 
-ul, li {
-    display: block;
-}
-
-h1 {
-    text-transform: uppercase;
-}
-
-h3 {
-    padding: 1rem;
-    margin: 0 auto;
-    font-weight: 600;
-    justify-self: center;
-}
-
-img {
-    display: block;
-    width: calc(100% - 67%);
-    margin: 0 auto;
-    white-space: nowrap;
-}
-
-/*----- Limit p lines amount -----*/
-p {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;  
-    overflow: hidden;
-}
-
-#grid-floats, 
-#grid-flex{
+#grid-floats,
+#grid-flex {
     display: grid;
-    /* grid-template-columns: repeat(auto-fill, minmax(0, 1fr)); */
-    gap: 2rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1rem;
     min-height: 0;
     min-width: 0;
 }
 
 .grid-item {
     background-color: white;
-    padding: 2% 6%;
+    padding: 4% 6%;
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: center;
 
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    box-shadow: 0 0.16rem 0.8rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.45rem;
     -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 
-    /* background-image: url('https://www.svgrepo.com/show/507333/grid.svg');
-    background-repeat: no-repeat; */
+    background-image: url('images/info.svg');
+    background-repeat: no-repeat;
+    background-size: 4%;
+    background-position: bottom 4% right 4%;
+    background-color: none;
+}
+
+ul,
+li {
+    display: block;
+}
+
+h1,
+h2 {
+    text-transform: uppercase;
+}
+
+h2 {
+    margin-bottom: 0.4rem;
+}
+
+h3 {
+    padding: 0.5rem;
+    margin: 0 auto;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 1%;
+}
+
+img {
+    display: block;
+    order: -1;
+    width: calc(100% - 51%);
+    margin: 0 auto;
+}
+
+/*----- Limit p lines amount -----*/
+p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-align: justify;
 }
 
 /*---------- RESPONSIVENESS ----------*/
 /*----- SMALL SIZE SCREEN DEVICES -----*/
-@media(min-width: 0) and (max-width: 640px) {
+@media(min-width: 320px)  {
     body {
         padding: 0.75rem 1.125rem;
         font-size: 0.6rem;
@@ -94,8 +108,8 @@ p {
     #grid-flex {
         grid-template-columns: 1fr 1fr;
     }
-     
-    .grid-item:nth-child(1){
+
+    .grid-item:nth-child(1) {
         grid-column: 1 / span 2;
     }
 
@@ -106,7 +120,7 @@ p {
 }
 
 /*-----MEDIUM SIZE SCREEN DEVICES -----*/
-@media(min-width: 641px) and (max-width: 1024px){
+@media(min-width: 640px) {
     body {
         font-size: 0.75rem;
         padding: 1rem 1.5rem;
@@ -119,7 +133,6 @@ p {
 
     .grid-item {
         grid-column: span 2;
-        /* max-height: max-content; */
     }
 
     .grid-item:nth-child(1),
@@ -130,23 +143,31 @@ p {
 }
 
 /*----- BIG SIZE SCREEN DEVICES -----*/
-@media(min-width: 1025px) {
+@media(min-width: 920px) {
     body {
-        padding: 3rem 6rem;
+        padding: 2rem 5rem;
     }
 
     #grid-floats,
     #grid-flex {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
+    .grid-item{
+        grid-column: span 1;
+    }
 
     .grid-item:nth-child(1) {
         grid-column: span 2;
     }
+
+    .grid-item:nth-child(2) {
+        grid-column: span 1;
+    }
+
 }
 
-/* ---------- Arabic language ---------- */
-.grid-item:nth-child(2) > p {
+/* ---------- ARABIC LANGUAGE STYLING ---------- */
+.grid-item:nth-child(2)>p {
     text-align: right;
 }
 
@@ -171,25 +192,29 @@ p {
     transform: scale(1.3, 1.3);
 }
 
-.grid-item:hover::after {
-    opacity: 1;
-
+p:hover {
+    overflow: visible;
+    display: block;
 }
 
-/*---------- H3 COLORED ANIMATION ----------*/
+.grid-item:hover::after {
+    opacity: 1;
+}
+
+/*---------- H3 UNDERLINE ANIMATION ----------*/
 h3 {
-    --b: 0.1em;   /* the thickness of the line */
-    --c: black; /* the color */
+    --line-thickness: 0.1em; /* the thickness of the line */
+    --line-color: black; /* the color */
 
     color: #0000;
-    padding-block: var(--b);
-    background: 
-        linear-gradient(var(--c) 50%,#000 0) 0% calc(100% - var(--_p,0%))/100% 200%,
-        linear-gradient(var(--c) 0 0) 0% var(--_p,0%)/var(--_p,0%) var(--b) no-repeat;
-    -webkit-background-clip: text,padding-box;
-            background-clip: text,padding-box;
-    transition: .3s var(--_s,0s) linear,background-size .3s calc(.3s - var(--_s,0s));
-  }
+    padding-block: var(--line-thickness);
+    background:
+        linear-gradient(var(--line-color) 50%, #000 0) 0% calc(100% - var(--_p, 0%))/100% 200%,
+        linear-gradient(var(--line-color) 0 0) 0% var(--_p, 0%)/var(--_p, 0%) var(--line-thickness) no-repeat;
+    -webkit-background-clip: text, padding-box;
+    background-clip: text, padding-box;
+    transition: .3s var(--_s, 0s) linear, background-size .3s calc(.3s - var(--_s, 0s));
+}
 
 h3:hover {
     --_p: 100%;

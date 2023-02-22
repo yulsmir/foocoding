@@ -21,8 +21,8 @@ body {
     margin: 0 auto;
     background-color: #F3F4F8;
     gap: 1rem;
-    font-size: 1.2rem;
-    
+    font-size: 0.75rem;
+
 }
 
 section {
@@ -44,6 +44,7 @@ section {
     flex-flow: column;
     align-items: center;
     justify-content: center;
+    /* height: max-content; */
 
     box-shadow: 0 0.16rem 0.8rem rgba(0, 0, 0, 0.1);
     border-radius: 0.6rem;
@@ -98,7 +99,7 @@ p {
 
 /*---------- RESPONSIVENESS ----------*/
 /*----- SMALL SIZE SCREEN DEVICES -----*/
-@media(min-width: 320px)  {
+@media(min-width: 320px) {
     body {
         padding: 0.75rem 1.125rem;
         font-size: 0.6rem;
@@ -146,14 +147,15 @@ p {
 @media(min-width: 920px) {
     body {
         padding: 2rem 5rem;
-        font-size: 1.1rem;
+        font-size: 0.75rem;
     }
 
     #grid-floats,
     #grid-flex {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
-    .grid-item{
+
+    .grid-item {
         grid-column: span 1;
     }
 
@@ -165,6 +167,12 @@ p {
         grid-column: span 1;
     }
 
+}
+
+@media(min-width: 1024px) {
+    body {
+        font-size: 1.25rem;
+    }
 }
 
 /* ---------- ARABIC LANGUAGE STYLING ---------- */
@@ -204,8 +212,8 @@ p:hover {
 
 /*---------- H3 UNDERLINE ANIMATION ----------*/
 h3 {
-    --line-thickness: 0.1em; /* the thickness of the line */
-    --line-color: black; /* the color */
+    --line-thickness: 0.1em;
+    --line-color: darkcyan;
 
     color: #0000;
     padding-block: var(--line-thickness);

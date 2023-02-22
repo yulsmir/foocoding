@@ -7,8 +7,11 @@ This repository includes all the homework related to the course:
 
 ### Here you can find my homeworks:
 
-* https://github.com/yulsmir/foocoding/tree/master/HTML-CSS/week00
-* https://github.com/yulsmir/foocoding/tree/master/HTML-CSS/week01
-
-
-Link to web CV: https://yulsmir.github.io/foocoding/HTML-CSS/week01/
+* Week 01: 
+    - [x] Code: https://github.com/yulsmir/foocoding/tree/master/HTML-CSS/week00
+* Week 1:
+    - [x] Code: https://github.com/yulsmir/foocoding/tree/master/HTML-CSS/week01
+    - [x] Web version: https://yulsmir.github.io/foocoding/HTML-CSS/week01/
+* Week 2:
+    - [x] Code: https://github.com/yulsmir/foocoding/tree/master/HTML-CSS/week02
+    - [x] Web version: https://yulsmir.github.io/foocoding/HTML-CSS/week02/

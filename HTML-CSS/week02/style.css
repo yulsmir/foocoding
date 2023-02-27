@@ -86,12 +86,19 @@ img {
     max-width: 100%;
 }
 
-/*----- Limit p lines amount -----*/
-p {
+/*----- To limit p lines amount  - uncomment-----*/
+/* 
+p { 
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+*/
+
+   
+
+p {
     text-align: justify;
 }
 

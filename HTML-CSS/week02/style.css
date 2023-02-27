@@ -81,7 +81,7 @@ h3 {
 img {
     display: block;
     order: -1;
-    width: calc(100% - 51%);
+    width: 100%;
     margin: 0 auto;
     max-width: 100%;
 }

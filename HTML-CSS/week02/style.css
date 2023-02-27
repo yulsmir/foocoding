@@ -236,7 +236,8 @@ h3:hover {
 }
 
 /* GRID ANIMATION WITH KEYFRAME - LAST ELEMENT*/
-
+/* Uncomment if you want the last item in a grid spin infiniewly */
+/* 
 @keyframes infinite-spinning {
     from {
       transform: rotate(0deg);
@@ -248,4 +249,4 @@ h3:hover {
   
   .grid-item:last-child {
     animation: infinite-spinning 5s infinite;
-  }
+  } */

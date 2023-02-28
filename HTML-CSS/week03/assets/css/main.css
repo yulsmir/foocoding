@@ -135,6 +135,7 @@ a {
 }
 
 /* MOVE GENERAL STYLE TO .content block */
+
 .content .item {
     padding: 2rem;
     display: grid;
@@ -144,6 +145,26 @@ a {
     grid-template-rows: 1;
     justify-items: stretch;
     align-items: stretch;
+}
+
+.work-with-us .content .item {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+}
+
+/* TODO: fix size of items in media grid and partners */
+.work-with-us .content .media-grid,
+.work-with-us .content .partners {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+    justify-content: center;
+    row-gap: 2rem;
+    column-gap: 2rem;
 }
 
 .social-media {

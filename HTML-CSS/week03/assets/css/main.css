@@ -126,12 +126,15 @@ a {
 
 /* MOVE GENERAL STYLE TO .content block */
 
-.most-popular-stories-today > .content,
-.latest-news > .content,
-.corporates-and-innovation > .content,
-.sustainability > .content,
-.startups-and-technology > .content,
-.fintech-and-ecommerce > .content .item {
+/* .most-popular-stories-today > .content .item,
+.latest-news > .content .item,
+.corporates-and-innovation > .content .item,
+.sustainability > .content .item,
+.startups-and-technology > .content .item,
+.fintech-and-ecommerce > .content .item
+
+{ */
+.content .item {
     padding: 2rem;
     display: grid;
     row-gap: 0.5rem;
@@ -144,7 +147,7 @@ a {
 
 .newsletter {
     background-color: var(--violet-color);
-    color: var(--white-color)
+    color: var(--white-color);
 }
 
 .social-media {
@@ -166,4 +169,3 @@ a {
                                - sustainability
                                to stretch 100% of row (just move out of the gird?);
 2) add border bottom line to same containers */
-

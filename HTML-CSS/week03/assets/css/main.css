@@ -52,7 +52,7 @@ figure {
     position: relative;
 }
 
-figure figcaption {
+.hero > figure figcaption {
     color: #ffff;
     position: absolute;
     bottom: 0;
@@ -116,7 +116,16 @@ a {
 }
 
 /* Display only 5 items in navbar */
+/* TODO: add numbers to image, make image square */
 .nav-top > ul > :not(picture), 
 .nav-menu > ul > :not(li:nth-child(-n+5)) {
     display: none;
+}
+
+.most-popular-stories-today > .content {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    row-gap: 1.5rem;
+    column-gap: 1.5rem;
 }

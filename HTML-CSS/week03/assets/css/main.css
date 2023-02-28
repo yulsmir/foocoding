@@ -122,10 +122,13 @@ a {
     display: none;
 }
 
-.most-popular-stories-today > .content {
+/* MOVE GENERAL STYLE TO .content block */
+.most-popular-stories-today > .content,
+.latest-news > .content {
     padding: 2rem;
     display: grid;
-    grid-template-columns: 30% 70%;
-    row-gap: 1.5rem;
+    row-gap: 0.5rem;
     column-gap: 1.5rem;
+    grid-template-columns: 30% 70%;
+
 }

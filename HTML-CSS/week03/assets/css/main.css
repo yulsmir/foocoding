@@ -125,13 +125,21 @@ a {
 }
 
 /* MOVE GENERAL STYLE TO .content block */
+
 .most-popular-stories-today > .content,
-.latest-news > .content {
+.latest-news > .content,
+.corporates-and-innovation > .content,
+.sustainability > .content,
+.startups-and-technology > .content,
+.fintech-and-ecommerce > .content .item {
     padding: 2rem;
     display: grid;
     row-gap: 0.5rem;
     column-gap: 1.5rem;
     grid-template-columns: 30% 70%;
+    grid-template-rows: 1;
+    justify-items: stretch;
+    align-items: stretch;
 }
 
 .newsletter {
@@ -149,4 +157,13 @@ a {
     align-content: center;
     column-gap: 1rem;
 }
+
+/* TODO: 
+1) make first element of - startups and technology, 
+                               -investors and funding, 
+                               -corporates and innovation,
+                               -government and policy,
+                               - sustainability
+                               to stretch 100% of row (just move out of the gird?);
+2) add border bottom line to same containers */
 

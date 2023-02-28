@@ -18,8 +18,9 @@
 	--default-text: 'Roboto', sans-serif;
 	--h1: 4rem;
 	--h2: 2rem;
-	--h3: 1rem;
-	--p: 1rem;
+    --h3: 1.75rem;
+	--h6: 1rem;
+	--p: 1.2rem;
     --line-height: 1.75rem;
     --bg-color: #F7F8F8;
     --white-color: #FFFFFF;
@@ -35,10 +36,16 @@ html, body {
     line-height: var(--line-height);
     line-height: var( --line-height);
     background-color: var(--bg-color);
+    font-size: var(--p);
 }
 
 h2 {
     font-size: var(--h2);
+}
+
+h6 {
+    font-size: var(--h6);
+    font-weight: 300;
 }
 
 ul {

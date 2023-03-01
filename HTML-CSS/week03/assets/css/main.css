@@ -14,7 +14,6 @@
 }
 
 :root {
-    
 	--default-text: 'Roboto', sans-serif;
 	/* --h1: 4rem;
 	--h2: 2rem;
@@ -26,6 +25,9 @@
     --white-color: #FFFFFF;
     --violet-color: #6644FF;
     --black-color: #000000;
+    --border-color: #C9C9C9;
+    --footer-links-color: #3A7C86;
+    --footer-line-color: #445667;
 }
 
 html, body {
@@ -51,11 +53,9 @@ ul {
     list-style-type: none;
 }
 
-figure,
-picture,
 img {
 	width: 100%;
-    /* height: 100%; */
+    height: 100%;
 }
 
 figure {
@@ -118,6 +118,10 @@ a {
 }
 
 /*------ Mobile First ------*/
+
+.nav-top .left {
+    display: none;
+}
 /* Display logo and flag */
 .hero > :not(figure:first-child, figure:last-child) {
     display: none;
@@ -134,7 +138,11 @@ a {
     color: var(--white-color);
 }
 
-.content .item {
+.content {
+    border-bottom: solid 2px var(--border-color);
+}
+
+.content .item{
     padding: 1rem;
     display: grid;
     row-gap: 0.5rem;
@@ -146,7 +154,8 @@ a {
 }
 
 /* Display first media item not in a grid */
-.content .item:first-child{
+/* Fix for the hero banner */
+.content .item:first-child {
     display: block;
 }
 
@@ -183,9 +192,9 @@ a {
     opacity: 70%;
 }
 
-.social-media picture:hover {
+/* .social-media picture:hover {
     opacity: 100%;
-}
+} */
 
 /* MOBILE: TODO: 
 1) make first element of - startups and technology, 
@@ -207,6 +216,36 @@ a {
 footer {
     background-color: var(--black-color);
     color: var(--white-color);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer-social {}
+.footer-more {
+    align-self: flex-start;
+    width: 50%;
+}
+
+.footer-about {
+    align-self: flex-end;
+    align-items: flex-start;
+    width: 50%;
+}
+
+.footer-copyright {
+    align-self: center;
+}
+
+footer * a {
+    color: var(--footer-links-color);
+    font-weight: 500;
+}
+
+.footer-copyright {
+    border-top: 2px solid var(--footer-line-color);
+    align-self: center;
+    align-items: center;
 }
 
 /* MEDIUM SIZE SCREENS */

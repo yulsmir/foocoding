@@ -71,27 +71,22 @@ figure figcaption > h6 {
 }
 
 .container {
-	/* height: 100vh; */
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	/* justify-content: center; */
+	justify-content: center;
     padding: 1rem;
 }
 
-.nav-top {
-    display: flex;
-    align-items: baseline;
-    justify-items: space-around;
-}
 
 /* TODO: - fix nav top */
-.nav-logo,
-.nav-top-left,
-.nav-top-right {
-    display: none;
-}
+/* .nav-top {
+    display: flex;
+    flex-flow: row;
+    justify-items: baseline;
+    justify-content: space-between;
+} */
 
 .nav-menu {
     background-color: var(--white-color);
@@ -131,10 +126,6 @@ a {
 }
 
 /*------ Mobile First ------*/
-.nav-top .left {
-    display: none;
-}
-
 .hero > :not(figure:first-child, figure:last-child) {
     display: none;
 }

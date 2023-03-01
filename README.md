@@ -15,3 +15,7 @@ This repository includes all the homework related to the course:
 * Week 2:
     - [x] Code: https://github.com/yulsmir/foocoding/tree/master/HTML-CSS/week02
     - [x] Web version: https://yulsmir.github.io/foocoding/HTML-CSS/week02/
+
+* Week 3:
+    - [x] Code: https://github.com/yulsmir/foocoding/tree/master/HTML-CSS/week03
+    - [x] Web version: https://yulsmir.github.io/foocoding/HTML-CSS/week03/

@@ -15,18 +15,12 @@
 
 :root {
 	--default-text: 'Roboto', sans-serif;
-    /* TODO: add custom fonts */
-	/* --h1: 4rem;*/
-	 --h2: 2rem; 
-    /*--h3: 1.75rem;
-	--h6: 1rem; */
-	/* --p: 1.2rem; */
-    --line-height: 2rem;
+    --line-height: 1.75rem;
     --bg-color: #F7F8F8;
     --white-color: #FFFFFF;
     --violet-color: #6644FF;
     --black-color: #000000;
-    --border-color: #C9C9C9;
+    --grey-color: #969696;
     --footer-links-color: #3A7C86;
     --footer-line-color: #445667;
     --nav-message-color: #FFDD33;
@@ -60,7 +54,7 @@ figure {
     position: relative;
 }
 
-.hero > figure figcaption {
+.hero figure figcaption {
     color: var(--white-color);
     position: absolute;
     bottom: 0;
@@ -79,12 +73,8 @@ figure figcaption > h6 {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	/* justify-content: center; */
     padding: 1rem;
-}
-
-.container h2 {
-    font-size: var(--h2);
 }
 
 .nav-top {
@@ -127,6 +117,10 @@ a {
    text-decoration: none;
 }
 
+.nav-menu a {
+    color: var(--grey-color);
+}
+
 /*------ Mobile First ------*/
 .nav-top .left {
     display: none;
@@ -148,7 +142,7 @@ a {
 }
 
 .content {
-    border-bottom: solid 2px var(--border-color);
+    border-bottom: solid 2px var(--grey-color);
 }
 
 .content .item{
@@ -206,12 +200,10 @@ a {
 }
 
 /* TODO: add social media hover */
-/* .social-media picture:hover {
+.social-media a img:hover,
+.social-media a img:ac {
     opacity: 100%;
-} */
-
-/* TODO: 
-- review ids and classes of sections */
+}
 
 /* TODO: Fix in another way */
 .work-with-us figure h4 {
@@ -245,10 +237,13 @@ a {
     background-color: var(--violet-color);
     color: var(--white-color);
     padding: 1rem 3rem;
-    font-size: 1.5rem;
     border-style: none;
     border-radius: 0.5rem;
     margin-top: 1rem;
+}
+
+.event-agenda {
+    width: 100%;
 }
 
 .event-agenda button {
@@ -257,6 +252,12 @@ a {
     border-color: var(--white-color);
     padding: 0.5rem ;
     border-radius: 0.8rem;
+}
+
+.event-agenda button:active {
+    background-color: var(--white-color);
+    opacity: 80%;
+    color: var(--violet-color);
 }
 
 footer {
@@ -308,20 +309,14 @@ footer * a {
     /* videos - two columns */
     /* WORK with us - 2 columns reach your goals || media */
     /* partners - centered in a circular motion */
-
     /* Latest news - two columns  1 element || all elements*/
-    /* footer- same as mobile */
-
-
+    /* footer: inherit from small size screen */
 }
 
 /* TODO: */
 /* LARGE SIZE SCREENS */
 @media(min-width: 1024px) {
-
-    /* HERO - mosaic */
-    /* topic news - two columns  1element || all*/
-    /* videos - two columns */
+    /* inherit all from medium size screen, except: */
 
     /* Latest news - 4 columns*/
     /* Partners - one line bottom */

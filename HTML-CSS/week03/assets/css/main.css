@@ -16,12 +16,12 @@
 :root {
 	--default-text: 'Roboto', sans-serif;
     /* TODO: add custom fonts */
-	/* --h1: 4rem;
-	--h2: 2rem;
-    --h3: 1.75rem;
+	/* --h1: 4rem;*/
+	 --h2: 2rem; 
+    /*--h3: 1.75rem;
 	--h6: 1rem; */
 	/* --p: 1.2rem; */
-    --line-height: 1.75rem;
+    --line-height: 2rem;
     --bg-color: #F7F8F8;
     --white-color: #FFFFFF;
     --violet-color: #6644FF;
@@ -40,10 +40,6 @@ html, body {
     line-height: var(--line-height);
     background-color: var(--bg-color);
     font-size: var(--p);
-}
-
-h2 {
-    font-size: var(--h2);
 }
 
 h6 {
@@ -85,6 +81,10 @@ figure figcaption > h6 {
 	align-items: center;
 	justify-content: center;
     padding: 1rem;
+}
+
+.container h2 {
+    font-size: var(--h2);
 }
 
 .nav-top {
@@ -131,16 +131,12 @@ a {
 .nav-top .left {
     display: none;
 }
+
 .hero > :not(figure:first-child, figure:last-child) {
     display: none;
 }
 
-.hero > figure:last-child {
-    display: block;
-}
-
 /* Display only 3 items in navbar */
-.nav-top > :not(picture), 
 .nav-menu > :not(li:nth-child(-n+3)) {
     display: none;
 }
@@ -181,7 +177,6 @@ a {
 
 /* Display first media item not in a grid */
 /* TODO: Fix for the hero banner */
-.latest-news .content .item:first-child,
 .corporates-and-innovation .content .item:first-child,
 .sustainability .content .item:first-child,
 .fintech-and-ecommerce .content .item:first-child, 
@@ -272,6 +267,11 @@ footer {
     justify-content: space-between;
 }
 
+footer * a {
+    color: var(--footer-links-color);
+    font-weight: 500;
+}
+
 .footer-more {
     align-self: flex-start;
     width: 50%;
@@ -285,14 +285,6 @@ footer {
 
 .footer-copyright {
     align-self: center;
-}
-
-footer * a {
-    color: var(--footer-links-color);
-    font-weight: 500;
-}
-
-.footer-copyright {
     border-top: 2px solid var(--footer-line-color);
     align-self: center;
     align-items: center;

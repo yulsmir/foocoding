@@ -174,7 +174,7 @@ a {
     padding: 0.2rem;
     text-align: left;
     
-    /* TRIANGLE */
+    /* TODO: TRIANGLE */
     /* border-bottom: 5vh solid var(--white-color);
     border-right: 5vh solid transparent; */
 }
@@ -244,6 +244,7 @@ a {
     font-size: 2rem;
 }
 
+/* BUTTONS */
 .get-in-touch button,
 .latest-news button {
     background-color: var(--violet-color);
@@ -253,6 +254,14 @@ a {
     border-style: none;
     border-radius: 0.5rem;
     margin-top: 1rem;
+}
+
+.event-agenda button {
+    background-color: transparent;
+    color: var(--white-color);
+    border-color: var(--white-color);
+    padding: 0.5rem ;
+    border-radius: 0.8rem;
 }
 
 footer {
@@ -301,8 +310,28 @@ footer * a {
         display: block;
         background-color: var(--nav-message-color);
     }
+
+    /* HERO - mosaic */
+    /* topic news - two columns  1element || all*/
+    /* videos - two columns */
+    /* WORK with us - 2 columns reach your goals || media */
+    /* partners - centered in a circular motion */
+
+    /* Latest news - two columns  1 element || all elements*/
+    /* footer- same as mobile */
+
+
 }
 
 /* TODO: */
 /* LARGE SIZE SCREENS */
-@media(min-width: 1024px) {}
+@media(min-width: 1024px) {
+
+    /* HERO - mosaic */
+    /* topic news - two columns  1element || all*/
+    /* videos - two columns */
+
+    /* Latest news - 4 columns*/
+    /* Partners - one line bottom */
+    /* footer - 3 columns */
+}

@@ -96,6 +96,7 @@ figure figcaption > h6 {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 }
+
 .nav-message {
     display: none;
 }
@@ -108,7 +109,7 @@ nav ul {
     align-items: center;
 }
 
-.nav-menu ul{
+.nav-menu {
     justify-content: space-evenly;
 }
 
@@ -122,9 +123,9 @@ a {
     display: none;
 }
 
-/* Display only 4 items in navbar */
-.nav-top > ul > :not(picture), 
-.nav-menu > ul > :not(li:nth-child(-n+4)) {
+/* Display only 3 items in navbar */
+.nav-top > :not(picture), 
+.nav-menu > :not(li:nth-child(-n+3)) {
     display: none;
 }
 
@@ -132,8 +133,6 @@ a {
     background-color: var(--violet-color);
     color: var(--white-color);
 }
-
-/* MOVE GENERAL STYLE TO .content block */
 
 .content .item {
     padding: 1rem;
@@ -144,6 +143,11 @@ a {
     grid-template-rows: 1;
     justify-items: start;
     align-items: start;
+}
+
+/* Display first media item not in a grid */
+.content .item:first-child{
+    display: block;
 }
 
 .work-with-us .content .item {
@@ -193,7 +197,8 @@ a {
                                to stretch 100% of row (just move out of the grid?);
 2) add border bottom line to same containers
 3) make only 3 elements visible in showcase video
-4) add numbers to image, make image square */
+4) add numbers to image, make image square
+5) review ids and classes of sections */
 
 .work-with-us {
     background-color: var(--white-color);
@@ -204,3 +209,13 @@ footer {
     color: var(--white-color);
 }
 
+/* MEDIUM SIZE SCREENS */
+@media(min-width: 640px) {
+    .nav-top > :not(picture), 
+    .nav-menu > :not(li:nth-child(-n+5)) {
+        display: flex;
+    }
+}
+
+/* LARGE SIZE SCREENS */
+@media(min-width: 1024px) {}

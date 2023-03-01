@@ -18,8 +18,8 @@
 	/* --h1: 4rem;
 	--h2: 2rem;
     --h3: 1.75rem;
-	--h6: 1rem;
-	--p: 1.2rem; */
+	--h6: 1rem; */
+	/* --p: 1.2rem; */
     --line-height: 1.75rem;
     --bg-color: #F7F8F8;
     --white-color: #FFFFFF;
@@ -91,6 +91,13 @@ figure figcaption > h6 {
     justify-items: space-around;
 }
 
+/* TODO: - fix nav top */
+.nav-top,
+.nav-left,
+.nav-right {
+    display: none;
+}
+
 .nav-menu {
     background-color: var(--white-color);
     padding-top: 0.5rem;
@@ -102,6 +109,10 @@ figure figcaption > h6 {
 }
 #flag, #logo {
     width: 4rem;
+}
+
+nav {
+    display: block;
 }
 
 nav ul {
@@ -118,13 +129,15 @@ a {
 }
 
 /*------ Mobile First ------*/
-
 .nav-top .left {
     display: none;
 }
-/* Display logo and flag */
 .hero > :not(figure:first-child, figure:last-child) {
     display: none;
+}
+
+.hero > figure:last-child {
+    display: block;
 }
 
 /* Display only 3 items in navbar */
@@ -133,9 +146,11 @@ a {
     display: none;
 }
 
+/* TODO: fix social media in newsletter */
 .newsletter {
     background-color: var(--violet-color);
     color: var(--white-color);
+    display: flex;
 }
 
 .content {
@@ -153,9 +168,25 @@ a {
     align-items: start;
 }
 
+.most-popular-stories-today figure figcaption {
+    color: var(--violet-color);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: left;
+    font-size: 1.5rem;
+    background-color: var(--white-color);
+    /* TRIANGLE */
+    /* border-bottom: 5vh solid var(--white-color);
+    border-right: 5vh solid transparent; */
+}
+
 /* Display first media item not in a grid */
-/* Fix for the hero banner */
-.content .item:first-child {
+/* TODO: Fix for the hero banner */
+.latest-news .content .item:first-child,
+.corporates-and-innovation .content .item:first-child,
+.sustainability .content .item:first-child{
     display: block;
 }
 
@@ -213,6 +244,20 @@ a {
     background-color: var(--white-color);
 }
 
+.work-with-us h2 {
+    color: var(--violet-color);
+    font-size: 2rem;
+}
+
+.get-in-touch button {
+    background-color: var(--violet-color);
+    color: var(--white-color);
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
+    border-style: none;
+    border-radius: 0.5rem;
+}
+
 footer {
     background-color: var(--black-color);
     color: var(--white-color);
@@ -221,7 +266,6 @@ footer {
     justify-content: space-between;
 }
 
-.footer-social {}
 .footer-more {
     align-self: flex-start;
     width: 50%;

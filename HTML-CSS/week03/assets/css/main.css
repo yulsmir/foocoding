@@ -15,6 +15,7 @@
 
 :root {
 	--default-text: 'Roboto', sans-serif;
+    /* TODO: add custom fonts */
 	/* --h1: 4rem;
 	--h2: 2rem;
     --h3: 1.75rem;
@@ -73,7 +74,7 @@ figure {
 }
 
 figure figcaption > h6 {
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .container {
@@ -148,7 +149,6 @@ a {
 .newsletter {
     background-color: var(--violet-color);
     color: var(--white-color);
-    display: flex;
 }
 
 .content {
@@ -167,14 +167,13 @@ a {
 }
 
 .most-popular-stories-today figure figcaption {
-    color: var(--violet-color);
+    color: var(--white-color);
     position: absolute;
     bottom: 0;
     left: 0;
-    padding: 0.75rem;
+    padding: 0.2rem;
     text-align: left;
-    font-size: 1.5rem;
-    background-color: var(--white-color);
+    
     /* TRIANGLE */
     /* border-bottom: 5vh solid var(--white-color);
     border-right: 5vh solid transparent; */
@@ -184,7 +183,9 @@ a {
 /* TODO: Fix for the hero banner */
 .latest-news .content .item:first-child,
 .corporates-and-innovation .content .item:first-child,
-.sustainability .content .item:first-child{
+.sustainability .content .item:first-child,
+.fintech-and-ecommerce .content .item:first-child, 
+.startups-and-technology .content .item:first-child {
     display: block;
 }
 
@@ -209,6 +210,19 @@ a {
     padding: 0 20%;
 }
 
+/* TODO: add social media hover */
+/* .social-media picture:hover {
+    opacity: 100%;
+} */
+
+/* TODO: 
+- review ids and classes of sections */
+
+/* TODO: Fix in another way */
+.work-with-us figure h4 {
+    text-align: center;
+}
+
 .social-media {
     width: 70%;
     height: 100%;
@@ -221,23 +235,6 @@ a {
     opacity: 70%;
 }
 
-/* .social-media picture:hover {
-    opacity: 100%;
-} */
-
-/* MOBILE: TODO: 
-1) make first element of - startups and technology, 
-                               -investors and funding, 
-                               -corporates and innovation,
-                               -government and policy,
-                               - sustainability
-                               - showcase-video
-                               to stretch 100% of row (just move out of the grid?);
-2) add border bottom line to same containers
-3) make only 3 elements visible in showcase video
-4) add numbers to image, make image square
-5) review ids and classes of sections */
-
 .work-with-us {
     background-color: var(--white-color);
 }
@@ -247,13 +244,15 @@ a {
     font-size: 2rem;
 }
 
-.get-in-touch button {
+.get-in-touch button,
+.latest-news button {
     background-color: var(--violet-color);
     color: var(--white-color);
     padding: 1rem 3rem;
     font-size: 1.5rem;
     border-style: none;
     border-radius: 0.5rem;
+    margin-top: 1rem;
 }
 
 footer {
@@ -290,9 +289,10 @@ footer * a {
     align-items: center;
 }
 
+/* TODO: */
 /* MEDIUM SIZE SCREENS */
+/* Expanded menu in nav */
 @media(min-width: 640px) {
-    .nav-top > :not(picture), 
     .nav-menu > :not(li:nth-child(-n+5)) {
         display: flex;
     }
@@ -303,5 +303,6 @@ footer * a {
     }
 }
 
+/* TODO: */
 /* LARGE SIZE SCREENS */
 @media(min-width: 1024px) {}

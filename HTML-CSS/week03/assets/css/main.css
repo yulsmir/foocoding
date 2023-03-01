@@ -28,6 +28,7 @@
     --border-color: #C9C9C9;
     --footer-links-color: #3A7C86;
     --footer-line-color: #445667;
+    --nav-message-color: #FFDD33;
 }
 
 html, body {
@@ -92,9 +93,9 @@ figure figcaption > h6 {
 }
 
 /* TODO: - fix nav top */
-.nav-top,
-.nav-left,
-.nav-right {
+.nav-logo,
+.nav-top-left,
+.nav-top-right {
     display: none;
 }
 
@@ -106,9 +107,6 @@ figure figcaption > h6 {
 
 .nav-message {
     display: none;
-}
-#flag, #logo {
-    width: 4rem;
 }
 
 nav {
@@ -173,7 +171,7 @@ a {
     position: absolute;
     bottom: 0;
     left: 0;
-    padding: 1rem;
+    padding: 0.75rem;
     text-align: left;
     font-size: 1.5rem;
     background-color: var(--white-color);
@@ -297,6 +295,11 @@ footer * a {
     .nav-top > :not(picture), 
     .nav-menu > :not(li:nth-child(-n+5)) {
         display: flex;
+    }
+
+    .nav-message {
+        display: block;
+        background-color: var(--nav-message-color);
     }
 }
 

@@ -15,23 +15,27 @@
 <body>
     <header>
         <nav>
-            <ul class="nav-top">
-                <picture id="logo">
-                    <img src="./assets/images/svg/the-next-web-logo.svg" loading="lazy" alt="the-next-web-logo">
-                </picture>
-                <picture id="flag">
-                    <img src="./assets/images/ukraine-flag.png" loading="lazy" alt="">
-                </picture>
+            <ul class="nav-logo">
+                <li>
+                    <picture id="logo">
+                        <img src="./assets/images/logo/logo-black.svg" loading="lazy" alt="the-next-web-logo">
+                    </picture>
+                </li>
+                <li>
+                    <picture id="flag">
+                        <img src="./assets/images/ukraine-flag.png" loading="lazy" alt="">
+                    </picture>
+                </li>
             </ul>   
 
-            <ul class="nav-top left">
+            <ul class="nav-top-left">
                 <li><a href="#">News</a></li>
                 <li><a href="#">Events</a></li>
                 <!-- TODO: Add nesting into events -->
                 <li><a href="#">Spaces</a></li>
                 <li><a href="#">Programs</a></li>
             </ul>
-            <ul class="nav-top right">
+            <ul class="nav-top-right">
                 <li><a href="#newsletters">Newsletters</a></li>
                 <li><a href="#">Partner with us</a></li>
                 <li><a href="#">Searchbox</a></li>
@@ -49,8 +53,8 @@
                 <!-- TODO: Add nesting to MORE -->
             </ul>
 
-            <div class="nav-message">
-                Less than 5 weeks until TNW València 🇪🇸 Uncover all things tech in the heart of Spain →
+            <div class="container nav-message">
+                <a href="">Less than 5 weeks until TNW València 🇪🇸 Uncover all things tech in the heart of Spain →</a>
             </div>
         </nav>
     </header>
@@ -262,15 +266,14 @@
 
             <!-- TODO: Add input to subscribe -->
             <input id="email-input-field" name="email" required="" placeholder="you@email.com" type="email" value="">
-            <!-- TODO: Add links to social media icons-->
             <div class="social-media">
-                <picture><img src="./assets/images/svg/social/facebook-icon.svg" loading="lazy" alt="facebook-icon"></picture>
-                <picture><img src="./assets/images/svg/social/instagram-icon.svg" loading="lazy" alt="instagram-icon"></picture>
-                <picture><img src="./assets/images/svg/social/twitter-icon.svg" loading="lazy" alt="twitter-icon"></picture>
-                <picture><img src="./assets/images/svg/social/youtube-icon.svg" loading="lazy" alt="youtube-icon"></picture>
-                <picture><img src="./assets/images/svg/social/flipboard-icon.svg" loading="lazy" alt="flipboard-icon"></picture>
-                <picture><img src="./assets/images/svg/social/mail-icon.svg" loading="lazy" alt="mail-icon"></picture>
-                <picture><img src="./assets/images/svg/social/linkedin-icon.svg" loading="lazy" alt="linkedin-icon"></picture>
+                <a href=""><img src="./assets/images/svg/social/facebook-icon.svg" loading="lazy" alt="facebook-icon"></a>
+                <a href=""><img src="./assets/images/svg/social/instagram-icon.svg" loading="lazy" alt="instagram-icon"></a>
+                <a href=""><img src="./assets/images/svg/social/twitter-icon.svg" loading="lazy" alt="twitter-icon"></a>
+                <a href=""><img src="./assets/images/svg/social/youtube-icon.svg" loading="lazy" alt="youtube-icon"></a>
+                <a href=""><img src="./assets/images/svg/social/flipboard-icon.svg" loading="lazy" alt="flipboard-icon"></a>
+                <a href=""><img src="./assets/images/svg/social/mail-icon.svg" loading="lazy" alt="mail-icon"></a>
+                <a href=""><img src="./assets/images/svg/social/linkedin-icon.svg" loading="lazy" alt="linkedin-icon"></a>
             </div>
 
         </section>
@@ -504,7 +507,7 @@
         </section>
 
         <section class="container showcase-video">
-            <div class="contetnt">
+            <div class="content">
                 <figure>
                     <img src="./assets/images/news/tnw-conference-aftermovie.jpeg" loading="lazy" alt="tnw-conference-aftermovie">
                     <figcaption>
@@ -512,105 +515,7 @@
                     </figcaption>
                 </figure>
     
-                <figure>
-                    <img src="./assets/images/news/tnw-conference-day-1.jpeg" loading="lazy" alt="tnw-conference-day-1">
-                    <figcaption>
-                        <h6>TNW Conference 2022 - Day 1 highlights</h6>
-                    </figcaption>
-                </figure>
-    
-                <figure>
-                    <img src="./assets/images/news/jason-sylva-cyberdelic-age.jpeg" loading="lazy" alt="jason-sylva-cyberdelic-age">
-                    <h6>Jason Silva - The Cyberdelic Age</h6>
-                </figure>
-    
-                <figure>
-                    <img src="./assets/images/news/the-art-of-science.jpeg" loading="lazy" alt="the-art-of-science">
-                    <figcaption>
-                        <h6>Dr. Christian Busch - Connect the Dots: The Art and Science of Creating Good Luck</h6>
-                    </figcaption>
-                </figure>
-    
-                <figure>
-                    <img src="./assets/images/news/that-little-voice-in-your-head.jpeg" loading="lazy" alt="that-little-voice-in-your-head">
-                    <figcaption>
-                        <h6>Mo Gawdat - That little voice in your head</h6>
-                    </figcaption>
-                </figure>
-    
-                <figure>
-                    <img src="./assets/images/news/digital-transformation-journey.jpeg" loading="lazy" alt="digital-transformation-journey">
-                    <figcaption>
-                        <h6>Boyan Slat (The Ocean Cleanup) & Caleb Kruse (Minderoo Foundation) - The Largest Cleanup in History
-                        </h6>
-                    </figcaption>
-                </figure>
-    
-                <figure>
-                    <img src="./assets/images/news/science-fiction-meets-science-fact.jpeg"
-                    loading="lazy" alt="science-fiction-meets-science-fact">
-                    <figcaption>
-                        <h6>Priscilla Chomba-Kinywa - A digital transformation journey towards free and fair access to tech</h6>
-                    </figcaption>
-                </figure>
-    
-                <figure>
-                    <img src="./assets/images/news/how-to-live-productive.jpeg" loading="lazy" alt="how-to-live-productive">
-                    <figcaption>
-                        <h6>John LePore - Science fiction meets science fact</h6>
-                    </figcaption>
-                </figure>
-    
-                <figure>
-                    <img src="./assets/images/news/embracing-your-inner-gremlin.jpeg" loading="lazy" alt="embracing-your-inner-gremlin">
-                    <figcaption>
-                        <h6>Brian Solis (Salesforce) - LifeSCALE: How to Live a More Creative, Productive, and Happy Life</h6>
-                    </figcaption>
-                </figure>
-    
-                <figure>
-                    <img src="./assets/images/news/demystifying-the-metaverse.jpeg" loading="lazy" alt="demystifying-the-metaverse">
-                    <figcaption>
-                        <h6>Alisa Cohn - Embracing Your Inner Gremlin @ TNW Conference 2022</h6>
-                    </figcaption>
-                </figure>
-                    
-                <figure>
-                    <img src="./assets/images/news/the-future-of-gaming-metaverse.jpeg" loading="lazy" alt="the-future-of-gaming-metaverse">
-                    <figcaption>
-                        <h6>Maxine Williams - DEI & Demystifying the metaverse</h6>
-                    </figcaption>
-                </figure>
-    
-                <figure>
-                    <img src="./assets/images/news/trust-and-transparency-metaaverse.jpeg"
-                        loading="lazy" alt="trust-and-transparency-metaaverse">
-                    <figcaption>
-                        <h6>Edward Snowden & Gavin Wood - Trust and transparency in the metaverse era</h6>
-                    </figcaption>
-                </figure>
-                
-                <figure>
-                    <img src="./assets/images/news/mobilizing-digital-enterprise.jpeg" loading="lazy" alt="mobilizing-digital-enterprise">
-                    <figcaption>
-                        <h6>Sir Tim Berners-Lee & John Bruce - Mobilizing digital enterprise to correct the course of the web
-                        </h6>
-                    </figcaption>
-                </figure>
-                    
-                <figure>
-                    <img src="./assets/images/news/find-your-tribe.jpeg" loading="lazy" alt="find-your-tribe">
-                    <figcaption>
-                        <h6>Trinny Woodall & Katica Roy - Find your tribe: building and scaling a D2C digital-first brand</h6>
-                    </figcaption>
-                </figure>
-                
-                <figure>
-                    <img src="./assets/images/news/tnw-2020-stay-home.jpeg" loading="lazy" alt="tnw-2020-stay-home">
-                    <figcaption>
-                        <h6>TNW2020 – Stay home. Go Global | TNW Online Conference 2020</h6>
-                    </figcaption>
-                </figure>
+                <!-- a -->
         </section>
 
         <section class="container work-with-us" id="work-with-us">
@@ -676,14 +581,15 @@
             <!-- <img src="" loading="lazy" alt=""> -->
             <h2>The heart of tech</h2>
             <!-- TODO: Add links to social media icons-->
+
             <div class="social-media">
-                <picture><img src="./assets/images/svg/social/facebook-icon.svg" loading="lazy" alt="facebook-icon"></picture>
-                <picture><img src="./assets/images/svg/social/instagram-icon.svg" loading="lazy" alt="instagram-icon"></picture>
-                <picture><img src="./assets/images/svg/social/twitter-icon.svg" loading="lazy" alt="twitter-icon"></picture>
-                <picture><img src="./assets/images/svg/social/youtube-icon.svg" loading="lazy" alt="youtube-icon"></picture>
-                <picture><img src="./assets/images/svg/social/flipboard-icon.svg" loading="lazy" alt="flipboard-icon"></picture>
-                <picture><img src="./assets/images/svg/social/mail-icon.svg" loading="lazy" alt="mail-icon"></picture>
-                <picture><img src="./assets/images/svg/social/linkedin-icon.svg" loading="lazy" alt="linkedin-icon"></picture>
+                <a href="#"><img src="./assets/images/svg/social/facebook-icon.svg" loading="lazy" alt="facebook-icon"></a>
+                <a href="#"><img src="./assets/images/svg/social/instagram-icon.svg" loading="lazy" alt="instagram-icon"></a>
+                <a href="#"><img src="./assets/images/svg/social/twitter-icon.svg" loading="lazy" alt="twitter-icon"></a>
+                <a href="#"><img src="./assets/images/svg/social/youtube-icon.svg" loading="lazy" alt="youtube-icon"></a>
+                <a href="#"><img src="./assets/images/svg/social/flipboard-icon.svg" loading="lazy" alt="flipboard-icon"></a>
+                <a href="#"><img src="./assets/images/svg/social/mail-icon.svg" loading="lazy" alt="mail-icon"></a>
+                <a href="#"><img src="./assets/images/svg/social/linkedin-icon.svg" loading="lazy" alt="linkedin-icon"></a>
             </div>
         </section>
 

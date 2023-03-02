@@ -87,7 +87,7 @@ figure figcaption > h6 {
     padding: 1rem;
 }
 
-/* TODO: - fix nav top */
+/* TODO: - add nav top with nesting lists */
 .nav-top {
     display: none;
 }
@@ -209,6 +209,7 @@ nav ul {
     text-align: center;
 }
 
+/* TODO: Fix in other browsers. Displays correctly in Chrome only */
 .social-media {
     width: 70%;
     height: 100%;

@@ -61,6 +61,16 @@ figure {
     position: relative;
 }
 
+.container {
+	width: 100%;
+	display: flex;
+    gap: 1rem;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+    padding: 1rem;
+}
+
 .hero figure {
     width: 100%;
 }
@@ -75,16 +85,6 @@ figure {
 
 figure figcaption > h6 {
     font-size: 1rem;
-}
-
-.container {
-	width: 100%;
-	display: flex;
-    gap: 1rem;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-    padding: 1rem;
 }
 
 /* TODO: - add nav top with nesting lists */

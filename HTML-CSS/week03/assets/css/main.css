@@ -28,6 +28,7 @@
     --nav-message-color: #FFDD33;
 }
 
+/* GENERAL ELEMENTS STYLE */
 html, body {
 	height: 100%;
 	width: 100%;
@@ -45,6 +46,10 @@ h6 {
 
 ul {
     list-style-type: none;
+}
+
+a {
+    text-decoration: none;
 }
 
 img {
@@ -87,6 +92,7 @@ figure figcaption > h6 {
     display: none;
 }
 
+/* TODO: add nesting in list */
 .nav-menu {
     background-color: var(--white-color);
     padding-top: 0.5rem;
@@ -116,10 +122,6 @@ nav ul {
     justify-content: space-evenly;
 }
 
-a {
-   text-decoration: none;
-}
-
 .nav-menu a {
     color: var(--grey-color);
 }
@@ -134,7 +136,7 @@ a {
     display: none;
 }
 
-/* TODO: fix social media in newsletter */
+/* TODO: Add social media in newsletter */
 .newsletter {
     background-color: var(--violet-color);
     color: var(--white-color);
@@ -294,8 +296,8 @@ footer * a {
 }
 
 /* MEDIUM SIZE SCREENS */
-/* Expanded menu in nav */
 @media(min-width: 640px) {
+    /* Flex menu in nav */
     .nav-menu > :not(li:nth-child(-n+5)) {
         display: flex;
     }
@@ -314,7 +316,6 @@ footer * a {
     /* footer: inherit from small size screen */
 }
 
-/* TODO: */
 /* LARGE SIZE SCREENS */
 @media(min-width: 1024px) {
     /* TODO: */

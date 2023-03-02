@@ -7,6 +7,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
 
 :not(svg, img, picture):empty {
@@ -73,20 +75,17 @@ figure figcaption > h6 {
 .container {
 	width: 100%;
 	display: flex;
+    gap: 1rem;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
     padding: 1rem;
 }
 
-
 /* TODO: - fix nav top */
-/* .nav-top {
-    display: flex;
-    flex-flow: row;
-    justify-items: baseline;
-    justify-content: space-between;
-} */
+.nav-top {
+    display: none;
+}
 
 .nav-menu {
     background-color: var(--white-color);
@@ -170,7 +169,6 @@ a {
 }
 
 /* Display first media item not in a grid */
-/* TODO: Fix for the hero banner */
 .corporates-and-innovation .content .item:first-child,
 .sustainability .content .item:first-child,
 .fintech-and-ecommerce .content .item:first-child, 
@@ -199,9 +197,8 @@ a {
     padding: 0 20%;
 }
 
-/* TODO: add social media hover */
-.social-media a img:hover,
-.social-media a img:ac {
+/* TODO: Fix social media hover */
+.social-media a img:hover {
     opacity: 100%;
 }
 
@@ -296,7 +293,7 @@ footer * a {
     align-items: center;
 }
 
-/* TODO: */
+
 /* MEDIUM SIZE SCREENS */
 /* Expanded menu in nav */
 @media(min-width: 640px) {
@@ -308,7 +305,7 @@ footer * a {
         display: block;
         background-color: var(--nav-message-color);
     }
-
+    /* TODO: */
     /* HERO - mosaic */
     /* topic news - two columns  1element || all*/
     /* videos - two columns */
@@ -321,6 +318,7 @@ footer * a {
 /* TODO: */
 /* LARGE SIZE SCREENS */
 @media(min-width: 1024px) {
+    /* TODO: */
     /* inherit all from medium size screen, except: */
 
     /* Latest news - 4 columns*/

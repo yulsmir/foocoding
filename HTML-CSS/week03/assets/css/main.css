@@ -163,7 +163,7 @@ a {
     padding: 0.2rem;
     text-align: left;
     
-    /* TODO: TRIANGLE */
+    /* TODO: Fix triangle */
     /* border-bottom: 5vh solid var(--white-color);
     border-right: 5vh solid transparent; */
 }
@@ -292,7 +292,6 @@ footer * a {
     align-self: center;
     align-items: center;
 }
-
 
 /* MEDIUM SIZE SCREENS */
 /* Expanded menu in nav */

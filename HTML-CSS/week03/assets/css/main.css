@@ -68,7 +68,7 @@ figure {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-    padding: 1rem;
+    padding: 1rem 1rem;
 }
 
 .hero figure {
@@ -296,8 +296,12 @@ footer * a {
     align-items: center;
 }
 
-/* MEDIUM SIZE SCREENS */
+/* ------------------------------------- MEDIUM SIZE SCREENS ------------------------------------- */
 @media(min-width: 640px) {
+
+    .container {
+        padding: 1rem 2rem;
+    }
     /* Flex menu in nav */
     .nav-menu > :not(li:nth-child(-n+5)) {
         display: flex;
@@ -317,8 +321,12 @@ footer * a {
     /* footer: inherit from small size screen */
 }
 
-/* LARGE SIZE SCREENS */
+/* ------------------------------------- LARGE SIZE SCREENS ------------------------------------- */
 @media(min-width: 1024px) {
+    .container {
+        padding: 1rem 18rem;
+    }
+
     /* TODO: */
     /* inherit all from medium size screen, except: */
 

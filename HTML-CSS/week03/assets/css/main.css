@@ -137,7 +137,9 @@ nav ul {
     display: none;
 }
 
-/* TODO: Add social media in newsletter */
+/* TODO: Add social media to newsletter */
+/* TODO: Add form to newsletter */
+
 .newsletter {
     background-color: var(--violet-color);
     color: var(--white-color);
@@ -158,6 +160,8 @@ nav ul {
     align-items: start;
 }
 
+/* Most popular news */
+
 .most-popular-stories-today figure figcaption {
     color: var(--white-color);
     position: absolute;
@@ -172,10 +176,8 @@ nav ul {
 }
 
 /* Display first media item not in a grid */
-.corporates-and-innovation .content .item:first-child,
-.sustainability .content .item:first-child,
-.fintech-and-ecommerce .content .item:first-child, 
-.startups-and-technology .content .item:first-child {
+
+.categorized-news * > .content .item:first-child {
     display: block;
 }
 
@@ -299,7 +301,6 @@ footer * a {
 
 /* ------------------------------------- MEDIUM SIZE SCREENS ------------------------------------- */
 @media(min-width: 640px) {
-
     .container {
         padding: 1% 5%;
     }
@@ -314,9 +315,20 @@ footer * a {
     }
     /* TODO: */
     /* HERO - mosaic */
-    /* most popular stories today - 1 line*/
-    /* topic news - two columns  1element || all*/
+    /* Categorized news - two columns  1 element || all*/ */
 
+    .categorized-news * > .content .item.item-first {
+        width: 50%;
+        background-color: #969696;
+    }
+
+    .categorized-news * > .content .item {
+        /* TODO: fix with flex */
+        float: left;
+        width: 50%;
+    }
+
+    /* most popular stories today - 1 line*/
     .most-popular-stories-today .content {
         display: flex;
         flex-flow: row;
@@ -334,7 +346,6 @@ footer * a {
         padding: 0.5rem;
     }
     
-
     /* videos - two columns */
     /* WORK with us - 2 columns reach your goals || media */
     /* partners - centered in a circular motion */

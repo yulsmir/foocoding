@@ -68,7 +68,7 @@ figure {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-    padding: 1rem 1rem;
+    padding: 1% 1%;
 }
 
 .hero figure {
@@ -300,7 +300,7 @@ footer * a {
 @media(min-width: 640px) {
 
     .container {
-        padding: 1rem 2rem;
+        padding: 1% 5%;
     }
     /* Flex menu in nav */
     .nav-menu > :not(li:nth-child(-n+5)) {
@@ -313,24 +313,39 @@ footer * a {
     }
     /* TODO: */
     /* HERO - mosaic */
+    /* most popular stories today - 1 line*/
     /* topic news - two columns  1element || all*/
     /* videos - two columns */
     /* WORK with us - 2 columns reach your goals || media */
     /* partners - centered in a circular motion */
     /* Latest news - two columns  1 element || all elements*/
+    .latest-news .content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+    }
+
+    .latest-news .content .item {
+        display: flex;
+        flex-flow: column;
+    }
     /* footer: inherit from small size screen */
 }
 
 /* ------------------------------------- LARGE SIZE SCREENS ------------------------------------- */
 @media(min-width: 1024px) {
     .container {
-        padding: 1rem 18rem;
+        padding: 1% 10%;
     }
 
     /* TODO: */
     /* inherit all from medium size screen, except: */
 
     /* Latest news - 4 columns*/
+    .latest-news .content {
+        grid-template-columns: repeat(4, 1fr);
+    }
     /* Partners - one line bottom */
+
     /* footer - 3 columns */
 }

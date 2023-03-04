@@ -141,7 +141,7 @@ nav ul {
 }
 
 /* TODO: Add social media to newsletter */
-/* TODO: Add form to newsletter */
+/* TODO: Fix form to newsletter */
 
 .newsletter {
     background-color: var(--violet-color);
@@ -179,7 +179,6 @@ nav ul {
 }
 
 /* Display first media item not in a grid */
-
 .categorized-news * > .content .item:first-child {
     display: block;
 }
@@ -215,7 +214,7 @@ nav ul {
     text-align: center;
 }
 
-/* TODO: Fix in other browsers. Displays correctly in Chrome */
+/* TODO: Fix in other browsers. Displays correctly in Chrome & Duckduckgo */
 .social-media {
     width: 70%;
     height: 100%;
@@ -253,9 +252,9 @@ nav ul {
     width: inherit;
 }
 
-/* .event-agenda {
+.event-agenda {
     height: 50%;
-} */
+}
 
 .event-agenda button {
     background-color: transparent;
@@ -413,7 +412,6 @@ footer * a {
 
     /*  TODO:WORK with us - 2 columns reach your goals || media */
     /*  TODO:partners - centered in a circular motion */
-    
     /* footer: inherit from small size screen */
 }
 
@@ -423,11 +421,7 @@ footer * a {
         padding: 1% 10%;
     }
 
-    /* TODO: */
-    /* inherit all from medium size screen, except: */
-
-    /* TODO: add hero */
-
+    /* TODO: fix hero */
     .hero * figure {
         object-fit: cover;
     }
@@ -480,15 +474,7 @@ footer * a {
         display: flex;
     }
 
-    .work-with-us .content .media-grid {
-    } 
-
-    .work-with-us .content .partners {
-
-    }
-
-
-    
-
+    /* TODO: fix footer */
+    /* TODO: fix work with us */
     /* footer - 3 columns */
 }

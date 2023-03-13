@@ -7,7 +7,7 @@ let x;
 console.log("the value of x will be: undefined");
 
 //The actual value of x
-console.log(`the actual value of x is ${x}`);
+console.log(x);
 
 // Declare x
 x = 15;

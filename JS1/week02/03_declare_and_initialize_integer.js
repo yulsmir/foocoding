@@ -1,3 +1,5 @@
+// Task 03. Declare a variable x and initialize it with an integer
+
 // Initialize x
 let x;
 

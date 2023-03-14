@@ -120,15 +120,15 @@ console.log('The type of my variable someArray will be: object');
 console.log('The type of my variable someBoolean will be: boolean');
 
 // 8.4 Now use typeof to log the actual type of your variables.
-console.log(typeof(someNum));
-console.log(typeof(someString));
-console.log(typeof(someArray));
-console.log(typeof(someBoolean));
+console.log(typeof (someNum));
+console.log(typeof (someString));
+console.log(typeof (someArray));
+console.log(typeof (someBoolean));
 
 // 8.5 Now compare the types of your different variables with one another.
 // 8.6 Make sure to also show a message when the variables you are comparing are not the same type.
 function compareTypes(value1, value2) {
-  if (typeof(value1) === typeof(value2)) {
+  if (typeof (value1) === typeof (value2)) {
     console.log('SAME TYPE');
   } else {
     console.log('NOT THE SAME TYPE');
@@ -163,12 +163,12 @@ console.log(num3);
 
 // Task 10. Write a program to answer the following questions:
 // 10.1 Can you store multiple types in an array? Numbers and strings? Make an example that illustrates your answer.
-let multipleTypes = ['some word', 2345, true, [ 1, 34 ], 56n, { id: 1234, name: 'John' }];
+let multipleTypes = ['some word', 2345, true, [1, 34], 56n, { id: 1234, name: 'John' }];
 console.log(multipleTypes);
 
 // 10.2 Can you compare infinities? (Not in Eyad's world) - does 6/0 === 10/0? How can you test this?
 // 10.3 Add console.log statements to the above program in which you show that you understand the concepts (just like you've done in the above assignments).
-let firstValue = 6/0;
-let secondValue = 10/0;
+let firstValue = 6 / 0;
+let secondValue = 10 / 0;
 let comparedInfinities = firstValue === secondValue ? true : false;
 console.log(`We can compare infinities by value and type with a strict equality:\n${firstValue} === ${secondValue} returns ${comparedInfinities}`);

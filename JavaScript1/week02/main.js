@@ -9,41 +9,41 @@ console.log('Привет, мир!'); // Russian
 console.log('I\'m awesome');
 
 // Task 03. Declare a variable x and initialize it with an integer
-// Initialize x
+// 3.1 Initialize x
 let x;
 
-// Predicted value of x
+// 3.2 Predicted value of x
 console.log("the value of x will be: undefined");
 
-//The actual value of x
+// 3.3 The actual value of x
 console.log(x);
 
-// Declare x
+// 3.4 Declare x
 x = 15;
 
-// Predicted value of x after declaring
+// 3.5 Predicted value of x after declaring
 console.log("the value of x will be: 15");
 
-//The actual value of x
+// 3.6 The actual value of x
 console.log(x);
 
 // Task 04. Declare a variable y and initialize it with a string
-// Initialize y
+// 4.1 Initialize y
 let y = "Some text here";
 
-// Predicted value of y
+// 4.2 Predicted value of y
 console.log("the value of my string will be: 'Some text here'");
 
-//The actual value of y
+// 4.3 The actual value of y
 console.log(y);
 
-// Declare y
+// 4.4 Declare y
 y = 'A new assigned value';
 
-// Predicted value of y after assigning new value
+// 4.5 Predicted value of y after assigning new value
 console.log("the value of my string will be: 'A new assigned value'");
 
-//The actual new value of y
+// 4.6 The actual new value of y
 console.log(y);
 
 // Task 05. How do you round the number 7.25, to the nearest integer (i.e., whole number)?
@@ -98,7 +98,6 @@ let myStringLength = myString.length;
 
 // 7.3 console.log the length of myString.
 console.log(myStringLength);
-
 
 // Task 08. Write a program that checks the types of two variables and prints out SAME TYPE if they are the same type.
 // 8.1 First declare at least four variables and assign them different data types.

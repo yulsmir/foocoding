@@ -2,6 +2,7 @@
 console.log('Hello world!'); // English
 console.log('Привіт, світ!'); // Ukrainian
 console.log('Hej världen!'); // Swedish
+console.log('Привет, мир!'); // Russian
 
 // Task 02. Find solution for the error in a code: console.log('I'm awesome');
 // Fixed code:
@@ -115,7 +116,7 @@ console.log('The value of my variable someBoolean is: ' + someBoolean);
 // 8.3 Now write a console.log statement wherein you first explain in words what you think the type of your variables is.
 console.log('The type of my variable someNum will be: number');
 console.log('The type of my variable someString will be: string');
-console.log('The type of my variable someArray will be: array');
+console.log('The type of my variable someArray will be: object');
 console.log('The type of my variable someBoolean will be: boolean');
 
 // 8.4 Now use typeof to log the actual type of your variables.
@@ -145,22 +146,29 @@ compareTypes(someArray, someBoolean);
 // 9.1 Add at least 3 console.log statements in which you show that you understand what % does.
 
 // Expected output: 1
-let x = 7;
-x = x % 3;
-console.log(x);
+let num1 = 7;
+num1 %= 3;
+console.log(num1);
 
 // Expected output: 3
-let y = 18;
-y = y % 5;
-console.log(y);
+let num2 = 18;
+num2 %= 5;
+console.log(num2);
 
 // Expected output: 4
-let z = 85;
-z = z % 9;
-console.log(z);
+let num3 = 85;
+num3 %= 9;
+console.log(num3);
 
 
 // Task 10. Write a program to answer the following questions:
-// 10.1 Can you store multiple types in an array? Numbers and strings? Make an example that illustrates your answer. 
+// 10.1 Can you store multiple types in an array? Numbers and strings? Make an example that illustrates your answer.
+let multipleTypes = ['some word', 2345, true, [ 1, 34 ], 56n, { id: 1234, name: 'John' }];
+console.log(multipleTypes);
+
 // 10.2 Can you compare infinities? (Not in Eyad's world) - does 6/0 === 10/0? How can you test this?
 // 10.3 Add console.log statements to the above program in which you show that you understand the concepts (just like you've done in the above assignments).
+let firstValue = 6/0;
+let secondValue = 10/0;
+let comparedInfinities = firstValue === secondValue ? true : false;
+console.log(`We can compare infinities by value and type with a strict equality:\n${firstValue} === ${secondValue} returns ${comparedInfinities}`);

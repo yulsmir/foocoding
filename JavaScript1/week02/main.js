@@ -160,7 +160,6 @@ let num3 = 85;
 num3 %= 9;
 console.log(num3);
 
-
 // Task 10. Write a program to answer the following questions:
 // 10.1 Can you store multiple types in an array? Numbers and strings? Make an example that illustrates your answer.
 let multipleTypes = ['some word', 2345, true, [1, 34], 56n, { id: 1234, name: 'John' }];

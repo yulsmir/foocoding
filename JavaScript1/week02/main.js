@@ -169,5 +169,7 @@ console.log(multipleTypes);
 // 10.3 Add console.log statements to the above program in which you show that you understand the concepts (just like you've done in the above assignments).
 let firstValue = 6 / 0;
 let secondValue = 10 / 0;
+
+// We can compare infinities by value and type with a strict equality '==='
 let comparedInfinities = firstValue === secondValue ? true : false;
-console.log(`We can compare infinities by value and type with a strict equality:\n${firstValue} === ${secondValue} returns ${comparedInfinities}`);
+console.log(`${firstValue} === ${secondValue} returns ${comparedInfinities}`);

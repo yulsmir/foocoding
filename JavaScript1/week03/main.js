@@ -86,8 +86,22 @@ printObjectPropertiesAndValue(user);
 // And prints 'a blue motorbike' for example when called as vehicleType("blue", 2)
 
 function vehicleType(color, code) {
-  return console.log();
+  const VEHICLE_TYPES = ['car', 'motorbike'];
+
+  if (code === 1) {
+    return console.log(`a ${color} ${VEHICLE_TYPES[0]}`);
+  } else if (code === 2) {
+    return console.log(`a ${color} ${VEHICLE_TYPES[0]}`);
+  } else {
+    return console.log('vehicle type is not defined')
+  }
 }
+
+// TODO: to remove console.log
+vehicleType('yellow', 3);
+vehicleType('blue', 1);
+vehicleType('blue', 2);
+vehicleType('blue', -3);
 
 // 5. Can you write the following without the if statement, but with just as a single line with console.log(...);?1
 // 6. Create a function called vehicle, like before, but takes another parameter called age, so that vehicle("blue", 1, 5) prints 'a blue used car'

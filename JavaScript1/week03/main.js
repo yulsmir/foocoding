@@ -14,15 +14,15 @@ console.log(myString);
 let favoriteAnimals = ['blowfish', 'capricorn', 'giraffe'];
 
 // 2.1 Add a statement that adds Mauro's favorite animal 'turtle' to the existing array.
-const maurosFavoriteAnimal = 'turtle';
-favoriteAnimals.push(maurosFavoriteAnimal);
+const MAUROS_FAVORITE_ANIMAL = 'turtle';
+favoriteAnimals.push(MAUROS_FAVORITE_ANIMAL);
 
 // 2.2 Log your new array!
 console.log(favoriteAnimals);
 
 // 2.3 Now add Jim's favorite animal to the array, it's 'meerkat', but make sure it will be placed after 'blowfish' and before 'capricorn'.
-const jimsFavoriteAnimal = 'meerkat';
-favoriteAnimals.splice(1, 0, jimsFavoriteAnimal);
+const JIMS_FAVORITE_ANIMAL = 'meerkat';
+favoriteAnimals.splice(1, 0, JIMS_FAVORITE_ANIMAL);
 
 // 2.4 Write a console.log statement that explains in words you think the new value of the array is.
 console.log(`The new value of array will be: ["blowfish", "meerkat", "capricorn", "giraffe"]`);
@@ -41,7 +41,7 @@ console.log(favoriteAnimals);
 
 // 2.9 Now if unlike Jim, you don't like 'meerkat' and you want to delete it from the array,
 // but you don't know the position or the index of the item in the array, how can you find it?
-let meerkatIndex = favoriteAnimals.indexOf('meerkat');
+const meerkatIndex = favoriteAnimals.indexOf('meerkat');
 
 // 2.10 Log the index of 'meerkat'. Add a message so it says: 'The item you are looking for is at index: '
 // (here you should show the index of the item).
@@ -70,21 +70,25 @@ const user = {
   id: 1,
   name: 'admin',
   email: 'admin@email.com',
-  admin: true
-}
+  admin: true,
+};
 
 function printObjectPropertiesAndValue(object) {
   for (key in object) {
     console.log(key, object[key]);
   }
-  return
 }
 
 // TODO: to remove console.log
 printObjectPropertiesAndValue(user);
 
-// 4. Create a function named vehicleType that receives a color, and a code, 1 for car, 2 for motorbike. 
+// 4. Create a function named vehicleType that receives a color, and a code, 1 for car, 2 for motorbike.
 // And prints 'a blue motorbike' for example when called as vehicleType("blue", 2)
+
+function vehicleType(color, code) {
+  return console.log();
+}
+
 // 5. Can you write the following without the if statement, but with just as a single line with console.log(...);?1
 // 6. Create a function called vehicle, like before, but takes another parameter called age, so that vehicle("blue", 1, 5) prints 'a blue used car'
 // 7. Make a list of vehicles, you can add "motorbike", "caravan", "bike", or more.

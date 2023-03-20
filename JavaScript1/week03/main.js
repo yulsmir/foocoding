@@ -107,6 +107,8 @@ function vehicleType(color, code) {
   console.log(`a ${color} ${vehicleType}`);
 }
 
+console.log('---------');
+
 vehicleType('yellow', 1); // a yellow car
 vehicleType('blue', 0); // Unknown vehicle type. Enter number from 1 to 2
 vehicleType('white', 2); // a white motorbike
@@ -140,12 +142,7 @@ function vehicle(color, code, age) {
     console.log(`Unknown vehicle type. Enter number from 1 to ${VEHICLE_TYPES.length}`);
     return;
   }
-
-  if (age >= 0 && age <= 1) {
-    carCondition = CAR_CONDITIONS[0];
-  }
-
-  console.log(`a ${color} ${carCondition} ${vehicleType}`);
+    console.log(`a ${color} ${carCondition} ${vehicleType}`);
 }
 
 console.log(vehicle(4565, true, 'test')); // Invalid input
@@ -155,13 +152,15 @@ console.log(vehicle('white', 2, 5)); // a white used motorbike
 console.log(vehicle('green', 2, 0)); // a green new motorbike
 
 // 7. Make a list of vehicles, you can add "motorbike", "caravan", "bike", or more.
-const VEHICLES = ['motorbike', 'caravan', 'bike', 'scooter'];
+const VEHICLES_LIST = ['motorbike', 'caravan', 'bike', 'scooter'];
 
 // 8. How do you get the third element from that list?
-console.log(`Third element from list is: ` + VEHICLES[2]);
+console.log(`Third element from list is: ` + VEHICLES_LIST[2]);
 
 // 9. Change the function vehicle to use the list of question 7.
 // So that vehicle("green", 3, 1) prints "a green new bike".
+
+vehicle("green", 3, 1)
 
 // 10. Use the list of vehicles to write an advertisement. So that it prints something like:
 // "Amazing Joe's Garage, we service cars, motorbikes, caravans and bikes.". (Hint: use a for loop.)
@@ -171,6 +170,7 @@ console.log(`Third element from list is: ` + VEHICLES[2]);
 
 // 11. What if you add one more vehicle to the list, can you have that added to the advertisement
 // without changing the code for question 10 ?
+
 // 12. Create an empty object.
 // 13. Create an object that contains the teachers that you have had so far for the different modules.
 // 14. Add a property to the object you just created that contains the languages that they have taught you.

@@ -129,7 +129,7 @@ function vehicle(color, code, age) {
   const CAR_CONDITIONS = ['new', 'used'];
 
   let carCondition = age > 1 ? CAR_CONDITIONS[1] : CAR_CONDITIONS[0];
-  let vehicleType = code === 1 ? VEHICLE_TYPES[0] : VEHICLE_TYPES[1];
+  const vehicleType = VEHICLE_TYPES[code - 1];
 
   if (typeof color !== 'string' || typeof code !== 'number' || typeof age !== 'number') {
     console.log('Invalid input');
@@ -143,7 +143,6 @@ function vehicle(color, code, age) {
 
   if (age >= 0 && age <= 1) {
     carCondition = CAR_CONDITIONS[0];
-    vehicleType = code === 1 ? VEHICLE_TYPES[0] : VEHICLE_TYPES[1];
   }
 
   console.log(`a ${color} ${carCondition} ${vehicleType}`);

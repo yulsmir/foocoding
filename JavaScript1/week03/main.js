@@ -149,27 +149,28 @@ console.log(vehicle('white', 2, 5)); // a white used motorbike
 console.log(vehicle('green', 2, 0)); // a green new motorbike
 
 // 7. Make a list of vehicles, you can add "motorbike", "caravan", "bike", or more.
-const VEHICLES_LIST = ['motorbike', 'caravan', 'bike', 'scooter'];
+let vehiclesList = ['motorbike', 'caravan', 'bike', 'scooter'];
 
 // 8. How do you get the third element from that list?
-console.log(`Third element from list is: ` + VEHICLES_LIST[2]);
+console.log(`Third element from list is: ` + vehiclesList[2]);
 
 // 9. Change the function vehicle to use the list of question 7.
 // So that vehicle("green", 3, 1) prints "a green new bike".
 function vehicle(color, code, age) {
-  const VEHICLES_LIST = ['motorbike', 'caravan', 'bike', 'scooter'];
+  // TODO:
+  let vehiclesList = ['motorbike', 'caravan', 'bike', 'scooter'];
   const CAR_CONDITIONS = ['new', 'used'];
 
   let carCondition = age > 1 ? CAR_CONDITIONS[1] : CAR_CONDITIONS[0];
-  const vehicleType = VEHICLES_LIST[code - 1];
+  const vehicleType = vehiclesList[code - 1];
 
   if (typeof color !== 'string' || typeof code !== 'number' || typeof age !== 'number') {
     console.log('Invalid input');
     return;
   }
 
-  if (code < 1 || code > VEHICLES_LIST.length) {
-    console.log(`Unknown vehicle type. Enter number from 1 to ${VEHICLES_LIST.length}`);
+  if (code < 1 || code > vehiclesList.length) {
+    console.log(`Unknown vehicle type. Enter number from 1 to ${vehiclesList.length}`);
     return;
   }
   console.log(`a ${color} ${carCondition} ${vehicleType}`);
@@ -178,11 +179,7 @@ function vehicle(color, code, age) {
 vehicle('green', 3, 1); // a green new bike
 
 // 10. Use the list of vehicles to write an advertisement. So that it prints something like:
-// "Amazing Joe's Garage, we service cars, motorbikes, caravans and bikes.". (Hint: use a for loop.)
-// Hint, the output should be correct English with all the punctuation in place (that's the challenge).
-// So plurals for the vehicle types, commas followed by a single space, the word and
-// to replace the final comma and closed off by a period.
-
+// "Amazing Joe's Garage, we service cars, motorbikes, caravans and bikes.".
 function printAdvertisement(items) {
   let adsText = "Amazing Joe's Garage, we service";
 
@@ -194,24 +191,23 @@ function printAdvertisement(items) {
   console.log(adsText);
 }
 
-printAdvertisement(VEHICLES_LIST);
+printAdvertisement(vehiclesList);
 
 // 11. What if you add one more vehicle to the list, can you have that added to the advertisement
 // without changing the code for question 10 ?
-
-// Yes
-VEHICLES_LIST.push('cargo bike');
-printAdvertisement(VEHICLES_LIST);
+// Answer: Yes
+vehiclesList.push('cargo bike');
+printAdvertisement(vehiclesList);
 
 // 12. Create an empty object.
 const newObj = {};
 
 // 13. Create an object that contains the teachers that you have had so far for the different modules.
 let teachers = {
-  Tommy: '',
-  Cris: '',
-  Sahin: '',
-};
+  'Tommy': '',
+  'Cris': '',
+  'Sahin': '',
+}
 
 // 14. Add a property to the object you just created that contains the languages that they have taught you.
 teachers['Tommy'] = 'HTML, CSS';
@@ -226,34 +222,46 @@ let x = [1, 2, 3];
 let y = [1, 2, 3];
 let z = y;
 
-function compareTwoArraysNotStrict(arr1, arr2) {
-  return arr1 == arr2;
+function compareTwoValues(val1, val2) {
+  console.log(val1 == val2);
 }
 
-function compareTwoArraysStrict(arr1, arr2) {
-  return arr1 === arr2 ? true : false;
+function compareTwoValuesStrict(val1, val2) {
+  console.log(val1 === val2);
 }
 
 // Strict and not strict equality returns same results with these arrays
-console.log(compareTwoArraysNotStrict(x, y)); // false
-console.log(compareTwoArraysNotStrict(x, z)); // false
-console.log(compareTwoArraysNotStrict(y, z)); // true
+compareTwoValues(x, y); // false
+compareTwoValues(x, z); // false
+compareTwoValues(y, z); // true
 
-console.log(compareTwoArraysStrict(x, y)); // false
-console.log(compareTwoArraysStrict(x, z)); // false
-console.log(compareTwoArraysStrict(y, z)); // true
+compareTwoValuesStrict(x, y); // false
+compareTwoValuesStrict(x, z); // false
+compareTwoValuesStrict(y, z); // true
 
+console.log('-----');
 // 16. Take a look at the following code:
-// let o1 = { foo: "bar" };
-// let o2 = { foo: "bar" };
-// let o3 = o2;
-
 // Show that changing o2 changes o3 (or not) and changing o1 changes o3(or not).
 // Does the order that you assign (o3 = o2 or o2 = o3) matter?
+let o1 = { foo: 'bar' };
+let o2 = { foo: 'bar' };
+
+compareTwoValuesStrict(o1, o2); // false
+let o3 = o2;
+
+compareTwoValuesStrict(o1, o2); // false
+compareTwoValuesStrict(o3, o2); // true
+compareTwoValuesStrict(o1, o3); // false
+
+let o4 = o2;
+compareTwoValuesStrict(o1, o2); // false
+compareTwoValuesStrict(o1, o2); // false
+compareTwoValuesStrict(o3, o2); // true
+compareTwoValuesStrict(o1, o3); // false
+compareTwoValuesStrict(o2, o4); // true
 
 // 17. What does the following code return? (And why?)
-// let bar = 42;
-// typeof typeof bar;
+let bar = 42;
 
-// ‘Coerce' means to try to change - so coercing var x = '6' to number means
-// trying to change the type to number temporarily.
+console.log('typeof typeof bar returns string, because typeof always returns string.');
+console.log(typeof typeof bar);

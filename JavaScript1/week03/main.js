@@ -93,23 +93,18 @@ printObjectPropertiesAndValue(USER);
 
 function vehicleType(color, code) {
   const VEHICLE_TYPES = ['car', 'motorbike'];
-  let vehicleType = 'unknown';
+  const vehicleType = VEHICLE_TYPES[code - 1];
+
   if (typeof color !== 'string' || typeof code !== 'number') {
     console.log('Invalid input');
-  } else {
-    if (code > VEHICLE_TYPES.length || code < 1) {
-      console.log(`Unknown vehicle type. Enter number from 1 to ${VEHICLE_TYPES.length}`);
-    } else {
-      if (code === 1) {
-        vehicleType = VEHICLE_TYPES[0]
-      }
-      if (code === 2) {
-        vehicleType = VEHICLE_TYPES[1]
-      }
-      return console.log(`a ${color} ${vehicleType}`);
-
-    }
+    return;
   }
+
+  if (code < 1 || code > VEHICLE_TYPES.length) {
+    console.log(`Unknown vehicle type. Enter number from 1 to ${VEHICLE_TYPES.length}`);
+    return;
+  }
+  console.log(`a ${color} ${vehicleType}`);
 }
 
 vehicleType('yellow', 1); // a yellow car
@@ -126,38 +121,32 @@ vehicleType(1, 3); // Invalid input
 // }
 console.log(3 === 3 ? 'yes' : 'no');
 
-console.log('---------')
+console.log('---------');
 // 6. Create a function called vehicle, like before, but takes another parameter called age,
 // so that vehicle("blue", 1, 5) prints 'a blue used car'
 function vehicle(color, code, age) {
   const VEHICLE_TYPES = ['car', 'motorbike'];
   const CAR_CONDITIONS = ['new', 'used'];
-  let carCondition = CAR_CONDITIONS[2];
-  let vehicleType = 'unknown';
+
+  let carCondition = age > 1 ? CAR_CONDITIONS[1] : CAR_CONDITIONS[0];
+  let vehicleType = code === 1 ? VEHICLE_TYPES[0] : VEHICLE_TYPES[1];
 
   if (typeof color !== 'string' || typeof code !== 'number' || typeof age !== 'number') {
-    return console.log('Invalid input');
-  } else {
-    if (code > VEHICLE_TYPES.length || code < 1) {
-      return console.log(`Unknown vehicle type. Enter number from 1 to ${VEHICLE_TYPES.length}`);
-    } else {
-      if (age >= 0 && age <= 1 && code === 1) {
-        carCondition = CAR_CONDITIONS[0];
-        vehicleType = VEHICLE_TYPES[0]
-      }
-
-      if (age >= 0 && age <= 1 && code === 2) {
-        carCondition = CAR_CONDITIONS[0];
-        vehicleType = VEHICLE_TYPES[1]
-      }
-
-      if (age > 1 && code === 2) {
-        carCondition = CAR_CONDITIONS[1];
-        vehicleType = VEHICLE_TYPES[1]
-      }
-    }
+    console.log('Invalid input');
+    return;
   }
-  return console.log(`a ${color} ${carCondition} ${vehicleType}`);
+
+  if (code < 1 || code > VEHICLE_TYPES.length) {
+    console.log(`Unknown vehicle type. Enter number from 1 to ${VEHICLE_TYPES.length}`);
+    return;
+  }
+
+  if (age >= 0 && age <= 1) {
+    carCondition = CAR_CONDITIONS[0];
+    vehicleType = code === 1 ? VEHICLE_TYPES[0] : VEHICLE_TYPES[1];
+  }
+
+  console.log(`a ${color} ${carCondition} ${vehicleType}`);
 }
 
 console.log(vehicle(4565, true, 'test')); // Invalid input
@@ -174,6 +163,7 @@ console.log(`Third element from list is: ` + VEHICLES[2]);
 
 // 9. Change the function vehicle to use the list of question 7.
 // So that vehicle("green", 3, 1) prints "a green new bike".
+
 // 10. Use the list of vehicles to write an advertisement. So that it prints something like:
 // "Amazing Joe's Garage, we service cars, motorbikes, caravans and bikes.". (Hint: use a for loop.)
 // Hint, the output should be correct English with all the punctuation in place (that's the challenge).

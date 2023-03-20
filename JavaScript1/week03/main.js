@@ -186,15 +186,27 @@ teachers['Sahin'] = 'JavaScript';
 console.log(teachers);
 
 // 15. Write some code to test two arrays for equality using == and ===. Test the following:
-// let x = [1, 2, 3];
-// let y = [1, 2, 3];
-// let z = y;
-
 // What do you think will happen with x == y, x === y and z == y and z == x? Prove it!
-// Don't cheat! Seriously - try it first.
-// Check out this Fiddle. You need to open your browser’s Developer Tools
-// to see the console output. Press the Run button in the upper right corner to run the code.
-// More insights from this Stack Overflow question.
+let x = [1, 2, 3];
+let y = [1, 2, 3];
+let z = y;
+
+function compareTwoArraysNotStrict(arr1, arr2) {
+  return arr1 == arr2
+}
+
+function compareTwoArraysStrict(arr1, arr2) {
+  return arr1 === arr2 ? true : false;
+}
+
+// Strict and not strict equality returns same results with these arrays
+console.log(compareTwoArraysNotStrict(x, y)); // false
+console.log(compareTwoArraysNotStrict(x, z)); // false
+console.log(compareTwoArraysNotStrict(y, z)); // true 
+
+console.log(compareTwoArraysStrict(x, y)); // false
+console.log(compareTwoArraysStrict(x, z)); // false
+console.log(compareTwoArraysStrict(y, z)); // true 
 
 // 16. Take a look at the following code:
 // let o1 = { foo: "bar" };

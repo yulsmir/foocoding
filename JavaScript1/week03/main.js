@@ -107,8 +107,6 @@ function vehicleType(color, code) {
   console.log(`a ${color} ${vehicleType}`);
 }
 
-console.log('---------');
-
 vehicleType('yellow', 1); // a yellow car
 vehicleType('blue', 0); // Unknown vehicle type. Enter number from 1 to 2
 vehicleType('white', 2); // a white motorbike
@@ -123,7 +121,6 @@ vehicleType(1, 3); // Invalid input
 // }
 console.log(3 === 3 ? 'yes' : 'no');
 
-console.log('---------');
 // 6. Create a function called vehicle, like before, but takes another parameter called age,
 // so that vehicle("blue", 1, 5) prints 'a blue used car'
 function vehicle(color, code, age) {
@@ -142,7 +139,7 @@ function vehicle(color, code, age) {
     console.log(`Unknown vehicle type. Enter number from 1 to ${VEHICLE_TYPES.length}`);
     return;
   }
-    console.log(`a ${color} ${carCondition} ${vehicleType}`);
+  console.log(`a ${color} ${carCondition} ${vehicleType}`);
 }
 
 console.log(vehicle(4565, true, 'test')); // Invalid input
@@ -160,7 +157,7 @@ console.log(`Third element from list is: ` + VEHICLES_LIST[2]);
 // 9. Change the function vehicle to use the list of question 7.
 // So that vehicle("green", 3, 1) prints "a green new bike".
 
-vehicle("green", 3, 1)
+vehicle('green', 3, 1);
 
 // 10. Use the list of vehicles to write an advertisement. So that it prints something like:
 // "Amazing Joe's Garage, we service cars, motorbikes, caravans and bikes.". (Hint: use a for loop.)
@@ -172,8 +169,22 @@ vehicle("green", 3, 1)
 // without changing the code for question 10 ?
 
 // 12. Create an empty object.
+const newObj = {};
+
 // 13. Create an object that contains the teachers that you have had so far for the different modules.
+let teachers = {
+  Tommy: '',
+  Cris: '',
+  Sahin: ''
+};
+
 // 14. Add a property to the object you just created that contains the languages that they have taught you.
+teachers['Tommy'] = 'HTML, CSS';
+teachers['Cris'] = 'Agile, Scrum';
+teachers['Sahin'] = 'JavaScript';
+
+console.log(teachers);
+
 // 15. Write some code to test two arrays for equality using == and ===. Test the following:
 // let x = [1, 2, 3];
 // let y = [1, 2, 3];

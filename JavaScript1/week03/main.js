@@ -178,14 +178,30 @@ function vehicle(color, code, age) {
 vehicle('green', 3, 1); // a green new bike
 
 // 10. Use the list of vehicles to write an advertisement. So that it prints something like:
-
 // "Amazing Joe's Garage, we service cars, motorbikes, caravans and bikes.". (Hint: use a for loop.)
 // Hint, the output should be correct English with all the punctuation in place (that's the challenge).
 // So plurals for the vehicle types, commas followed by a single space, the word and
 // to replace the final comma and closed off by a period.
 
+function printAdvertisement(items) {
+  let adsText = "Amazing Joe's Garage, we service";
+
+  for (item of items) {
+    adsText += ` ${item}s,`;
+  }
+
+  adsText = adsText.substring(0, adsText.length - 1) + '.';
+  console.log(adsText);
+}
+
+printAdvertisement(VEHICLES_LIST);
+
 // 11. What if you add one more vehicle to the list, can you have that added to the advertisement
 // without changing the code for question 10 ?
+
+// Yes
+VEHICLES_LIST.push('cargo bike');
+printAdvertisement(VEHICLES_LIST);
 
 // 12. Create an empty object.
 const newObj = {};

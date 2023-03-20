@@ -169,8 +169,8 @@ console.log(vehicle('green', 2, 0)); // a green new motorbike
 // 7. Make a list of vehicles, you can add "motorbike", "caravan", "bike", or more.
 const VEHICLES = ['motorbike', 'caravan', 'bike', 'scooter'];
 
-// // 8. How do you get the third element from that list?
-// console.log(`Third element from list is: ` + VEHICLES[2]);
+// 8. How do you get the third element from that list?
+console.log(`Third element from list is: ` + VEHICLES[2]);
 
 // 9. Change the function vehicle to use the list of question 7.
 // So that vehicle("green", 3, 1) prints "a green new bike".

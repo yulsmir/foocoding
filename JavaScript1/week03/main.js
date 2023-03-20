@@ -93,6 +93,7 @@ printObjectPropertiesAndValue(USER);
 
 function vehicleType(color, code) {
   const VEHICLE_TYPES = ['car', 'motorbike'];
+  let vehicleType = 'unknown';
   if (typeof color !== 'string' || typeof code !== 'number') {
     console.log('Invalid input');
   } else {
@@ -100,11 +101,13 @@ function vehicleType(color, code) {
       console.log(`Unknown vehicle type. Enter number from 1 to ${VEHICLE_TYPES.length}`);
     } else {
       if (code === 1) {
-        console.log(`a ${color} ${VEHICLE_TYPES[0]}`);
+        vehicleType = VEHICLE_TYPES[0]
       }
       if (code === 2) {
-        console.log(`a ${color} ${VEHICLE_TYPES[1]}`);
+        vehicleType = VEHICLE_TYPES[1]
       }
+      return console.log(`a ${color} ${vehicleType}`);
+
     }
   }
 }
@@ -113,7 +116,7 @@ vehicleType('yellow', 1); // a yellow car
 vehicleType('blue', 0); // Unknown vehicle type. Enter number from 1 to 2
 vehicleType('white', 2); // a white motorbike
 vehicleType(true, NaN); // Invalid input
-vehicleType(1, 3); // Invalid input 
+vehicleType(1, 3); // Invalid input
 
 // 5. Can you write the following without the if statement, but with just as a single line with console.log(...);?1
 // if (3 === 3) {
@@ -123,38 +126,48 @@ vehicleType(1, 3); // Invalid input
 // }
 console.log(3 === 3 ? 'yes' : 'no');
 
+console.log('---------')
 // 6. Create a function called vehicle, like before, but takes another parameter called age,
 // so that vehicle("blue", 1, 5) prints 'a blue used car'
-// function vehicle(color, code, age) {
-//   const VEHICLE_TYPES = ['car', 'motorbike'];
-//   const CAR_CONDITIONS = ['unknown', 'new', 'used'];
-//   let carCondition = CAR_CONDITIONS[0];
+function vehicle(color, code, age) {
+  const VEHICLE_TYPES = ['car', 'motorbike'];
+  const CAR_CONDITIONS = ['new', 'used'];
+  let carCondition = CAR_CONDITIONS[2];
+  let vehicleType = 'unknown';
 
-//   if (typeof color !== 'string' || typeof code !== 'number' || typeof age !== 'number') {
-//     console.log('Invalid input');
-//   } else {
-//     if (age >= 0 && age <= 1) {
-//       carCondition = CAR_CONDITIONS[1];
-//       if (code === 1) {
-//         return console.log(`a ${color} ${carCondition} ${VEHICLE_TYPES[0]}`);
-//       }
+  if (typeof color !== 'string' || typeof code !== 'number' || typeof age !== 'number') {
+    return console.log('Invalid input');
+  } else {
+    if (code > VEHICLE_TYPES.length || code < 1) {
+      return console.log(`Unknown vehicle type. Enter number from 1 to ${VEHICLE_TYPES.length}`);
+    } else {
+      if (age >= 0 && age <= 1 && code === 1) {
+        carCondition = CAR_CONDITIONS[0];
+        vehicleType = VEHICLE_TYPES[0]
+      }
 
-//       if (code === 2) {
-//         return console.log(`a ${color} ${carCondition} ${VEHICLE_TYPES[1]}`);
-//       }
-//     } else if (age > 1) {
-//       carCondition = CAR_CONDITIONS[2];
-//       return console.log('boo');
-//     }
-//   }
-// }
+      if (age >= 0 && age <= 1 && code === 2) {
+        carCondition = CAR_CONDITIONS[0];
+        vehicleType = VEHICLE_TYPES[1]
+      }
 
-// console.log(vehicle('blue', 1, 5));
-// console.log(vehicle('white', 2, 1));
-// console.log(vehicle('green', 2, 0));
+      if (age > 1 && code === 2) {
+        carCondition = CAR_CONDITIONS[1];
+        vehicleType = VEHICLE_TYPES[1]
+      }
+    }
+  }
+  return console.log(`a ${color} ${carCondition} ${vehicleType}`);
+}
 
-// // 7. Make a list of vehicles, you can add "motorbike", "caravan", "bike", or more.
-// const VEHICLES = ['motorbike', 'caravan', 'bike', 'scooter'];
+console.log(vehicle(4565, true, 'test')); // Invalid input
+console.log(vehicle('blue', 5, 3)); // Unknown vehicle type. Enter number from 1 to 2
+console.log(vehicle('blue', 1, 1)); // a blue new car
+console.log(vehicle('white', 2, 5)); // a white used motorbike
+console.log(vehicle('green', 2, 0)); // a green new motorbike
+
+// 7. Make a list of vehicles, you can add "motorbike", "caravan", "bike", or more.
+const VEHICLES = ['motorbike', 'caravan', 'bike', 'scooter'];
 
 // // 8. How do you get the third element from that list?
 // console.log(`Third element from list is: ` + VEHICLES[2]);

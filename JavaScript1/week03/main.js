@@ -156,10 +156,29 @@ console.log(`Third element from list is: ` + VEHICLES_LIST[2]);
 
 // 9. Change the function vehicle to use the list of question 7.
 // So that vehicle("green", 3, 1) prints "a green new bike".
+function vehicle(color, code, age) {
+  const VEHICLES_LIST = ['motorbike', 'caravan', 'bike', 'scooter'];
+  const CAR_CONDITIONS = ['new', 'used'];
 
-vehicle('green', 3, 1);
+  let carCondition = age > 1 ? CAR_CONDITIONS[1] : CAR_CONDITIONS[0];
+  const vehicleType = VEHICLES_LIST[code - 1];
+
+  if (typeof color !== 'string' || typeof code !== 'number' || typeof age !== 'number') {
+    console.log('Invalid input');
+    return;
+  }
+
+  if (code < 1 || code > VEHICLES_LIST.length) {
+    console.log(`Unknown vehicle type. Enter number from 1 to ${VEHICLES_LIST.length}`);
+    return;
+  }
+  console.log(`a ${color} ${carCondition} ${vehicleType}`);
+}
+
+vehicle('green', 3, 1); // a green new bike
 
 // 10. Use the list of vehicles to write an advertisement. So that it prints something like:
+
 // "Amazing Joe's Garage, we service cars, motorbikes, caravans and bikes.". (Hint: use a for loop.)
 // Hint, the output should be correct English with all the punctuation in place (that's the challenge).
 // So plurals for the vehicle types, commas followed by a single space, the word and
@@ -175,7 +194,7 @@ const newObj = {};
 let teachers = {
   Tommy: '',
   Cris: '',
-  Sahin: ''
+  Sahin: '',
 };
 
 // 14. Add a property to the object you just created that contains the languages that they have taught you.
@@ -192,7 +211,7 @@ let y = [1, 2, 3];
 let z = y;
 
 function compareTwoArraysNotStrict(arr1, arr2) {
-  return arr1 == arr2
+  return arr1 == arr2;
 }
 
 function compareTwoArraysStrict(arr1, arr2) {
@@ -202,11 +221,11 @@ function compareTwoArraysStrict(arr1, arr2) {
 // Strict and not strict equality returns same results with these arrays
 console.log(compareTwoArraysNotStrict(x, y)); // false
 console.log(compareTwoArraysNotStrict(x, z)); // false
-console.log(compareTwoArraysNotStrict(y, z)); // true 
+console.log(compareTwoArraysNotStrict(y, z)); // true
 
 console.log(compareTwoArraysStrict(x, y)); // false
 console.log(compareTwoArraysStrict(x, z)); // false
-console.log(compareTwoArraysStrict(y, z)); // true 
+console.log(compareTwoArraysStrict(y, z)); // true
 
 // 16. Take a look at the following code:
 // let o1 = { foo: "bar" };

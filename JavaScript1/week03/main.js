@@ -1,55 +1,36 @@
 // Task 01. Strings
-// 1.1 Add the string to your file and log it.
 let myString = 'hello,this,is,a,difficult,to,read,sentence';
-console.log(myString);
 
-// 1.2 Log the length of myString.
+console.log(myString);
 console.log(myString.length);
 
-// 1.3 The commas make that the sentence is quite hard to read. Find a way to remove the commas from the string and replace them with spaces.
 myString = myString.split(',').join(' ');
+
 console.log(myString);
 
 // Task 02. Arrays
 let favoriteAnimals = ['blowfish', 'capricorn', 'giraffe'];
-
-// 2.1 Add a statement that adds Mauro's favorite animal 'turtle' to the existing array.
 const MAUROS_FAVORITE_ANIMAL = 'turtle';
+
 favoriteAnimals.push(MAUROS_FAVORITE_ANIMAL);
 
-// 2.2 Log your new array!
 console.log(favoriteAnimals);
 
-// 2.3 Now add Jim's favorite animal to the array, it's 'meerkat', but make sure it will be
-// placed after 'blowfish' and before 'capricorn'.
 const JIMS_FAVORITE_ANIMAL = 'meerkat';
 favoriteAnimals.splice(1, 0, JIMS_FAVORITE_ANIMAL);
 
-// 2.4 Write a console.log statement that explains in words you think the new value of the array is.
 console.log(
-  `The new value of array will be: ['blowfish', 'meerkat', 'capricorn', 'giraffe', 'turtle']`,
+  `The new value of array will be:\
+  ['blowfish', 'meerkat', 'capricorn', 'giraffe', 'turtle']`,
 );
 
-// 2.5 Log your new array!
 console.log(favoriteAnimals);
-
-// 2.6 Log the length of the array, add a message: 'The array has a length of:
-// ' (here you should show the length of the array).
 console.log('The array has a length of: ' + favoriteAnimals.length);
 
-// 2.7 Jason does not like 'giraffe', delete this animal from the array.
 favoriteAnimals.splice(favoriteAnimals.length - 2, 1);
-
-// 2.8 Again log your new array.
 console.log(favoriteAnimals);
 
-// 2.9 Now if unlike Jim, you don't like 'meerkat' and you want to delete it from the array,
-// but you don't know the position or the index of the item in the array, how can you find it?
 const meerkatIndex = favoriteAnimals.indexOf('meerkat');
-
-// 2.10 Log the index of 'meerkat'. Add a message so it says: 'The item you are looking for is at index: '
-// (here you should show the index of the item).
-
 console.log('The item you are looking for is at index: ' + meerkatIndex);
 
 // More Javascript
@@ -67,7 +48,6 @@ function colorCar(color) {
   return console.log(`a ${color} car`);
 }
 
-// TODO: to remove console.log
 colorCar('blue');
 colorCar('black');
 colorCar('green');
@@ -80,21 +60,21 @@ const USER = {
   admin: true,
 };
 
-function printObjectPropertiesAndValue(object) {
+function printObjectPropertiesAndValues(object) {
   for (key in object) {
-    console.log(key, object[key]);
+    console.log(`${key}: ${object[key]}`);
   }
 }
 
-printObjectPropertiesAndValue(USER);
+printObjectPropertiesAndValues(USER);
 
 // 4. Create a function named vehicleType that receives a color, and a code, 1 for car, 2 for motorbike.
 // And prints 'a blue motorbike' for example when called as vehicleType("blue", 2)
-
 function vehicleType(color, code) {
   const VEHICLE_TYPES = ['car', 'motorbike'];
   const vehicleType = VEHICLE_TYPES[code - 1];
 
+  // Edge values and types check
   if (typeof color !== 'string' || typeof code !== 'number') {
     console.log('Invalid input');
     return;
@@ -113,7 +93,8 @@ vehicleType('white', 2); // a white motorbike
 vehicleType(true, NaN); // Invalid input
 vehicleType(1, 3); // Invalid input
 
-// 5. Can you write the following without the if statement, but with just as a single line with console.log(...);?1
+// 5. Can you write the following without the if statement, but with just as a
+// single line with console.log(...);?1
 // if (3 === 3) {
 //   console.log("yes");
 // } else {
@@ -123,33 +104,37 @@ console.log(3 === 3 ? 'yes' : 'no');
 
 // 6. Create a function called vehicle, like before, but takes another parameter called age,
 // so that vehicle("blue", 1, 5) prints 'a blue used car'
-function vehicle(color, code, age) {
-  const VEHICLE_TYPES = ['car', 'motorbike'];
-  const CAR_CONDITIONS = ['new', 'used'];
 
-  let carCondition = age > 1 ? CAR_CONDITIONS[1] : CAR_CONDITIONS[0];
-  const vehicleType = VEHICLE_TYPES[code - 1];
+// Uncomment to verify solution:
+// function vehicle(color, code, age) {
+//   const VEHICLE_TYPES = ['car', 'motorbike'];
+//   const CAR_CONDITIONS = ['new', 'used'];
 
-  if (typeof color !== 'string' || typeof code !== 'number' || typeof age !== 'number') {
-    console.log('Invalid input');
-    return;
-  }
+//   let carCondition = age > 1 ? CAR_CONDITIONS[1] : CAR_CONDITIONS[0];
+//   const vehicleType = VEHICLE_TYPES[code - 1];
 
-  if (code < 1 || code > VEHICLE_TYPES.length) {
-    console.log(`Unknown vehicle type. Enter number from 1 to ${VEHICLE_TYPES.length}`);
-    return;
-  }
-  console.log(`a ${color} ${carCondition} ${vehicleType}`);
-}
+//   // Edge values and types check
+//   if (typeof color !== 'string' || typeof code !== 'number' || typeof age !== 'number') {
+//     console.log('Invalid input');
+//     return;
+//   }
 
-console.log(vehicle(4565, true, 'test')); // Invalid input
-console.log(vehicle('blue', 5, 3)); // Unknown vehicle type. Enter number from 1 to 2
-console.log(vehicle('blue', 1, 1)); // a blue new car
-console.log(vehicle('white', 2, 5)); // a white used motorbike
-console.log(vehicle('green', 2, 0)); // a green new motorbike
+//   if (code < 1 || code > VEHICLE_TYPES.length) {
+//     console.log(`Unknown vehicle type. Enter number from 1 to ${VEHICLE_TYPES.length}`);
+//     return;
+//   }
+//   console.log(`a ${color} ${carCondition} ${vehicleType}`);
+// }
+
+// console.log('----')
+// console.log(vehicle(4565, true, 'test')); // Invalid input
+// console.log(vehicle('blue', 5, 3)); // Unknown vehicle type. Enter number from 1 to 2
+// console.log(vehicle('blue', 1, 1)); // a blue new car
+// console.log(vehicle('white', 2, 5)); // a white used motorbike
+// console.log(vehicle('green', 2, 0)); // a green new motorbike
 
 // 7. Make a list of vehicles, you can add "motorbike", "caravan", "bike", or more.
-let vehiclesList = ['motorbike', 'caravan', 'bike', 'scooter'];
+let vehiclesList = ['motorbike', 'caravan', 'bike', 'scooter', 'skate'];
 
 // 8. How do you get the third element from that list?
 console.log(`Third element from list is: ` + vehiclesList[2]);
@@ -157,13 +142,12 @@ console.log(`Third element from list is: ` + vehiclesList[2]);
 // 9. Change the function vehicle to use the list of question 7.
 // So that vehicle("green", 3, 1) prints "a green new bike".
 function vehicle(color, code, age) {
-  // TODO:
-  let vehiclesList = ['motorbike', 'caravan', 'bike', 'scooter'];
   const CAR_CONDITIONS = ['new', 'used'];
-
-  let carCondition = age > 1 ? CAR_CONDITIONS[1] : CAR_CONDITIONS[0];
   const vehicleType = vehiclesList[code - 1];
+  
+  let carCondition = age > 1 ? CAR_CONDITIONS[1] : CAR_CONDITIONS[0];
 
+  // Edge values and types check
   if (typeof color !== 'string' || typeof code !== 'number' || typeof age !== 'number') {
     console.log('Invalid input');
     return;
@@ -204,10 +188,10 @@ const newObj = {};
 
 // 13. Create an object that contains the teachers that you have had so far for the different modules.
 let teachers = {
-  'Tommy': '',
-  'Cris': '',
-  'Sahin': '',
-}
+  Tommy: '',
+  Cris: '',
+  Sahin: '',
+};
 
 // 14. Add a property to the object you just created that contains the languages that they have taught you.
 teachers['Tommy'] = 'HTML, CSS';
@@ -222,43 +206,43 @@ let x = [1, 2, 3];
 let y = [1, 2, 3];
 let z = y;
 
-function compareTwoValues(val1, val2) {
+function compareTwoVariables(val1, val2) {
   console.log(val1 == val2);
 }
 
-function compareTwoValuesStrict(val1, val2) {
+function compareTwoVariablesStrict(val1, val2) {
   console.log(val1 === val2);
 }
 
 // Strict and not strict equality returns same results with these arrays
-compareTwoValues(x, y); // false
-compareTwoValues(x, z); // false
-compareTwoValues(y, z); // true
+compareTwoVariables(x, y); // false
+compareTwoVariables(x, z); // false
+compareTwoVariables(y, z); // true
 
-compareTwoValuesStrict(x, y); // false
-compareTwoValuesStrict(x, z); // false
-compareTwoValuesStrict(y, z); // true
+compareTwoVariablesStrict(x, y); // false
+compareTwoVariablesStrict(x, z); // false
+compareTwoVariablesStrict(y, z); // true
 
 console.log('-----');
 // 16. Take a look at the following code:
 // Show that changing o2 changes o3 (or not) and changing o1 changes o3(or not).
 // Does the order that you assign (o3 = o2 or o2 = o3) matter?
+// TODO:
 let o1 = { foo: 'bar' };
 let o2 = { foo: 'bar' };
 
-compareTwoValuesStrict(o1, o2); // false
+compareTwoVariablesStrict(o1, o2); // false
 let o3 = o2;
 
-compareTwoValuesStrict(o1, o2); // false
-compareTwoValuesStrict(o3, o2); // true
-compareTwoValuesStrict(o1, o3); // false
+compareTwoVariablesStrict(o1, o2); // false
+compareTwoVariablesStrict(o3, o2); // true - equal now
+compareTwoVariablesStrict(o1, o3); // false
 
-let o4 = o2;
-compareTwoValuesStrict(o1, o2); // false
-compareTwoValuesStrict(o1, o2); // false
-compareTwoValuesStrict(o3, o2); // true
-compareTwoValuesStrict(o1, o3); // false
-compareTwoValuesStrict(o2, o4); // true
+o2 = { foo: 'lala' };
+
+compareTwoVariablesStrict(o1, o2); // false
+compareTwoVariablesStrict(o3, o2); // false - not equal now
+compareTwoVariablesStrict(o1, o3); // false
 
 // 17. What does the following code return? (And why?)
 let bar = 42;

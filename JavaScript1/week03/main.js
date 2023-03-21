@@ -38,7 +38,7 @@ console.log(sumThreeNumbers(4, 7, 10));
 console.log(sumThreeNumbers(567, 0, 18));
 console.log(sumThreeNumbers(9, 3, -20));
 
-// 2. Create a function named colorCar that receives a color, 
+// 2. Create a function named colorCar that receives a color,
 // and prints out, 'a red car' for example.
 function colorCar(color) {
   return console.log(`a ${color} car`);
@@ -48,7 +48,7 @@ colorCar('blue');
 colorCar('black');
 colorCar('green');
 
-// 3. Create an object and a function that takes the object as a parameter 
+// 3. Create an object and a function that takes the object as a parameter
 // and prints out all of its properties and values.
 const USER = {
   id: 1,
@@ -127,7 +127,6 @@ let vehiclesList = ['motorbike', 'caravan', 'bike', 'scooter', 'skate'];
 console.log(`Third element from list is: ` + vehiclesList[2]);
 
 // 9. Change the function vehicle to use the list of question 7.
-// Comment lines 172-191 to verify solution separately from task06:
 function vehicleUpdated(color, code, age) {
   const CAR_CONDITIONS = ['new', 'used'];
   const VEHICLE_TYPE = vehiclesList[code - 1];
@@ -164,7 +163,7 @@ function printAdvertisement(vehicles) {
 
 printAdvertisement(vehiclesList);
 
-// 11. Add one more vehicle to the list without changing the code for question 10 
+// 11. Add one more vehicle to the list without changing the code for question 10
 vehiclesList.push('cargo bike');
 printAdvertisement(vehiclesList);
 
@@ -192,25 +191,24 @@ let y = [1, 2, 3];
 let z = y;
 
 function compareTwoVariables(val1, val2) {
-  console.log(val1 == val2);
+  return val1 == val2;
 }
 
 function compareTwoVariablesStrict(val1, val2) {
-  console.log(val1 === val2);
+  return val1 === val2;
 }
 
 // Strict and not strict equality returns same results with these arrays
-compareTwoVariables(x, y); // false
-compareTwoVariables(x, z); // false
-compareTwoVariables(y, z); // true
+console.log(compareTwoVariables(x, y)); // false
+console.log(compareTwoVariables(x, z)); // false
+console.log(compareTwoVariables(y, z)); // true
 
-compareTwoVariablesStrict(x, y); // false
-compareTwoVariablesStrict(x, z); // false
-compareTwoVariablesStrict(y, z); // true
+console.log(compareTwoVariablesStrict(x, y)); // false
+console.log(compareTwoVariablesStrict(x, z)); // false
+console.log(compareTwoVariablesStrict(y, z)); // true
 
 console.log('-----');
-// 16. Take a look at the following code:
-// Show that changing o2 changes o3 (or not) and changing o1 changes o3(or not).
+// 16. Show that changing o2 changes o3 (or not) and changing o1 changes o3(or not).
 // Does the order that you assign (o3 = o2 or o2 = o3) matter?
 let o1 = { foo: 'bar' };
 let o2 = { foo: 'bar' };
@@ -231,6 +229,8 @@ compareTwoVariablesStrict(o1, o3); // false
 // 17. What does the following code return? (And why?)
 let bar = 42;
 
-// typeof typeof bar returns string, because typeof always
-// returns string with the name of value type.
+// typeof typeof bar returns string, because typeof itself always
+// returns string with the name of value type. Decomposing it looks like:
+// 1. typeof bar returns 'number'
+// 2. typeof 'number' returns string.
 console.log(typeof typeof bar);

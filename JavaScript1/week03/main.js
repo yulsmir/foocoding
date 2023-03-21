@@ -209,22 +209,23 @@ console.log(compareTwoVariablesStrict(y, z)); // true
 
 console.log('-----');
 // 16. Show that changing o2 changes o3 (or not) and changing o1 changes o3(or not).
-// Does the order that you assign (o3 = o2 or o2 = o3) matter?
+// Does the order that you assign (o3 = o2 or o2 = o3) matter? Answer: YES
 let o1 = { foo: 'bar' };
 let o2 = { foo: 'bar' };
 
-compareTwoVariablesStrict(o1, o2); // false
+console.log(compareTwoVariablesStrict(o1, o2)); // false
 let o3 = o2;
 
-compareTwoVariablesStrict(o1, o2); // false
-compareTwoVariablesStrict(o3, o2); // true - equal now
-compareTwoVariablesStrict(o1, o3); // false
+console.log(compareTwoVariablesStrict(o1, o2)); // false
+console.log(compareTwoVariablesStrict(o3, o2)); // true - equal now
+console.log(compareTwoVariablesStrict(o1, o3)); // false
 
 o2 = { foo: 'lala' };
+o1 = { foo: 'changed' }
 
-compareTwoVariablesStrict(o1, o2); // false
-compareTwoVariablesStrict(o3, o2); // false - not equal now, mutable
-compareTwoVariablesStrict(o1, o3); // false
+console.log(compareTwoVariablesStrict(o1, o2)); // false
+console.log(compareTwoVariablesStrict(o3, o2)); // false - not equal now, mutable
+console.log(compareTwoVariablesStrict(o1, o3)); // false
 
 // 17. What does the following code return? (And why?)
 let bar = 42;

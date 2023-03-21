@@ -20,15 +20,15 @@ let favoriteAnimals = ['blowfish', 'capricorn', 'giraffe'];
 const MAUROS_FAVORITE_ANIMAL = 'turtle';
 
 favoriteAnimals.push(MAUROS_FAVORITE_ANIMAL);
-// 2.2 Log your new array! 
+// 2.2 Log your new array!
 console.log(favoriteAnimals);
 
-// 2.3 Now add Jim's favorite animal to the array, it's 'meerkat', 
+// 2.3 Now add Jim's favorite animal to the array, it's 'meerkat',
 // but make sure it will be placed after 'blowfish' and before 'capricorn'.
 const JIMS_FAVORITE_ANIMAL = 'meerkat';
 favoriteAnimals.splice(1, 0, JIMS_FAVORITE_ANIMAL);
 
-// 2.4 Write a console.log statement that explains in words 
+// 2.4 Write a console.log statement that explains in words
 // you think the new value of the array is.
 console.log(
   `The new value of array will be:\
@@ -184,11 +184,11 @@ vehicle('green', 3, 1); // a green new bike
 
 // 10. Use the list of vehicles to write an advertisement. So that it prints something like:
 // "Amazing Joe's Garage, we service cars, motorbikes, caravans and bikes.".
-function printAdvertisement(items) {
+function printAdvertisement(vehicles) {
   let adsText = "Amazing Joe's Garage, we service";
 
-  for (item of items) {
-    adsText += ` ${item}s,`;
+  for (vehicle of vehicles) {
+    adsText += ` ${vehicle}s,`;
   }
 
   adsText = adsText.substring(0, adsText.length - 1) + '.';

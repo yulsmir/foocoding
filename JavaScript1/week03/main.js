@@ -1,37 +1,57 @@
 // Task 01. Strings
+// 1.1 Add the string to your file and log it.
 let myString = 'hello,this,is,a,difficult,to,read,sentence';
-
 console.log(myString);
+
+// 1.2 Log the length of myString.
 console.log(myString.length);
 
+// 1.3 The commas make that the sentence is quite hard to read. Find a way to remove the commas from the string and replace them with spaces.
 myString = myString.split(',').join(' ');
 
+// 1.4 Log myString to see if you succeeded.
 console.log(myString);
 
 // Task 02. Arrays
+// Consider the following array:
 let favoriteAnimals = ['blowfish', 'capricorn', 'giraffe'];
+
+// 2.1 Add a statement that adds Mauro's favorite animal 'turtle' to the existing array.
 const MAUROS_FAVORITE_ANIMAL = 'turtle';
 
 favoriteAnimals.push(MAUROS_FAVORITE_ANIMAL);
-
+// 2.2 Log your new array! 
 console.log(favoriteAnimals);
 
+// 2.3 Now add Jim's favorite animal to the array, it's 'meerkat', 
+// but make sure it will be placed after 'blowfish' and before 'capricorn'.
 const JIMS_FAVORITE_ANIMAL = 'meerkat';
 favoriteAnimals.splice(1, 0, JIMS_FAVORITE_ANIMAL);
 
+// 2.4 Write a console.log statement that explains in words 
+// you think the new value of the array is.
 console.log(
   `The new value of array will be:\
   ['blowfish', 'meerkat', 'capricorn', 'giraffe', 'turtle']`,
 );
 
+// 2.5 Log your new array!
 console.log(favoriteAnimals);
+
+// 2.6 Log the length of the array, add a message: 'The array has a length of: ' (here you should show the length of the array).
 console.log('The array has a length of: ' + favoriteAnimals.length);
 
+// 2.7 Jason does not like 'giraffe', delete this animal from the array.
 favoriteAnimals.splice(favoriteAnimals.length - 2, 1);
+
+// 2.8 Again log your new array.
 console.log(favoriteAnimals);
 
-const meerkatIndex = favoriteAnimals.indexOf('meerkat');
-console.log('The item you are looking for is at index: ' + meerkatIndex);
+// 2.9 Now if unlike Jim, you don't like 'meerkat' and you want to delete it from the array, but you don't know the position or the index of the item in the array, how can you find it?
+const MEERKAT_INDEX = favoriteAnimals.indexOf('meerkat');
+
+// 2.10 Log the index of 'meerkat'. Add a message so it says: 'The item you are looking for is at index: ' (here you should show the index of the item).
+console.log('The item you are looking for is at index: ' + MEERKAT_INDEX);
 
 // More Javascript
 // 1. Create a function that takes 3 arguments and returns the sum of the these arguments.
@@ -105,7 +125,7 @@ console.log(3 === 3 ? 'yes' : 'no');
 // 6. Create a function called vehicle, like before, but takes another parameter called age,
 // so that vehicle("blue", 1, 5) prints 'a blue used car'
 
-// Uncomment to verify solution:
+// !! Uncomment to verify solution separately from task09:
 // function vehicle(color, code, age) {
 //   const VEHICLE_TYPES = ['car', 'motorbike'];
 //   const CAR_CONDITIONS = ['new', 'used'];
@@ -144,7 +164,7 @@ console.log(`Third element from list is: ` + vehiclesList[2]);
 function vehicle(color, code, age) {
   const CAR_CONDITIONS = ['new', 'used'];
   const vehicleType = vehiclesList[code - 1];
-  
+
   let carCondition = age > 1 ? CAR_CONDITIONS[1] : CAR_CONDITIONS[0];
 
   // Edge values and types check
@@ -241,7 +261,7 @@ compareTwoVariablesStrict(o1, o3); // false
 o2 = { foo: 'lala' };
 
 compareTwoVariablesStrict(o1, o2); // false
-compareTwoVariablesStrict(o3, o2); // false - not equal now
+compareTwoVariablesStrict(o3, o2); // false - not equal now, mutable
 compareTwoVariablesStrict(o1, o3); // false
 
 // 17. What does the following code return? (And why?)

@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // -------- Variables --------
 
   // TODO: optimize all variables using bookTitles
+  // TODO: title is a function of using id and id is a value from array
   const bookTitles = [
     'harry_potter_and_the_chamber_of_secrets',
     'the_little_prince',
@@ -80,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   const booksCovers = {
-    harry_potter_and_the_chamber_of_secrets: 'images/harry-potter-and-the-chamber-of-secrets.jpg',
+    harry_potter_and_the_chamber_of_secrets: './images/harry-potter-and-the-chamber-of-secrets.jpg',
     the_little_prince: './images/the-little-prince.jpg',
     nineteen_eighty_four: './images/nineteen-eighty-four.jpg',
     thinner: './images/thinner.jpg',
@@ -96,6 +97,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // 1.3 Function uses array with book titles
   const generateBooksList = (titlesListArr) => {
     // TODO: move title formatting into a separate function
+    // TODO: change for loop to for...in
+
     const list = document.createElement('ul');
     for (let i = 0; i < titlesListArr.length; i++) {
       const listItem = document.createElement('li');
@@ -111,10 +114,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // TODO: add image alt
   // TODO: review naming of classes and ids
-  // TODO: capitalize every word in a title
-  // TODO: put all text to heading element
+  // TODO: capitalize every word in a title - function formatTitle(inputValue){}
+  // TODO: put all text to heading element - create element 'heading'
   // TODO: review all let and remove them with const
-  // TODO: change for loop to for ... of
 
   // Function uses object with book information object for each book
   const generateBookInfo = (objList, imagesList) => {
@@ -128,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
     for (const [key, value] of Object.entries(objList)) {
       // TODO: create array of elements
       const book = document.createElement('li');
-      const bookTitle = document.createElement('h4');
+      const bookTitle = document.createElement('h3');
       const bookLanguage = document.createElement('p');
       const bookAuthor = document.createElement('p');
       const bookCover = document.createElement('img');

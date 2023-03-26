@@ -2,6 +2,8 @@
 
 document.addEventListener('DOMContentLoaded', function () {
   // -------- Variables --------
+
+  // TODO: optimize all variables using bookTitles
   const bookTitles = [
     'harry_potter_and_the_chamber_of_secrets',
     'the_little_prince',
@@ -78,14 +80,14 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   const booksCovers = {
-    harry_potter_and_the_chamber_of_secrets: 'images/harry-potter-and-the-chamber-of-secrets.png',
+    harry_potter_and_the_chamber_of_secrets: 'images/harry-potter-and-the-chamber-of-secrets.jpg',
     the_little_prince: './images/the-little-prince.jpg',
     nineteen_eighty_four: './images/nineteen-eighty-four.jpg',
     thinner: './images/thinner.jpg',
     the_science_of_interstellar: './images/the-science-of-interstellar.jpg',
     game_of_thrones: './images/game-of-thrones.jpg',
     the_theory_of_everything: './images/the-theory-of-everything.jpg',
-    fahrenheit_451: './images/fahrenheit-451.png',
+    fahrenheit_451: './images/fahrenheit-451.jpg',
     don_quixote: './images/don-quixote.jpg',
     invisible_man: './images/invisible-man.jpg',
   };
@@ -93,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // -------- Methods --------
   // 1.3 Function uses array with book titles
   const generateBooksList = (titlesListArr) => {
+    // TODO: move title formatting into a separate function
     const list = document.createElement('ul');
     for (let i = 0; i < titlesListArr.length; i++) {
       const listItem = document.createElement('li');
@@ -110,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // TODO: review naming of classes and ids
   // TODO: capitalize every word in a title
   // TODO: put all text to heading element
-  // TODO: review lets and remove them with consts
+  // TODO: review all let and remove them with const
   // TODO: change for loop to for ... of
 
   // Function uses object with book information object for each book

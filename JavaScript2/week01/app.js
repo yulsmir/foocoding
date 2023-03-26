@@ -98,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const listItem = document.createElement('li');
       const bookTitle = titlesListArr[i].split('_').join(' ');
 
+      // TODO: rewrite with string literals
       listItem.textContent = bookTitle[0].toUpperCase() + bookTitle.substring(1);
       list.appendChild(listItem);
     }
@@ -109,12 +110,20 @@ document.addEventListener('DOMContentLoaded', function () {
   // TODO: review naming of classes and ids
   // TODO: capitalize every word in a title
   // TODO: put all text to heading element
+  // TODO: review lets and remove them with consts
+  // TODO: change for loop to for ... of
 
   // Function uses object with book information object for each book
-  const generateBookInfo = (objList) => {
+  const generateBookInfo = (objList, imagesList) => {
     const bookInfo = document.createElement('ul');
 
+    // TODO: divide functions:
+    // 1) generate template with
+    // 2) get values
+    // 3) show values
+
     for (const [key, value] of Object.entries(objList)) {
+      // TODO: create array of elements
       const book = document.createElement('li');
       const bookTitle = document.createElement('h4');
       const bookLanguage = document.createElement('p');
@@ -122,13 +131,14 @@ document.addEventListener('DOMContentLoaded', function () {
       const bookCover = document.createElement('img');
 
       bookTitle.textContent = objList[key].title;
-      bookLanguage.textContent = objList[key].language;
-      bookAuthor.textContent = objList[key].author;
+      bookLanguage.textContent = `Language: ${objList[key].language}`;
+      bookAuthor.textContent = `Author: ${objList[key].author}`;
 
-      bookCover.setAttribute('src', booksCovers[key]);
+      bookCover.setAttribute('src', imagesList[key]);
 
       bookInfo.classList.add('book-info');
 
+      // TODO: create array of classes
       book.classList.add('book');
       bookTitle.classList.add('book-title');
       bookLanguage.classList.add('book-language');
@@ -146,6 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   // -------- Events and handlers, functions call --------
+  // Uncomment to check function that uses array
   // generateBooksList(bookTitles);
-  generateBookInfo(booksList);
+  generateBookInfo(booksList, booksCovers);
 });

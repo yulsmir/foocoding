@@ -78,16 +78,16 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   const booksCovers = {
-    harry_potter_and_the_chamber_of_secrets: 'images/harry_potter_and_the_chamber_of_secrets.jpg',
-    the_little_prince: './images/the_little_prince.jpg',
-    nineteen_eighty_four: './images/nineteen_eighty_four.jpg',
+    harry_potter_and_the_chamber_of_secrets: 'images/harry-potter-and-the-chamber-of-secrets.jpg',
+    the_little_prince: './images/the-little-prince.jpg',
+    nineteen_eighty_four: './images/nineteen-eighty-four.jpg',
     thinner: './images/thinner.jpg',
-    the_science_of_interstellar: './images/the_science_of_interstellar.jpg',
-    game_of_thrones: './images/game_of_thrones.jpg',
-    the_theory_of_everything: './images/the_theory_of_everything.jpg',
-    fahrenheit_451: './images/fahrenheit_451.png',
-    don_quixote: './images/don_quixote.jpg',
-    invisible_man: './images/invisible_man.jpg',
+    the_science_of_interstellar: './images/the-science-of-interstellar.jpg',
+    game_of_thrones: './images/game-of-thrones.jpg',
+    the_theory_of_everything: './images/the-theory-of-everything.jpg',
+    fahrenheit_451: './images/fahrenheit-451.png',
+    don_quixote: './images/don-quixote.jpg',
+    invisible_man: './images/invisible-man.jpg',
   };
 
   // Methods
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const generateBookInfo = (objList) => {
     const bookInfo = document.createElement('ul');
 
-    for (const key in objList) {
+    for (const [key, value] of Object.entries(objList)) {
       const book = document.createElement('li');
       const bookTitle = document.createElement('h4');
       const bookLanguage = document.createElement('p');
@@ -119,7 +119,16 @@ document.addEventListener('DOMContentLoaded', function () {
       bookTitle.textContent = objList[key].title;
       bookLanguage.textContent = objList[key].language;
       bookAuthor.textContent = objList[key].author;
+
       bookCover.setAttribute('src', booksCovers[key]);
+
+      bookInfo.classList.add('book-info');
+
+      book.classList.add('book');
+      bookTitle.classList.add('book-title');
+      bookLanguage.classList.add('book-language');
+      bookAuthor.classList.add('book-author');
+      bookCover.classList.add('book-cover');
 
       book.appendChild(bookTitle);
       book.appendChild(bookLanguage);

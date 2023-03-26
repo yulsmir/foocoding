@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     'invisible_man',
   ];
 
-  const booksInfo = {
+  const booksList = {
     harry_potter_and_the_chamber_of_secrets: {
       title: 'Harry potter and the chamber of secrets',
       language: 'English',
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   // TODO: add image alt
-  // TODO: review naming
+  // TODO: review naming of classes and ids
   // TODO: capitalize every word in a title
 
   // Function uses object with book information object for each book
@@ -144,10 +144,10 @@ document.addEventListener('DOMContentLoaded', function () {
       bookCover.style.height = '100%';
     }
 
-    document.getElementById('booksInfo').appendChild(bookInfo);
+    document.getElementById('booksList').appendChild(bookInfo);
   };
 
   // Events and handlers, functions call
   // generateBooksList(bookTitles);
-  generateBookInfo(booksInfo);
+  generateBookInfo(booksList);
 });

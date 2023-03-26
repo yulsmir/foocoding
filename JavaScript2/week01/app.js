@@ -84,21 +84,19 @@ document.addEventListener('DOMContentLoaded', function () {
     thinner: './images/thinner.jpg',
     the_science_of_interstellar: './images/the_science_of_interstellar.jpg',
     game_of_thrones: './images/game_of_thrones.jpg',
-    the_theory_of_everything: './images/the_theory_of_everything',
+    the_theory_of_everything: './images/the_theory_of_everything.jpg',
     fahrenheit_451: './images/fahrenheit_451.png',
     don_quixote: './images/don_quixote.jpg',
     invisible_man: './images/invisible_man.jpg',
   };
 
   // Methods
-  // TODO: add separate method for the title formating
-  //1.3 Function uses array with book titles
-
-  const generateBooksList = (titlesList) => {
+  // 1.3 Function uses array with book titles
+  const generateBooksList = (titlesListArr) => {
     const list = document.createElement('ul');
-    for (let i = 0; i < titlesList.length; i++) {
+    for (let i = 0; i < titlesListArr.length; i++) {
       const listItem = document.createElement('li');
-      const bookTitle = titlesList[i].split('_').join(' ');
+      const bookTitle = titlesListArr[i].split('_').join(' ');
 
       listItem.textContent = bookTitle[0].toUpperCase() + bookTitle.substring(1);
       list.appendChild(listItem);
@@ -107,10 +105,36 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('books').appendChild(list);
   };
 
-  const generateBookInfo = (book) => {
-    // TODO:
+  // Function uses object with book information object for each book
+  const generateBookInfo = (objList) => {
+    const bookInfo = document.createElement('ul');
+
+    for (const key in objList) {
+      const book = document.createElement('li');
+      const bookTitle = document.createElement('h4');
+      const bookLanguage = document.createElement('p');
+      const bookAuthor = document.createElement('p');
+      const bookCover = document.createElement('img');
+
+      bookTitle.textContent = objList[key].title;
+      bookLanguage.textContent = objList[key].language;
+      bookAuthor.textContent = objList[key].author;
+      bookCover.setAttribute('src', booksCovers[key]);
+
+      book.appendChild(bookTitle);
+      book.appendChild(bookLanguage);
+      book.appendChild(bookAuthor);
+      book.appendChild(bookCover);
+
+      bookInfo.appendChild(book);
+
+      bookCover.style.height = '100%';
+    }
+
+    document.getElementById('booksInfo').appendChild(bookInfo);
   };
 
   // Events and handlers, functions call
-  generateBooksList(bookTitles);
+  // generateBooksList(bookTitles);
+  generateBookInfo(booksInfo);
 });

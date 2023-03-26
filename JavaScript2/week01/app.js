@@ -1,9 +1,8 @@
 'use strict';
 
-// Variables
 {
+  // Variables
   const bookTitles = [
-    // Replace with your own book titles
     'harry_potter_and_chamber_of_secrets',
     'the_little_prince',
     'nineteen_eighty_four',
@@ -16,10 +15,23 @@
     'invisible_man',
   ];
 
-  // Replace with your own code
-  console.log(bookTitles);
+  // Methods
+  const createList = () => {
+    const list = document.createElement('ul');
+    for (let i = 0; i < bookTitles.length; i++) {
+      const listItem = document.createElement('li');
+      const bookTitle = bookTitles[i].split('_').join(' ');
+
+      listItem.textContent = bookTitle[0].toUpperCase() + bookTitle.substring(1);
+
+      list.appendChild(listItem);
+
+      console.log(listItem); // Delete comment
+    }
+
+    document.getElementById('books').appendChild(list);
+  };
+
+  createList();
+  // Inits & Event Listeners
 }
-
-// Methods
-
-// Inits & Event Listeners

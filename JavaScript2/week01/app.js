@@ -1,7 +1,7 @@
 'use strict';
 
 document.addEventListener('DOMContentLoaded', function () {
-  // Variables
+  // -------- Variables --------
   const bookTitles = [
     'harry_potter_and_the_chamber_of_secrets',
     'the_little_prince',
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
     invisible_man: './images/invisible-man.jpg',
   };
 
-  // Methods
+  // -------- Methods --------
   // 1.3 Function uses array with book titles
   const generateBooksList = (titlesListArr) => {
     const list = document.createElement('ul');
@@ -102,12 +102,13 @@ document.addEventListener('DOMContentLoaded', function () {
       list.appendChild(listItem);
     }
 
-    document.getElementById('books').appendChild(list);
+    document.getElementById('container').appendChild(list);
   };
 
   // TODO: add image alt
   // TODO: review naming of classes and ids
   // TODO: capitalize every word in a title
+  // TODO: put all text to heading element
 
   // Function uses object with book information object for each book
   const generateBookInfo = (objList) => {
@@ -138,16 +139,13 @@ document.addEventListener('DOMContentLoaded', function () {
       book.appendChild(bookLanguage);
       book.appendChild(bookAuthor);
       book.appendChild(bookCover);
-
       bookInfo.appendChild(book);
-
-      bookCover.style.height = '100%';
     }
 
-    document.getElementById('booksList').appendChild(bookInfo);
+    document.getElementById('container').appendChild(bookInfo);
   };
 
-  // Events and handlers, functions call
+  // -------- Events and handlers, functions call --------
   // generateBooksList(bookTitles);
   generateBookInfo(booksList);
 });

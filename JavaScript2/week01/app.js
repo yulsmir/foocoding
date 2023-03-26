@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   const booksCovers = {
-    harry_potter_and_the_chamber_of_secrets: 'images/harry-potter-and-the-chamber-of-secrets.jpg',
+    harry_potter_and_the_chamber_of_secrets: 'images/harry-potter-and-the-chamber-of-secrets.png',
     the_little_prince: './images/the-little-prince.jpg',
     nineteen_eighty_four: './images/nineteen-eighty-four.jpg',
     thinner: './images/thinner.jpg',
@@ -104,6 +104,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('books').appendChild(list);
   };
+
+  // TODO: add image alt
+  // TODO: review naming
+  // TODO: capitalize every word in a title
 
   // Function uses object with book information object for each book
   const generateBookInfo = (objList) => {

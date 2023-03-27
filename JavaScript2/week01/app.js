@@ -95,7 +95,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // -------- Methods --------
   // 1.3 Function uses array with book titles
-
   // TODO: move title formatting into a separate function
   const formatTitle = (title) => {
     console.log(title);
@@ -113,12 +112,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const generateBooksList = (titlesListArr) => {
     const list = document.createElement('ul');
-    for (let element in list) {
-      element = document.createElement('li');
-      const title = titlesListArr[element].split('_').join(' ');
+    for (let i = 0; i < titlesListArr.length; i++) {
+      const listItem = document.createElement('li');
+      const bookTitle = titlesListArr[i].split('_').join(' ');
 
-      element.textContent = `${title[0].toUpperCase()}${title.substring(1)}`;
-      list.appendChild(element);
+      // TODO: rewrite with string literals
+      listItem.textContent = `${bookTitle[0].toUpperCase()}${bookTitle.substring(1)}`;
+      list.appendChild(listItem);
     }
 
     document.getElementById('container').appendChild(list);
@@ -131,40 +131,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // TODO: put image on top
 
   // Function uses object with book information object for each book
-  const generateBookLayout = () => {
+  const generateBooksInfo = (objList, imagesList) => {
     const bookInfo = document.createElement('ul');
-    const book = document.createElement('li');
-    const title = document.createElement('h3');
-    const language = document.createElement('p');
-    const author = document.createElement('p');
-    const cover = document.createElement('img');
-
-    title.textContent = 'Title: ';
-    language.textContent = 'Language: ';
-    author.textContent = 'Author: ';
-
-    bookInfo.classList.add('book-info');
-    book.classList.add('book');
-    title.classList.add('book-title');
-    language.classList.add('book-language');
-    author.classList.add('book-author');
-
-    cover.classList.add('book-cover');
-
-    book.appendChild(title);
-    book.appendChild(language);
-    book.appendChild(author);
-    book.appendChild(cover);
-    bookInfo.appendChild(book);
-  };
-
-  const generateBookInfo = (objList, imagesList) => {
-    const bookInfo = document.createElement('ul');
-
-    // TODO: divide functions:
-    // 1) generate template with default values
-    // 2) get values
-    // 3) show values
 
     for (const [key, value] of Object.entries(objList)) {
       // TODO: create array of elements
@@ -203,8 +171,5 @@ document.addEventListener('DOMContentLoaded', function () {
   // -------- Events and handlers, functions call --------
   // Uncomment to check function that uses array
   // generateBooksList(titles);
-  formatTitle('format title');
-  addImageAlt();
-  setImagePath();
-  generateBookInfo(booksList, booksCovers);
+  generateBooksInfo(booksList, booksCovers);
 });

@@ -74,6 +74,10 @@ img {
 
 /* ------------------------------------- MEDIUM SIZE SCREENS ------------------------------------- */
 @media (min-width: 640px) {
+  :root {
+    font-size: 0.8rem;
+  }
+
   section {
     padding: 2rem 4rem;
   }

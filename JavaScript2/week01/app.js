@@ -2,7 +2,6 @@
 
 document.addEventListener('DOMContentLoaded', function () {
   // -------- Variables --------
-
   // TODO: optimize all variables using bookTitles
   // TODO: title is a function of using id and id is a value from array
   const bookTitles = [
@@ -96,28 +95,41 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // -------- Methods --------
   // 1.3 Function uses array with book titles
+
+  // TODO: move title formatting into a separate function
+  const formatTitle = () => {
+    console.log('title');
+  };
+
+  // TODO: add image alt
+  const addImageAlt = () => {
+    console.log('image alt added');
+  };
+
+  // TODO: add image path from image name
+  const setImagePath = () => {
+    console.log('image path');
+  };
+
   const generateBooksList = (titlesListArr) => {
-    // TODO: move title formatting into a separate function
     const list = document.createElement('ul');
     for (let element in list) {
       element = document.createElement('li');
       const bookTitle = titlesListArr[element].split('_').join(' ');
 
       // TODO: rewrite with string literals
-      element.textContent = bookTitle[0].toUpperCase() + bookTitle.substring(1);
+      element.textContent = `${bookTitle[0].toUpperCase()}${bookTitle.substring(1)}`;
       list.appendChild(element);
     }
 
     document.getElementById('container').appendChild(list);
   };
 
-  // TODO: add image alt
   // TODO: review naming of classes and ids
   // TODO: capitalize every word in a title - function formatTitle(inputTitle){ return outputTitle; }
   // TODO: put all text to heading element - create element 'heading'
   // TODO: add separate div for image
   // TODO: put image on top
-  // TODO: review all lets and remove them with consts
 
   // Function uses object with book information object for each book
   const generateBookInfo = (objList, imagesList) => {
@@ -165,5 +177,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // -------- Events and handlers, functions call --------
   // Uncomment to check function that uses array
   // generateBooksList(bookTitles);
+  formatTitle();
+  addImageAlt();
+  setImagePath();
   generateBookInfo(booksList, booksCovers);
 });

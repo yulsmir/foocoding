@@ -131,6 +131,33 @@ document.addEventListener('DOMContentLoaded', function () {
   // TODO: put image on top
 
   // Function uses object with book information object for each book
+  const generateBookLayout = () => {
+    const bookInfo = document.createElement('ul');
+    const book = document.createElement('li');
+    const title = document.createElement('h3');
+    const language = document.createElement('p');
+    const author = document.createElement('p');
+    const cover = document.createElement('img');
+
+    title.textContent = 'Title: ';
+    language.textContent = 'Language: ';
+    author.textContent = 'Author: ';
+
+    bookInfo.classList.add('book-info');
+    book.classList.add('book');
+    title.classList.add('book-title');
+    language.classList.add('book-language');
+    author.classList.add('book-author');
+
+    cover.classList.add('book-cover');
+
+    book.appendChild(title);
+    book.appendChild(language);
+    book.appendChild(author);
+    book.appendChild(cover);
+    bookInfo.appendChild(book);
+  };
+
   const generateBookInfo = (objList, imagesList) => {
     const bookInfo = document.createElement('ul');
 

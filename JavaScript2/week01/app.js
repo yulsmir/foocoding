@@ -2,9 +2,9 @@
 
 document.addEventListener('DOMContentLoaded', function () {
   // -------- Variables --------
-  // TODO: optimize all variables using bookTitles
+  // TODO: optimize all variables using titles
   // TODO: title is a function of using id and id is a value from array
-  const bookTitles = [
+  const titles = [
     'marry_poppins',
     'the_little_prince',
     'nineteen_eighty_four',
@@ -26,13 +26,13 @@ document.addEventListener('DOMContentLoaded', function () {
     },
 
     the_little_prince: {
-      title: 'The little prince',
+      title: 'The Little Prince',
       language: 'English',
       author: 'A. de Saint-Exupéry',
     },
 
     nineteen_eighty_four: {
-      title: 'Nineteen eighty four',
+      title: 'Nineteen Eighty Four',
       language: 'English',
       author: 'George Orwell',
     },
@@ -44,19 +44,19 @@ document.addEventListener('DOMContentLoaded', function () {
     },
 
     the_science_of_interstellar: {
-      title: 'The science of interstellar',
+      title: 'The Science of Interstellar',
       language: 'English',
       author: 'Kip Thorne',
     },
 
     game_of_thrones: {
-      title: 'Game of thrones',
+      title: 'Game of Thrones',
       language: 'English',
       author: 'G. R. R. Martin',
     },
 
     the_theory_of_everything: {
-      title: 'The theory of everything',
+      title: 'The Theory of Everything',
       language: 'English',
       author: 'Stephen Hawking',
     },
@@ -68,13 +68,13 @@ document.addEventListener('DOMContentLoaded', function () {
     },
 
     don_quixote: {
-      title: 'Don quixote',
+      title: 'Don Quixote',
       language: 'English',
       author: 'M. de Cervantes',
     },
 
     invisible_man: {
-      title: 'Invisible man',
+      title: 'Invisible Man',
       language: 'English',
       author: 'Ralph Ellison',
     },
@@ -115,9 +115,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const list = document.createElement('ul');
     for (let element in list) {
       element = document.createElement('li');
-      const bookTitle = titlesListArr[element].split('_').join(' ');
+      const title = titlesListArr[element].split('_').join(' ');
 
-      element.textContent = `${bookTitle[0].toUpperCase()}${bookTitle.substring(1)}`;
+      element.textContent = `${title[0].toUpperCase()}${title.substring(1)}`;
       list.appendChild(element);
     }
 
@@ -142,31 +142,31 @@ document.addEventListener('DOMContentLoaded', function () {
     for (const [key, value] of Object.entries(objList)) {
       // TODO: create array of elements
       const book = document.createElement('li');
-      const bookTitle = document.createElement('h3');
-      const bookLanguage = document.createElement('p');
-      const bookAuthor = document.createElement('p');
-      const bookCover = document.createElement('img');
+      const title = document.createElement('h3');
+      const language = document.createElement('p');
+      const author = document.createElement('p');
+      const cover = document.createElement('img');
 
-      bookTitle.textContent = `${objList[key].title}`;
-      bookLanguage.textContent = `Language: ${objList[key].language}`;
-      bookAuthor.textContent = `Author: ${objList[key].author}`;
+      title.textContent = `${objList[key].title}`;
+      language.textContent = `Language: ${objList[key].language}`;
+      author.textContent = `Author: ${objList[key].author}`;
 
-      bookCover.setAttribute('src', imagesList[key]);
+      cover.setAttribute('src', imagesList[key]);
 
       bookInfo.classList.add('book-info');
 
       // TODO: create array of classes
       book.classList.add('book');
-      bookTitle.classList.add('book-title');
-      bookLanguage.classList.add('book-language');
-      bookAuthor.classList.add('book-author');
+      title.classList.add('book-title');
+      language.classList.add('book-language');
+      author.classList.add('book-author');
 
-      bookCover.classList.add('book-cover');
+      cover.classList.add('book-cover');
 
-      book.appendChild(bookTitle);
-      book.appendChild(bookLanguage);
-      book.appendChild(bookAuthor);
-      book.appendChild(bookCover);
+      book.appendChild(title);
+      book.appendChild(language);
+      book.appendChild(author);
+      book.appendChild(cover);
       bookInfo.appendChild(book);
     }
 
@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // -------- Events and handlers, functions call --------
   // Uncomment to check function that uses array
-  // generateBooksList(bookTitles);
+  // generateBooksList(titles);
   formatTitle('format title');
   addImageAlt();
   setImagePath();

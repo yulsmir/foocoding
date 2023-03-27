@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // TODO: optimize all variables using bookTitles
   // TODO: title is a function of using id and id is a value from array
   const bookTitles = [
-    'harry_potter_and_the_chamber_of_secrets',
+    'marry_poppins',
     'the_little_prince',
     'nineteen_eighty_four',
     'thinner',
@@ -18,17 +18,18 @@ document.addEventListener('DOMContentLoaded', function () {
     'invisible_man',
   ];
 
+  // TODO: fix id of booksList objects
   const booksList = {
-    harry_potter_and_the_chamber_of_secrets: {
-      title: 'Harry potter and the chamber of secrets',
+    marry_poppins: {
+      title: 'Marry Poppins',
       language: 'English',
-      author: 'J. K. Rowling',
+      author: 'P. L. Travers',
     },
 
     the_little_prince: {
       title: 'The little prince',
       language: 'English',
-      author: 'Antoine de Saint-Exupéry',
+      author: 'A. de Saint-Exupéry',
     },
 
     nineteen_eighty_four: {
@@ -52,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
     game_of_thrones: {
       title: 'Game of thrones',
       language: 'English',
-      author: 'George R. R. Martin',
+      author: 'G. R. R. Martin',
     },
 
     the_theory_of_everything: {
@@ -70,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
     don_quixote: {
       title: 'Don quixote',
       language: 'English',
-      author: 'Miguel de Cervantes',
+      author: 'M. de Cervantes',
     },
 
     invisible_man: {
@@ -81,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   const booksCovers = {
-    harry_potter_and_the_chamber_of_secrets: './images/harry-potter-and-the-chamber-of-secrets.jpg',
+    marry_poppins: './images/marry-poppins.jpg',
     the_little_prince: './images/the-little-prince.jpg',
     nineteen_eighty_four: './images/nineteen-eighty-four.jpg',
     thinner: './images/thinner.jpg',
@@ -97,16 +98,14 @@ document.addEventListener('DOMContentLoaded', function () {
   // 1.3 Function uses array with book titles
   const generateBooksList = (titlesListArr) => {
     // TODO: move title formatting into a separate function
-    // TODO: change for loop to for...in
-
     const list = document.createElement('ul');
-    for (let i = 0; i < titlesListArr.length; i++) {
-      const listItem = document.createElement('li');
-      const bookTitle = titlesListArr[i].split('_').join(' ');
+    for (let element in list) {
+      element = document.createElement('li');
+      const bookTitle = titlesListArr[element].split('_').join(' ');
 
       // TODO: rewrite with string literals
-      listItem.textContent = bookTitle[0].toUpperCase() + bookTitle.substring(1);
-      list.appendChild(listItem);
+      element.textContent = bookTitle[0].toUpperCase() + bookTitle.substring(1);
+      list.appendChild(element);
     }
 
     document.getElementById('container').appendChild(list);
@@ -114,16 +113,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // TODO: add image alt
   // TODO: review naming of classes and ids
-  // TODO: capitalize every word in a title - function formatTitle(inputValue){}
+  // TODO: capitalize every word in a title - function formatTitle(inputTitle){ return outputTitle; }
   // TODO: put all text to heading element - create element 'heading'
-  // TODO: review all let and remove them with const
+  // TODO: add separate div for image
+  // TODO: put image on top
+  // TODO: review all lets and remove them with consts
 
   // Function uses object with book information object for each book
   const generateBookInfo = (objList, imagesList) => {
     const bookInfo = document.createElement('ul');
 
     // TODO: divide functions:
-    // 1) generate template with
+    // 1) generate template with default values
     // 2) get values
     // 3) show values
 
@@ -135,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const bookAuthor = document.createElement('p');
       const bookCover = document.createElement('img');
 
-      bookTitle.textContent = objList[key].title;
+      bookTitle.textContent = `${objList[key].title}`;
       bookLanguage.textContent = `Language: ${objList[key].language}`;
       bookAuthor.textContent = `Author: ${objList[key].author}`;
 
@@ -148,6 +149,7 @@ document.addEventListener('DOMContentLoaded', function () {
       bookTitle.classList.add('book-title');
       bookLanguage.classList.add('book-language');
       bookAuthor.classList.add('book-author');
+
       bookCover.classList.add('book-cover');
 
       book.appendChild(bookTitle);

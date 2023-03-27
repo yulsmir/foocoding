@@ -97,8 +97,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // 1.3 Function uses array with book titles
 
   // TODO: move title formatting into a separate function
-  const formatTitle = () => {
-    console.log('title');
+  const formatTitle = (title) => {
+    console.log(title);
   };
 
   // TODO: add image alt
@@ -117,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function () {
       element = document.createElement('li');
       const bookTitle = titlesListArr[element].split('_').join(' ');
 
-      // TODO: rewrite with string literals
       element.textContent = `${bookTitle[0].toUpperCase()}${bookTitle.substring(1)}`;
       list.appendChild(element);
     }
@@ -177,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // -------- Events and handlers, functions call --------
   // Uncomment to check function that uses array
   // generateBooksList(bookTitles);
-  formatTitle();
+  formatTitle('format title');
   addImageAlt();
   setImagePath();
   generateBookInfo(booksList, booksCovers);

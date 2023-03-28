@@ -2,8 +2,6 @@
 
 document.addEventListener('DOMContentLoaded', function () {
   // -------- Variables --------
-  // TODO: optimize all variables using titles
-  // TODO: title is a function of using id and id is a value from array
   const titles = [
     'marry_poppins',
     'the_little_prince',
@@ -17,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
     'invisible_man',
   ];
 
-  // TODO: fix id of booksList objects
   const booksList = {
     marry_poppins: {
       title: 'Marry Poppins',
@@ -95,60 +92,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // -------- Methods --------
   // 1.3 Function uses array with book titles
-  // TODO: move title formatting into a separate function
-  const formatTitle = (title) => {
-    console.log(title);
-  };
-
-  // TODO: add image alt
-  const addImageAlt = () => {
-    console.log('image alt added');
-  };
-
-  // TODO: add image path from image name
-  const setImagePath = () => {
-    console.log('image path');
-  };
-
+  // TODO: Capitalize every word
   const generateBooksList = (titlesListArr) => {
     const list = document.createElement('ul');
     for (let i = 0; i < titlesListArr.length; i++) {
       const listItem = document.createElement('li');
-      const bookTitle = titlesListArr[i].split('_').join(' ');
+      const bookTitle = titlesListArr[i]
+        .split('_')
+        .map((elem) => `${elem[0].toUpperCase()}${elem.substring(1)}`)
+        .join(' ');
 
-      // TODO: rewrite with string literals
-      listItem.textContent = `${bookTitle[0].toUpperCase()}${bookTitle.substring(1)}`;
+      listItem.innerHTML = `${bookTitle[0].toUpperCase()}${bookTitle.substring(1)}`;
       list.appendChild(listItem);
     }
 
     document.getElementById('container').appendChild(list);
   };
 
-  // TODO: review naming of classes and ids
-  // TODO: capitalize every word in a title - function formatTitle(inputTitle){ return outputTitle; }
-  // TODO: put all text to heading element - create element 'heading'
-  // TODO: add separate div for image
-  // TODO: put image on top
-
   // Function uses object with book information object for each book
   const generateBooksInfo = (objList, imagesList) => {
     const bookInfo = document.createElement('ul');
+    bookInfo.classList.add('book-info');
 
-    for (const [key, value] of Object.entries(objList)) {
-      // TODO: create array of elements
+    // TODO: optimize this part
+    for (const [key] of Object.entries(objList)) {
+      // TODO: create array of items
       const book = document.createElement('li');
       const title = document.createElement('h3');
       const language = document.createElement('p');
       const author = document.createElement('p');
       const cover = document.createElement('img');
 
-      title.textContent = `${objList[key].title}`;
-      language.textContent = `Language: ${objList[key].language}`;
-      author.textContent = `Author: ${objList[key].author}`;
+      title.innerHTML = `${objList[key].title}`;
+      language.innerHTML = `Language: ${objList[key].language}`;
+      author.innerHTML = `Author: ${objList[key].author}`;
 
       cover.setAttribute('src', imagesList[key]);
-
-      bookInfo.classList.add('book-info');
+      cover.setAttribute('alt', imagesList[key].split('/')[2]); // to fix
 
       // TODO: create array of classes
       book.classList.add('book');
@@ -168,8 +148,56 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('container').appendChild(bookInfo);
   };
 
+  // Split function into few
+  // const createBookElement = (bookObj, imageSrc) => {
+  //   const { title, language, author } = bookObj;
+  //   const bookItem = document.createElement('li');
+  //   bookItem.classList.add('book');
+
+  //   const items = [
+  //     { tag: 'h3', text: title, class: 'book-title' },
+  //     { tag: 'p', text: `Language: ${language}`, itemClass: 'book-language' },
+  //     { tag: 'p', text: `Author: ${author}`, itemClass: 'book-author' },
+  //     {
+  //       tag: 'img',
+  //       src: imageSrc,
+  //       alt: imageSrc,
+  //       itemClass: 'book-cover',
+  //     },
+  //   ];
+
+  //   items.forEach(({ tag, text, src, alt, itemClass }) => {
+  //     const Item = document.createElement(tag);
+  //     Item.classList.add(itemClass);
+  //     if (text) Item.innerText = text;
+  //     if (src && alt) Item.setAttribute('src', src, 'alt', alt);
+  //     bookItem.appendChild(Item);
+  //   });
+
+  //   return bookItem;
+  // };
+
+  // const createBookList = (objList, imagesList) => {
+  //   const bookListElement = document.createElement('ul');
+  //   bookListElement.classList.add('book-info');
+
+  //   Object.entries(objList).forEach(([key, bookObj]) => {
+  //     const imageSrc = imagesList[key];
+  //     const bookItem = createBookElement(bookObj, imageSrc);
+  //     bookListElement.appendChild(bookItem);
+  //   });
+
+  //   return bookListElement;
+  // };
+
+  // const generateBooksInfo = (objList, imagesList) => {
+  //   const bookListElement = createBookList(objList, imagesList);
+  //   document.getElementById('container').appendChild(bookListElement);
+  // };
+
   // -------- Events and handlers, functions call --------
-  // Uncomment to check function that uses array
-  // generateBooksList(titles);
+  // Function that uses array
+  generateBooksList(titles);
+
   generateBooksInfo(booksList, booksCovers);
 });

@@ -93,17 +93,17 @@ img {
     padding: 4rem 8rem;
   }
   .book-info {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 /* ------------------------------------- EXTRA LARGE SIZE SCREENS ------------------------------------- */
 @media (min-width: 1440px) {
   section {
-    padding: 8rem 16rem;
+    padding: 6rem 12rem;
   }
 
   .book-info {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }

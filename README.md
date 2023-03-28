@@ -6,7 +6,7 @@ This repository includes all the homework related to the course:
 * Node.js
 
 ### Here you can find my homeworks:
-
+### HTML/CSS
 * Week 0: 
     - [x] Code: https://github.com/yulsmir/foocoding/tree/master/HTML-CSS/week00
 * Week 1:
@@ -19,3 +19,8 @@ This repository includes all the homework related to the course:
 * Week 3:
     - [x] Code: https://github.com/yulsmir/foocoding/tree/master/HTML-CSS/week03
     - [x] Web version: https://yulsmir.github.io/foocoding/HTML-CSS/week03/
+
+### JavaScript2
+* Week 1:
+- [x] Code: https://github.com/yulsmir/foocoding/tree/master/JavaScript2/week01
+    - [x] Web version: https://yulsmir.github.io/foocoding/JavaScrip2/week01/

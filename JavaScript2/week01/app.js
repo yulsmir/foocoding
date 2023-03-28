@@ -110,94 +110,56 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   // Function uses object with book information object for each book
-  const generateBooksInfo = (objList, imagesList) => {
-    const bookInfo = document.createElement('ul');
-    bookInfo.classList.add('book-info');
+  // Split function into few
+  const createBookElement = (bookObj, imageSrc) => {
+    const { title, language, author } = bookObj;
+    const bookItem = document.createElement('li');
+    bookItem.classList.add('book');
 
-    // TODO: optimize this part
-    for (const [key] of Object.entries(objList)) {
-      // TODO: create array of items
-      const book = document.createElement('li');
-      const title = document.createElement('h3');
-      const language = document.createElement('p');
-      const author = document.createElement('p');
-      const cover = document.createElement('img');
+    const items = [
+      { tag: 'h3', text: title, class: 'book-title' },
+      { tag: 'p', text: `Language: ${language}`, itemClass: 'book-language' },
+      { tag: 'p', text: `Author: ${author}`, itemClass: 'book-author' },
+      {
+        tag: 'img',
+        src: imageSrc,
+        alt: imageSrc,
+        itemClass: 'book-cover',
+      },
+    ];
 
-      title.innerHTML = `${objList[key].title}`;
-      language.innerHTML = `Language: ${objList[key].language}`;
-      author.innerHTML = `Author: ${objList[key].author}`;
+    items.forEach(({ tag, text, src, alt, itemClass }) => {
+      const item = document.createElement(tag);
+      item.classList.add(itemClass);
+      if (text) item.innerText = text;
+      if (src && alt) item.setAttribute('src', src, 'alt', alt);
+      bookItem.appendChild(item);
+    });
 
-      cover.setAttribute('src', imagesList[key]);
-      cover.setAttribute('alt', imagesList[key].split('/')[2]); // to fix
-
-      // TODO: create array of classes
-      book.classList.add('book');
-      title.classList.add('book-title');
-      language.classList.add('book-language');
-      author.classList.add('book-author');
-
-      cover.classList.add('book-cover');
-
-      book.appendChild(title);
-      book.appendChild(language);
-      book.appendChild(author);
-      book.appendChild(cover);
-      bookInfo.appendChild(book);
-    }
-
-    document.getElementById('container').appendChild(bookInfo);
+    return bookItem;
   };
 
-  // Split function into few
-  // const createBookElement = (bookObj, imageSrc) => {
-  //   const { title, language, author } = bookObj;
-  //   const bookItem = document.createElement('li');
-  //   bookItem.classList.add('book');
+  const createBookList = (objList, imagesList) => {
+    const bookListElement = document.createElement('ul');
+    bookListElement.classList.add('book-info');
 
-  //   const items = [
-  //     { tag: 'h3', text: title, class: 'book-title' },
-  //     { tag: 'p', text: `Language: ${language}`, itemClass: 'book-language' },
-  //     { tag: 'p', text: `Author: ${author}`, itemClass: 'book-author' },
-  //     {
-  //       tag: 'img',
-  //       src: imageSrc,
-  //       alt: imageSrc,
-  //       itemClass: 'book-cover',
-  //     },
-  //   ];
+    Object.entries(objList).forEach(([key, bookObj]) => {
+      const imageSrc = imagesList[key];
+      const bookItem = createBookElement(bookObj, imageSrc);
+      bookListElement.appendChild(bookItem);
+    });
 
-  //   items.forEach(({ tag, text, src, alt, itemClass }) => {
-  //     const Item = document.createElement(tag);
-  //     Item.classList.add(itemClass);
-  //     if (text) Item.innerText = text;
-  //     if (src && alt) Item.setAttribute('src', src, 'alt', alt);
-  //     bookItem.appendChild(Item);
-  //   });
+    return bookListElement;
+  };
 
-  //   return bookItem;
-  // };
-
-  // const createBookList = (objList, imagesList) => {
-  //   const bookListElement = document.createElement('ul');
-  //   bookListElement.classList.add('book-info');
-
-  //   Object.entries(objList).forEach(([key, bookObj]) => {
-  //     const imageSrc = imagesList[key];
-  //     const bookItem = createBookElement(bookObj, imageSrc);
-  //     bookListElement.appendChild(bookItem);
-  //   });
-
-  //   return bookListElement;
-  // };
-
-  // const generateBooksInfo = (objList, imagesList) => {
-  //   const bookListElement = createBookList(objList, imagesList);
-  //   document.getElementById('container').appendChild(bookListElement);
-  // };
+  const generateBooksInfo = (objList, imagesList) => {
+    const bookListElement = createBookList(objList, imagesList);
+    document.getElementById('container').appendChild(bookListElement);
+  };
 
   // -------- Events and handlers, functions call --------
   // Function that uses array
-  generateBooksList(titles);
+  // generateBooksList(titles);
 
   generateBooksInfo(booksList, booksCovers);
 });

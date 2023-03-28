@@ -1,9 +1,10 @@
 ### Foocoding
 Foocoding is a fullstack web development course. 
 This repository includes all the homework related to the course:
-* HTML - finished
-* CSS - finished
-* JavaScript - in progress
+* HTML5
+* CSS3
+* JavaScript
+* GIT/CLI/Debugging
 * Node.js
 * React.js
 * Databases

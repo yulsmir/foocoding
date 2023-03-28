@@ -92,7 +92,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // -------- Methods --------
   // 1.3 Function uses array with book titles
-  // TODO: Capitalize every word
   const generateBooksList = (titlesListArr) => {
     const list = document.createElement('ul');
     for (let i = 0; i < titlesListArr.length; i++) {
@@ -116,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const bookItem = document.createElement('li');
     bookItem.classList.add('book');
 
+    // TODO: fix alt
     const items = [
       { tag: 'h3', text: title, class: 'book-title' },
       { tag: 'p', text: `Language: ${language}`, itemClass: 'book-language' },

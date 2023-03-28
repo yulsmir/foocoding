@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
     items.forEach(({ tag, text, src, alt, itemClass }) => {
       const item = document.createElement(tag);
       item.classList.add(itemClass);
-      if (text) item.innerText = text;
+      if (text) item.innerHTML = text;
       if (src && alt) item.setAttribute('src', src, 'alt', alt);
       bookItem.appendChild(item);
     });

@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
       {
         tag: 'img',
         src: imageSrc,
-        alt: imageSrc,
+        alt: 'alt',
         itemClass: 'book-cover',
       },
     ];

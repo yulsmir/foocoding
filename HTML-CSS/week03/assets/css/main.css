@@ -95,12 +95,10 @@ figure figcaption > h6 {
   font-size: var(--medium-size);
 }
 
-/* TODO: - add nav top with nesting lists */
 .nav-top {
   display: none;
 }
 
-/* TODO: add nesting in list */
 .nav-menu {
   background-color: var(--white-color);
   padding-top: var(--small-size);
@@ -144,9 +142,6 @@ nav ul {
 .nav-menu > :not(li:nth-child(-n + 3)) {
   display: none;
 }
-
-/* TODO: Add social media to newsletter */
-/* TODO: Fix form to newsletter */
 
 .newsletter {
   background-color: var(--violet-color);
@@ -197,7 +192,6 @@ nav ul {
   align-content: center;
 }
 
-/* TODO: fix size of items in media grid and partners */
 .work-with-us .content .media-grid,
 .work-with-us .content .partners {
   display: grid;
@@ -209,27 +203,8 @@ nav ul {
   padding: 0 20%;
 }
 
-/* TODO: Fix social media hover */
-.social-media a img:hover {
-  opacity: 100%;
-}
-
-/* TODO: Fix in another way */
 .work-with-us figure h4 {
   text-align: center;
-}
-
-/* TODO: Fix in other browsers. Displays correctly in Chrome & Duckduckgo */
-.social-media {
-  width: 70%;
-  height: 100%;
-  display: flex;
-  flex-flow: row;
-  justify-content: space-around;
-  justify-items: center;
-  align-content: center;
-  column-gap: var(--medium-size);
-  opacity: 70%;
 }
 
 .work-with-us {
@@ -366,7 +341,7 @@ footer * a {
   }
 
   /* Categorized news - two columns  1 element || all*/
-  */ .categorized-news * > .content .item.item-first {
+  .categorized-news * > .content .item.item-first {
     width: 50%;
     background-color: #969696;
   }
@@ -410,14 +385,10 @@ footer * a {
     grid-template-columns: 1;
   }
 
-  .showcase-video .content .right {
-    /* TODO: ADD SCROLL */
-    /* overflow-y: scroll; */
+  .work-with-us .content .media-grid,
+  .work-with-us .content .partners {
+    display: none;
   }
-
-  /*  TODO:WORK with us - 2 columns reach your goals || media */
-  /*  TODO:partners - centered in a circular motion */
-  /* footer: inherit from small size screen */
 }
 
 /* ------------------------------------- LARGE SIZE SCREENS ------------------------------------- */
@@ -472,11 +443,6 @@ footer * a {
   .partners figure {
     display: flex;
     flex-flow: row wrap;
-  }
-
-  .work-with-us .content .media-grid,
-  .work-with-us .content .partners {
-    display: flex;
   }
 
   /* TODO: fix footer */

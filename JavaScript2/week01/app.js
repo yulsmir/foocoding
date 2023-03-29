@@ -149,17 +149,14 @@ document.addEventListener('DOMContentLoaded', function () {
       bookListElement.appendChild(bookItem);
     });
 
-    return bookListElement;
-  };
-
-  const generateBooksInfo = (objList, imagesList) => {
-    const bookListElement = createBookList(objList, imagesList);
     document.getElementById('container').appendChild(bookListElement);
+
+    return bookListElement;
   };
 
   // -------- Events and handlers, functions call --------
   // Function that uses array
   // generateBooksList(titles);
 
-  generateBooksInfo(booksList, booksCovers);
+  createBookList(booksList, booksCovers);
 });

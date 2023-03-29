@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
     bookItem.classList.add('book');
 
     const items = [
-      { tag: 'h3', text: title, class: 'book-title' },
+      { tag: 'h3', text: title, itemClass: 'book-title' },
       { tag: 'p', text: `Language: ${language}`, itemClass: 'book-language' },
       { tag: 'p', text: `Author: ${author}`, itemClass: 'book-author' },
       {

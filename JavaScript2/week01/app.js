@@ -115,7 +115,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const bookItem = document.createElement('li');
     bookItem.classList.add('book');
 
-    // TODO: fix alt
     const items = [
       { tag: 'h3', text: title, class: 'book-title' },
       { tag: 'p', text: `Language: ${language}`, itemClass: 'book-language' },
@@ -123,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
       {
         tag: 'img',
         src: imageSrc,
-        alt: 'alt',
+        alt: imageSrc.split('/').splice(2, 1),
         itemClass: 'book-cover',
       },
     ];
@@ -132,7 +131,8 @@ document.addEventListener('DOMContentLoaded', function () {
       const item = document.createElement(tag);
       item.classList.add(itemClass);
       if (text) item.innerHTML = text;
-      if (src && alt) item.setAttribute('src', src, 'alt', alt);
+      if (src) item.setAttribute('src', src);
+      if (alt) item.setAttribute('alt', alt);
       bookItem.appendChild(item);
     });
 

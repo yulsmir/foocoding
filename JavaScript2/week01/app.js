@@ -119,12 +119,7 @@
       { tag: 'h3', text: title, itemClass: 'book-title' },
       { tag: 'p', text: `Language: ${language}`, itemClass: 'book-language' },
       { tag: 'p', text: `Author: ${author}`, itemClass: 'book-author' },
-      {
-        tag: 'img',
-        src: imageSrc,
-        alt: imageSrc.split('/').splice(2, 1),
-        itemClass: 'book-cover',
-      },
+      { tag: 'img', src: imageSrc, alt: imageSrc.split('/').splice(2, 1), itemClass: 'book-cover' },
     ];
 
     items.forEach(({ tag, text, src, alt, itemClass }) => {

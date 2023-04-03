@@ -122,15 +122,15 @@
       { tag: 'img', src: imageSrc, alt: imageSrc.split('/').splice(2, 1), itemClass: 'book-cover' },
     ];
 
-    items.forEach(({ tag, text, src, alt, itemClass }) => {
+    for (let i = 0; i < items.length; i++) {
+      const { tag, text, src, alt, className } = items[i];
       const item = document.createElement(tag);
-      item.classList.add(itemClass);
+      item.className = className;
       if (text) item.innerHTML = text;
-      if (src) item.setAttribute('src', src);
-      if (alt) item.setAttribute('alt', alt);
+      if (src) item.src = src;
+      if (alt) item.alt = alt;
       bookItem.appendChild(item);
-    });
-
+    }
     return bookItem;
   };
 
@@ -138,11 +138,11 @@
     const bookListElement = document.createElement('ul');
     bookListElement.classList.add('book-info');
 
-    Object.entries(objList).forEach(([key, bookObj]) => {
+    for (const [key, bookObj] of Object.entries(objList)) {
       const imageSrc = imagesList[key];
       const bookItem = createBookElement(bookObj, imageSrc);
       bookListElement.appendChild(bookItem);
-    });
+    }
 
     document.getElementById('container').appendChild(bookListElement);
 

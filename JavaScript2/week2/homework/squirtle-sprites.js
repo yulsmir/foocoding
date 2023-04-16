@@ -9,3 +9,20 @@ function fetchPokemonData() {
 }
 
 /* Code goes below */
+const pokemonData = JSON.parse(fetchPokemonData());
+const pokemonSprites = pokemonData.sprites;
+
+const sprites = document.querySelector('.pokemon-sprites');
+const spritePicture = document.createElement('picture');
+
+const img = document.createElement('img');
+
+sprites.appendChild(spritePicture).appendChild(img);
+
+const getImageSources = (sprites) => {
+  for (const [key, value] of Object.entries(sprites)) {
+    if (value !== null) img.setAttribute('src', value);
+  }
+};
+
+console.log(getImageSources(pokemonSprites));

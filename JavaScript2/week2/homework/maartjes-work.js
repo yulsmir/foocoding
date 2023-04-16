@@ -58,9 +58,6 @@ function computeEarnings(tasks, hourlyRate) {
     (sum, duration) => sum + duration * hourlyRate,
     0,
   );
-  // Choose variable and parameters names that most accurately describe their contents or purpose.
-  // When naming an array, use a plural form, e.g.durations.For a single item, use a singular form, e.g.duration.For details, see Naming Conventions.
-  // Don't forget to use =>.
   return calculatedEarnings;
 }
 
@@ -68,7 +65,6 @@ function computeEarnings(tasks, hourlyRate) {
 const earnings = computeEarnings(maartjesTasks, maartjesHourlyRate);
 
 // add code to convert `earnings` to a string rounded to two decimals (euro cents)
-
 console.log(`Maartje has earned €${computeEarnings(maartjesTasks, maartjesHourlyRate).toFixed(2)}`);
 
 // Do not change or remove anything below this line

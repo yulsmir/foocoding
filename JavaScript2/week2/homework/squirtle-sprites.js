@@ -11,18 +11,28 @@ function fetchPokemonData() {
 /* Code goes below */
 const pokemonData = JSON.parse(fetchPokemonData());
 const pokemonSprites = pokemonData.sprites;
+const spriteUrls = Object.values(pokemonSprites);
 
 const sprites = document.querySelector('.pokemon-sprites');
-const spritePicture = document.createElement('picture');
 
-const img = document.createElement('img');
+const displaySprites = (spritesObj) => {
+  for (const [key, value] of Object.entries(spritesObj)) {
+    if (value !== null) {
+      const spritePicture = document.createElement('picture');
+      const img = document.createElement('img');
 
-sprites.appendChild(spritePicture).appendChild(img);
-
-const getImageSources = (sprites) => {
-  for (const [key, value] of Object.entries(sprites)) {
-    if (value !== null) img.setAttribute('src', value);
+      img.setAttribute('src', value);
+      img.setAttribute(
+        'alt',
+        value
+          .split('/')
+          .splice(7, 3)
+          .join('-'),
+      );
+      sprites.appendChild(spritePicture);
+      spritePicture.appendChild(img);
+    }
   }
 };
 
-console.log(getImageSources(pokemonSprites));
+console.log(displaySprites(pokemonSprites));

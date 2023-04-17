@@ -30,6 +30,7 @@ const displaySprites = (urls) => {
         .splice(7, 3)
         .join('-'),
     );
+
     sprites.appendChild(spritePicture);
     spritePicture.appendChild(img);
   }

@@ -19,7 +19,6 @@ const sprites = document.querySelector('.pokemon-sprites');
 
 const displaySprites = (urls) => {
   for (const url of urls) {
-    // TODO: check url validity
     const spritePicture = document.createElement('picture');
     const img = document.createElement('img');
 

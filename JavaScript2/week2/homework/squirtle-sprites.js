@@ -11,28 +11,29 @@ function fetchPokemonData() {
 /* Code goes below */
 const pokemonData = JSON.parse(fetchPokemonData());
 const pokemonSprites = pokemonData.sprites;
+
 const spriteUrls = Object.values(pokemonSprites);
+const validSpriteUrls = spriteUrls.filter((url) => url !== null);
 
 const sprites = document.querySelector('.pokemon-sprites');
 
-const displaySprites = (spritesObj) => {
-  for (const [key, value] of Object.entries(spritesObj)) {
-    if (value !== null) {
-      const spritePicture = document.createElement('picture');
-      const img = document.createElement('img');
+const displaySprites = (urls) => {
+  for (const url of urls) {
+    // TODO: check url validity
+    const spritePicture = document.createElement('picture');
+    const img = document.createElement('img');
 
-      img.setAttribute('src', value);
-      img.setAttribute(
-        'alt',
-        value
-          .split('/')
-          .splice(7, 3)
-          .join('-'),
-      );
-      sprites.appendChild(spritePicture);
-      spritePicture.appendChild(img);
-    }
+    img.setAttribute('src', url);
+    img.setAttribute(
+      'alt',
+      url
+        .split('/')
+        .splice(7, 3)
+        .join('-'),
+    );
+    sprites.appendChild(spritePicture);
+    spritePicture.appendChild(img);
   }
 };
 
-console.log(displaySprites(pokemonSprites));
+console.log(displaySprites(validSpriteUrls));

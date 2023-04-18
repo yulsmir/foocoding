@@ -34,5 +34,5 @@ This repository includes all the homework related to the course:
   - [x] Code: https://github.com/yulsmir/foocoding/tree/master/JavaScript2/week01
   - [x] Web version: https://yulsmir.github.io/foocoding/JavaScript2/week01/
 - Week 2:
-  - [x] Code: https://github.com/yulsmir/foocoding/tree/master/JavaScript2/week2/homework
+  - [x] Code: https://github.com/yulsmir/foocoding/tree/master/JavaScript2/week02
   - [x] Web version: https://yulsmir.github.io/foocoding/JavaScript2/week02

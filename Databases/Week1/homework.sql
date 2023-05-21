@@ -29,7 +29,7 @@ mysql> show tables;
 +--------------+
 1 row in set (0.00 sec)
 
-mysql> describe  employee;
+mysql> describe employee;
 +-------------+--------------+------+-----+---------+----------------+
 | Field       | Type         | Null | Key | Default | Extra          |
 +-------------+--------------+------+-----+---------+----------------+
@@ -101,8 +101,27 @@ values
   ('Sweden', 'Ystad', 'Lillatorget 1', '33344', 4),
   ('Sweden', 'Kiruna', 'Storgatan 6', '66554', 5),
   ('Wonderland', 'Wondercity', 'Wonder street 888', '88888', 6),
+  ('Simon Country', 'Simon City', 'Simon Street', '55555', 7),
   ('USA', 'Springfield', 'Unknown Street 13', '77777', 8),
   ('USA', 'Springfield', 'Unknown Street 13', '77777', 9),
   ('USA', 'Springfield', 'Unknown Street 13', '77777', 10),
   ('USA', 'Quahog', 'Strange street 9', '88888', 11)
 ;
+
+mysql> select * from locations;
++-------------+---------------+-------------+-------------------+-------------+-------------+
+| location_id | country       | city        | street            | postal_code | employee_id |
++-------------+---------------+-------------+-------------------+-------------+-------------+
+|           1 | Poland        | Krakow      | Wlodecka 16       | 23456       |           1 |
+|           2 | Sweden        | Stockholm   | Vasagatan 15      | 63567       |           2 |
+|           3 | Sweden        | Gothenburg  | Kristiansgatan 2  | 43555       |           3 |
+|           4 | Sweden        | Ystad       | Lillatorget 1     | 33344       |           4 |
+|           5 | Sweden        | Kiruna      | Storgatan 6       | 66554       |           5 |
+|           6 | Wonderland    | Wondercity  | Wonder street 888 | 88888       |           6 |
+|           7 | USA           | Springfield | Unknown Street 13 | 77777       |           8 |
+|           8 | USA           | Springfield | Unknown Street 13 | 77777       |           9 |
+|           9 | USA           | Springfield | Unknown Street 13 | 77777       |          10 |
+|          10 | USA           | Quahog      | Strange street 9  | 88888       |          11 |
+|          11 | Simon Country | Simon City  | Simon Street      | 55555       |           7 |
++-------------+---------------+-------------+-------------------+-------------+-------------+
+11 rows in set (0.00 sec)

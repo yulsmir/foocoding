@@ -14,8 +14,15 @@ select country.name, continent from country where continent = 'Europe';
 -- 5. List all the countries in the descending order of their surface areas.
 select country.name, surfacearea from country order by surfacearea desc;
 
--- What are the names of all the cities in the Netherlands?
--- What is the population of Rotterdam ?
--- What's the top 10 countries by Surface Area ?
--- What's the top 10 most populated cities?
--- What is the population of the world ?
+-- 6. What are the names of all the cities in the Netherlands?
+
+-- 7. What is the population of Rotterdam ?
+select name, population from city where name = 'Rotterdam';
+
+-- 8. What's the top 10 countries by Surface Area ?
+select name, surfacearea from country order by surfacearea desc limit 10;
+
+-- 9. What's the top 10 most populated cities?
+
+-- 10. What is the population of the world ?
+

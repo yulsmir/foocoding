@@ -39,6 +39,7 @@ describe locations;
 describe employee;
 
 -- 4. Insert 10-20 rows in each table with relevant fields. (Make sure that you have relevant relations)
+-- Relations: Employee has many locations
 insert into employee (first_name, last_name, title, salary, department, start_date) 
 values 
   ('Tom', 'Tomsson', 'Sales Manager', 320000, 'Sales', '1999-12-31'), 

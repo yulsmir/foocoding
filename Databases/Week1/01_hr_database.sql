@@ -1,3 +1,5 @@
+drop database if exists HR;
+
 -- 1. Create database HR;
 create database HR;
 
@@ -25,7 +27,7 @@ create table locations (
   city varchar(255),
   street varchar(255),
   postal_code varchar(255),
-  employee_id int,
+  employee_id int not null,
   -- constraints
   primary key(location_id),
   foreign key(employee_id)

@@ -3,7 +3,7 @@
 -- population of the cities listed (not the country population) of more than 50 million?
 select country.name, sum(city.population) as total_city_population
 from country
-join city on country.Code = city.countrycode
+join city on country.code = city.countrycode
 group by country.name
 having count(city.name) > 10 and sum(city.population) > 50000000
 order by total_city_population ASC;

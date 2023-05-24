@@ -8,7 +8,6 @@ group by country.name
 having count(city.name) > 10 and sum(city.population) > 50000000
 order by total_city_population ASC;
 
-
 -- 2. List the cities from those countries, where the city population is > 5M
 select city.name, city.population
 from country

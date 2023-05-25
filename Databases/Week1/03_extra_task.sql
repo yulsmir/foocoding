@@ -26,8 +26,8 @@ select continent, name, surfacearea
 from country
 where continent <> 'Antarctica'
 and surfacearea in (
-    select max(surfacearea)
-    from country subcountry
-    where subcountry.continent = country.continent
+  select max(surfacearea)
+  from country subcountry
+  where subcountry.continent = country.continent
 )
 order by surfacearea desc;

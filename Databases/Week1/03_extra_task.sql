@@ -20,3 +20,14 @@ where countrycode in (
 )
 and city.population > 5000000
 order by population ASC;
+
+-- 3. List the largest country on each continent (except Antarctica, nobody lives there, anyway)
+select continent, name, surfacearea
+from country
+where continent <> 'Antarctica'
+and surfacearea in (
+    select max(surfacearea)
+    from country subcountry
+    where subcountry.continent = country.continent
+)
+order by surfacearea desc;

@@ -6,7 +6,7 @@ from country
 inner join city on country.code = city.countrycode
 group by country.name
 having count(city.name) > 10 and sum(city.population) > 50000000
-order by total_city_population ASC;
+order by total_city_population asc;
 
 -- 2. List the cities from those countries, where the city population is > 5M
 select city.name, city.population
@@ -19,7 +19,7 @@ where countrycode in (
   having count(city.name) > 10 and sum(city.population) > 50000000
 )
 and city.population > 5000000
-order by population ASC;
+order by population asc;
 
 -- 3. List the largest country on each continent (except Antarctica, nobody lives there, anyway)
 select continent, name, surfacearea

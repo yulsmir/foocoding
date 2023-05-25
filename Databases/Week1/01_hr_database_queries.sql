@@ -21,7 +21,7 @@ create table employee (
 );
 
 -- 3. Create table locations;
--- drop table if exists locations;
+drop table if exists locations;
 create table locations (
   id int,
   country varchar(255),
@@ -29,9 +29,9 @@ create table locations (
   street varchar(255),
   postal_code varchar(255),
   -- constraints
-  primary key(id)
+  primary key(id),
   foreign key (id)
-    references employee(location_id)
+    references employee(id)
 );
 
 show tables;

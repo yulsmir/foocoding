@@ -5,6 +5,18 @@ create database HR;
 
 use HR;
 
+-- 3. Create table locations;
+drop table if exists locations;
+create table locations (
+  id int,
+  country varchar(255),
+  city varchar(255),
+  street varchar(255),
+  postal_code varchar(255),
+  -- constraints
+  primary key(id)
+);
+
 -- 2. Create table employee;
 drop table if exists employee;
 create table employee (
@@ -17,30 +29,26 @@ create table employee (
   start_date date not null,
   location_id int,
   -- constraints
-  primary key(id)
-);
-
--- 3. Create table locations;
-drop table if exists locations;
-create table locations (
-  id int,
-  country varchar(255),
-  city varchar(255),
-  street varchar(255),
-  postal_code varchar(255),
-  -- constraints
   primary key(id),
-  foreign key (id)
-    references employee(id)
+  foreign key(location_id)
+    references locations(id)
 );
 
-show tables;
-
-describe locations;
-describe employee;
 
 -- 4. Insert 10-20 rows in each table with relevant fields. (Make sure that you have relevant relations)
--- Relations: Employee has many locations
+insert into locations(id, country, city, street, postal_code)
+values
+  (1, 'Poland', 'Krakow', 'Wlodecka 16', '23456'),
+  (2, 'Sweden', 'Stockholm', 'Vasagatan 15', '63567'),
+  (3, 'Sweden', 'Gothenburg', 'Kristiansgatan 2', '43555'),
+  (4, 'Sweden', 'Ystad', 'Lillatorget 1', '33344'),
+  (5, 'Sweden', 'Kiruna', 'Storgatan 6', '66554'),
+  (6, 'Wonderland', 'Wondercity', 'Wonder street 888', '88888'),
+  (7, 'Simon Country', 'Simon City', 'Simon Street', '55555'),
+  (8, 'USA', 'Springfield', 'Unknown Street 13', '77777'),
+  (9, 'USA', 'Quahog', 'Strange street 9', '88888')
+;
+
 insert into employee (first_name, last_name, title, salary, department, start_date, location_id) 
 values 
   ('Tom', 'Tomsson', 'Sales Manager', 320000, 'Sales', '1999-12-31', 1), 
@@ -56,18 +64,11 @@ values
   ('Stewie', 'Nobody Knows', 'Son', 333333, 'Family Guy', '2000-02-03', 9)
 ;
 
-insert into locations(id, country, city, street, postal_code)
-values
-  (1, 'Poland', 'Krakow', 'Wlodecka 16', '23456'),
-  (2, 'Sweden', 'Stockholm', 'Vasagatan 15', '63567'),
-  (3, 'Sweden', 'Gothenburg', 'Kristiansgatan 2', '43555'),
-  (4, 'Sweden', 'Ystad', 'Lillatorget 1', '33344'),
-  (5, 'Sweden', 'Kiruna', 'Storgatan 6', '66554'),
-  (6, 'Wonderland', 'Wondercity', 'Wonder street 888', '88888'),
-  (7, 'Simon Country', 'Simon City', 'Simon Street', '55555'),
-  (8, 'USA', 'Springfield', 'Unknown Street 13', '77777'),
-  (9, 'USA', 'Quahog', 'Strange street 9', '88888')
-;
+
+show tables;
+
+describe locations;
+describe employee;
 
 select * from employee;
 select * from locations;

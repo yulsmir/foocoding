@@ -1,0 +1,16 @@
+body {
+  background-color: beige;
+}
+
+h1 {
+  color: blueviolet;
+}
+
+.black {
+  color: black;
+  background-color: white;
+}
+
+#second-header {
+  background-color: white;
+}

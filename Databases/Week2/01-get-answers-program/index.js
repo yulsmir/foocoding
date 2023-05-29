@@ -1,22 +1,31 @@
-const mysql = require('mysql2/promise');
+const mysql = require('mysql2');
 const readline = require('readline');
 
-const connection = mysql.createPool({
+const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'password',
   database: 'new_world',
 });
 
-const interactWithConsole = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+// Setup user input with readline module
+// const interactWithConsole = readline.createInterface({
+//   input: process.stdin,
+//   output: process.stdout,
+// });
 
-const getUserInput = (question) => {
-  return new Promise((resolve) => {
-    interactWithConsole.question(question, (answer) => {
-      resolve(answer);
-    });
-  });
-};
+// const getUserInputFromConsole = (question) => {
+//   return new Promise((resolve) => {
+//     interactWithConsole.question(question, (answer) => {
+//       resolve(answer);
+//     });
+//   });
+// };
+
+// Estabish connection with MySQL
+db.connect((err) => {
+  if (err) {
+    throw err;
+  }
+  console.log('MySql Connected');
+});

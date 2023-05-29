@@ -23,7 +23,7 @@ const interactWithConsole = readline.createInterface({
 });
 
 // Estabish connection with MySQL
-connection.connect(function (err) {
+connection.connect((err) => {
   if (err) {
     return console.error('error: ' + err.message);
   }
@@ -37,7 +37,7 @@ const handleQueryErrors = (query) => {};
 const showCountryCapital = (query) => {};
 const listAllLanguagesInRegion = (query) => {};
 const countCitiesWhereLanguageIsSpoken = (query) => {};
-const listAllContinentsWithLanguagesCount = (query = {});
+const listAllContinentsWithLanguagesCount = (query) => {};
 
 const getUserInputFromConsole = (question) => {
   return new Promise((resolve) => {

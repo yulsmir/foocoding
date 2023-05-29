@@ -3,10 +3,10 @@
 const mysql = require('mysql2');
 const readline = require('readline');
 const {
-  showCountryCapital,
-  listAllLanguagesInRegion,
-  countCitiesWhereLanguageIsSpoken,
-  listAllContinentsWithLanguagesCount,
+  countryCapital,
+  allLanguagesInRegionList,
+  citiesWhereLanguageIsSpokenCount,
+  allContinentsWithLanguagesCount,
 } = require('./prepared_statements');
 
 const connection = mysql.createConnection({
@@ -32,6 +32,21 @@ connection.connect(function (err) {
   main();
 });
 
+//TODO:  All functions
+const handleQueryErrors = (query) => {};
+const showCountryCapital = (query) => {};
+const listAllLanguagesInRegion = (query) => {};
+const countCitiesWhereLanguageIsSpoken = (query) => {};
+const listAllContinentsWithLanguagesCount = (query = {});
+
+const getUserInputFromConsole = (question) => {
+  return new Promise((resolve) => {
+    interactWithConsole.question(question, (answer) => {
+      resolve(answer);
+    });
+  });
+};
+
 // Main code
 const main = () => {
   console.log('Do some magic');
@@ -47,12 +62,4 @@ const main = () => {
       connection.end(); // Close the connection after the query is completed
     },
   );
-};
-
-const getUserInputFromConsole = (question) => {
-  return new Promise((resolve) => {
-    interactWithConsole.question(question, (answer) => {
-      resolve(answer);
-    });
-  });
 };

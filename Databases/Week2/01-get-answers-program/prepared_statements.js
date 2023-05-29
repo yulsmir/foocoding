@@ -2,21 +2,21 @@
 
 // -- 1. What is the capital of country X ? (Accept X from user)
 // -- TODO: remove value Germany in the query and put '?'
-const showCountryCapital =
+const countryCapital =
   'select country.name , city.name from city inner join country on capital = city.id where country.name = "Germany";';
 
 // -- TODO: remove value Caribbean in the query and put '?'
 // -- 2. List all the languages spoken in the region Y (Accept Y from user)
-const listAllLanguagesInRegion =
+const allLanguagesInRegionList =
   'select language from countrylanguage inner join country on country.code = countrylanguage.countrycode where country.region = "Caribbean" group by language;';
 
 // -- TODO: remove value Slovak in the query and put '?'
 // -- 3. Find the number of cities in which language Z is spoken (Accept Z from user)
-const countCitiesWhereLanguageIsSpoken =
+const citiesWhereLanguageIsSpokenCount =
   'select count(1) from city inner join countrylanguage on city.countrycode = countrylanguage.countrycode where countrylanguage.language = "Slovak";';
 
 // -- 4. List all the continents with the number of languages spoken in each continent
-const listAllContinentsWithLanguagesCount =
+const allContinentsWithLanguagesCount =
   'select country.continent, count(countrylanguage.language) as languages_number from country inner join countrylanguage on country.code = countrylanguage.countrycode group by country.continent;';
 
 // -- TODO: remove value in the query and put '?'
@@ -28,8 +28,8 @@ const listAllContinentsWithLanguagesCount =
 // -- If no, display FALSE
 
 module.exports = {
-  showCountryCapital,
-  listAllLanguagesInRegion,
-  countCitiesWhereLanguageIsSpoken,
-  listAllContinentsWithLanguagesCount,
+  countryCapital,
+  allLanguagesInRegionList,
+  citiesWhereLanguageIsSpokenCount,
+  allContinentsWithLanguagesCount,
 };

@@ -1,0 +1,17 @@
+{
+  "name": "01-get-answers-program",
+  "version": "1.0.0",
+  "description": "A Node.JS program that gets answers on queries from new_world.sql database.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yuliia Smirnova",
+  "license": "ISC",
+  "dependencies": {
+    "mysql2": "^3.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

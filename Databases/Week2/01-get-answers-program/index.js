@@ -21,9 +21,13 @@ connection.connect(function (err) {
   }
 
   console.log('Connected to the MySQL server.');
+  main();
 });
 
 // Main code
+const main = () => {
+  console.log('Do some magic');
+};
 
 const getUserInputFromConsole = (question) => {
   return new Promise((resolve) => {

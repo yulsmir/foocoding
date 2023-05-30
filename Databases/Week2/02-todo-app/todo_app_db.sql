@@ -49,25 +49,25 @@ create table if not exists tag(
     references todoitem(id)
   );
 
--- Inserting sample data into the user table
+-- Inserting some test data into user
 insert into user (name, email, password) values
   ('John Doe', 'johndoe@mail.com', '6eyghug'),
   ('Mister Smith', 'mistersmith@somedomain.com', '97yighsjkvndf'),
   ('Mike Petersson', 'mikepetersson@email.com', 'edD09876rty.');
 
--- Inserting sample data into the todolist table
+-- Inserting some test data into todolist
 insert into todolist (name, user_id) values
   ('Personal Tasks', 1),
   ('Work Tasks', 1),
   ('Grocery List', 2);
 
--- Inserting sample data into the todoitem table
+-- Insert some test data into todoitem
 insert into todoitem (name, list_id, completed, reminder) values
   ('Buy milk', 3, 0, null),
   ('Finish something', 2, 0, '2023-05-30 15:00:00'),
   ('Go for a coffee', 1, 1, null);
 
--- Inserting sample data into the tag table
+-- Insert some test data into tag table
 insert into tag (item_id, name) values
   (1, 'Food'),
   (2, 'Work'),

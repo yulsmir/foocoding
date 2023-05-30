@@ -24,7 +24,7 @@ connection.connect((err) => {
   console.log('Connected to the MySQL server.');
 });
 
-const gerUserInput = (question) => {
+const getUserInput = (question) => {
   return new Promise((resolve) => {
     userInput.question(question, (answer) => {
       resolve(answer);
@@ -60,7 +60,7 @@ const showCountryCapital = async () => {
 };
 
 const listAllLanguagesInRegion = async () => {
-  const regionName = await gerUserInput('Enter a region name: ');
+  const regionName = await getUserInput('Enter a region name: ');
   const query = `select language from countrylanguage inner join country on country.code = countrylanguage.countrycode where country.region = ? group by language;`;
   connection.query(query, [regionName], (err, results) => {
     if (err) {
@@ -77,7 +77,7 @@ const listAllLanguagesInRegion = async () => {
 };
 
 const showCitiesWhereLanguageIsSpokenCount = async () => {
-  const language = await gerUserInput('Enter a language: ');
+  const language = await getUserInput('Enter a language: ');
   const query = `select count(1) as cities from city inner join countrylanguage on city.countrycode = countrylanguage.countrycode where countrylanguage.language = ?;`;
   connection.query(query, [language], (err, results) => {
     if (err) {
@@ -121,7 +121,7 @@ const main = async () => {
 
   consoleOptionsMessages.forEach((message) => console.log(message));
 
-  const option = await gerUserInput('Enter your choice (1-5): ');
+  const option = await getUserInput('Enter your choice (1-5): ');
 
   switch (option) {
     case '1':

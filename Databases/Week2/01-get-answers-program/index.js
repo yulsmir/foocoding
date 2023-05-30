@@ -25,8 +25,8 @@ connection.connect((err) => {
   if (err) {
     return console.error('error: ' + err.message);
   }
-
   console.log('Connected to the MySQL server.');
+  main();
 });
 
 const getUserInput = (question) => {
@@ -51,16 +51,56 @@ const handleQueryErrors = (err, results) => {
 
 const showCountryCapital = async () => {
   const countryName = await getUserInput('Enter a country name: ');
-  const query = `select city.name as capital from city inner join country on capital = city.id where country.name = ?;`;
-  connection.query(query, [countryName], (err, results) => {
+  const prepareStatement =
+    "prepare statement from 'select city.name as capital from city inner join country on city.id = country.capital where country.name = ?';";
+  const assignVariable = 'set @countryName = ?;';
+  const executeStatement = 'execute statement using @countryname;';
+  const deallocateStatement = 'deallocate PREPARE statement;';
+
+  connection.query(prepareStatement, (err) => {
     if (err) {
       handleQueryErrors(err);
-    } else if (results.length > 0) {
-      const capital = results[0].capital;
-      console.log(`Capital of ${countryName} is ${capital}`);
-    } else {
-      console.log(`No results found for ${countryName}`);
+      return;
     }
+
+    connection.query(assignVariable, [countryName], (err) => {
+      if (err) {
+        handleQueryErrors(err);
+        return;
+      }
+
+      connection.query(executeStatement, (err, results) => {
+        if (err) {
+          handleQueryErrors(err);
+          return;
+        }
+
+        if (results.length > 0) {
+          const capital = results[0].capital;
+          console.log(`Capital of ${countryName} is ${capital}`);
+        } else {
+          console.log(`No results found for ${countryName}`);
+        }
+
+        connection.query(deallocateStatement, (err) => {
+          if (err) {
+            handleQueryErrors(err);
+          }
+        });
+      });
+    });
+  });
+};
+
+const executeQuery = (query, params = []) => {
+  return new Promise((resolve, reject) => {
+    connection.query(query, params, (err, results) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results);
+      }
+    });
   });
 };
 
@@ -152,5 +192,3 @@ const main = async () => {
       userInput.close();
   }
 };
-
-main();

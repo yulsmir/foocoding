@@ -33,51 +33,38 @@ connection.connect((err) => {
 });
 
 //TODO:  All functions
-const handleQueryErrors = () => {};
+const handleQueryErrors = (err, results) => {
+  const errorMessage = 'Error executing query: ';
+  if (err) {
+    console.error(errorMessage, err);
+    connection.end(); // Close the connection in case of an error
+    return;
+  }
+  console.log(results); // Log the results inside the callback
+  connection.end(); // Close the connection after the query is completed
+};
+
 const showCountryCapital = () => {
   connection.query(countryCapital, function (err, results, fields) {
-    if (err) {
-      console.error('Error executing query:', err);
-      connection.end(); // Close the connection in case of an error
-      return;
-    }
-    console.log(results); // Log the results inside the callback
-    connection.end(); // Close the connection after the query is completed
+    handleQueryErrors(err, results);
   });
 };
+
 const listAllLanguagesInRegion = () => {
   connection.query(allLanguagesInRegionList, function (err, results, fields) {
-    if (err) {
-      console.error('Error executing query:', err);
-      connection.end(); // Close the connection in case of an error
-      return;
-    }
-    console.log(results); // Log the results inside the callback
-    connection.end(); // Close the connection after the query is completed
+    handleQueryErrors(err, results);
   });
 };
 
 const countCitiesWhereLanguageIsSpoken = () => {
   connection.query(citiesWhereLanguageIsSpokenCount, function (err, results, fields) {
-    if (err) {
-      console.error('Error executing query:', err);
-      connection.end(); // Close the connection in case of an error
-      return;
-    }
-    console.log(results); // Log the results inside the callback
-    connection.end(); // Close the connection after the query is completed
+    handleQueryErrors(err, results);
   });
 };
 
 const listAllContinentsWithLanguagesCount = () => {
   connection.query(allContinentsWithLanguagesCount, function (err, results, fields) {
-    if (err) {
-      console.error('Error executing query:', err);
-      connection.end(); // Close the connection in case of an error
-      return;
-    }
-    console.log(results); // Log the results inside the callback
-    connection.end(); // Close the connection after the query is completed
+    handleQueryErrors(err, results);
   });
 };
 
@@ -92,8 +79,9 @@ const getUserInputFromConsole = (question) => {
 // Main code
 const main = () => {
   console.log('Do some magic');
+  // TODO: one query at a time is allowed
   showCountryCapital();
-  listAllLanguagesInRegion();
-  countCitiesWhereLanguageIsSpoken();
-  listAllContinentsWithLanguagesCount();
+  // listAllLanguagesInRegion();
+  // countCitiesWhereLanguageIsSpoken();
+  // listAllContinentsWithLanguagesCount();
 };

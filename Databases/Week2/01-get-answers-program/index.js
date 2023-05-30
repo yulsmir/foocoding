@@ -70,7 +70,7 @@ const showCountryCapital = async () => {
     "prepare statement from 'select city.name as capital from city inner join country on city.id = country.capital where country.name = ?';";
   const assignVariable = 'set @countryName = ?;';
   const executeStatement = 'execute statement using @countryname;';
-  const deallocateStatement = 'deallocate PREPARE statement;';
+  const deallocateStatement = 'deallocate prepare statement;';
 
   try {
     await executeQuery(prepareStatement);
@@ -92,11 +92,19 @@ const showCountryCapital = async () => {
 
 const listAllLanguagesInRegion = async () => {
   const regionName = await getUserInput('Enter a region name: ');
-  const query = `select language from countrylanguage inner join country on country.code = countrylanguage.countrycode where country.region = ? group by language;`;
-  connection.query(query, [regionName], (err, results) => {
-    if (err) {
-      handleQueryErrors(err);
-    } else if (results.length > 0) {
+  // const query = `select language from countrylanguage inner join country on country.code = countrylanguage.countrycode where country.region = ? group by language;`;
+  const prepareStatement =
+    "prepare statement from 'select language from countrylanguage inner join country on country.code = countrylanguage.countrycode where country.region = ? group by language;'";
+  const assignVariable = 'set @regionName = ?:';
+  const executeStatement = 'execute statement using @regionName';
+  const deallocateStatement = 'deallocate prepare statement';
+
+  try {
+    await executeQuery(prepareStatement);
+    await executeQuery(assignVariable, [regionName]);
+    const results = await executeQuery(executeStatement);
+
+    if (results.length > 0) {
       console.log(`Languages spoken in ${regionName}:`);
       results.forEach((row) => {
         console.log(row.language);
@@ -104,7 +112,11 @@ const listAllLanguagesInRegion = async () => {
     } else {
       console.log(`No results found for ${regionName}`);
     }
-  });
+  } catch (err) {
+    handleQueryErrors(err);
+  } finally {
+    await executeQuery(deallocateStatement);
+  }
 };
 
 const showCitiesWhereLanguageIsSpokenCount = async () => {
@@ -165,7 +177,7 @@ const main = async () => {
       await showCitiesWhereLanguageIsSpokenCount();
       break;
     case '4':
-      listAllContinentsWithLanguagesCount();
+      await listAllContinentsWithLanguagesCount();
       break;
     case '5':
       console.log('Exiting...');

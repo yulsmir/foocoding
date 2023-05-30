@@ -1,4 +1,6 @@
 ### Description
+
+### Part 1. Get answers program
 A Node.js program that gets answers of following queries on the new_world database, it gets the input from user and uses prepared statements.
 
 Questions handled:
@@ -14,7 +16,18 @@ Questions handled:
 ### Setup
 1. Clone current repo.
 2. Go to ```Databases/Week2/01-get-answers-program```.
-3. Run node ```index.js``` to start program.
-4. Inside ```index.js ``` replace password with your mysql root password 
+3. Inside ```index.js ``` file replace password with your mysql root password 
   OR 
   create file ```.env``` in root of ```01-get-answers-program``` and add `DB_PASSWORD=your_root_password` value.
+4. Run ```npm install``` in terminal.
+5. Run node ```index.js``` to start program in terminal.
+
+### Part 2. Todo app database design
+A database schema for the Todo app.
+
+Multiple ToDo lists with different purposes.
+    Each list has at least one item.
+    Each item can be tagged.
+    Each item can be marked completed.
+    There could be reminders for some items.
+

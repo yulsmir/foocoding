@@ -14,4 +14,7 @@ Questions handled:
 ### Setup
 1. Clone current repo.
 2. Go to ```Databases/Week2/01-get-answers-program```.
-3. Run 
+3. Run node ```index.js``` to start program.
+4. Inside ```index.js ``` replace password with your mysql root password 
+  OR 
+  create file ```.env``` in root of ```01-get-answers-program``` and add `DB_PASSWORD=your_root_password` value.

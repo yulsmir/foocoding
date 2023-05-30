@@ -45,7 +45,7 @@ const handleQueryErrors = (err, results) => {
 };
 
 const showCountryCapital = async () => {
-  const countryName = await getUs('Enter a country name: ');
+  const countryName = await getUserInput('Enter a country name: ');
   const query = `select city.name as capital from city inner join country on capital = city.id where country.name = ?;`;
   connection.query(query, [countryName], (err, results) => {
     if (err) {

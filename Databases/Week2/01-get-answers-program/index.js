@@ -2,6 +2,8 @@
 
 const mysql = require('mysql2');
 const readline = require('readline');
+
+// Import prepared statements queries
 const {
   countryCapital,
   allLanguagesInRegionList,
@@ -32,7 +34,7 @@ connection.connect((err) => {
   main();
 });
 
-//TODO:  All functions
+// All functions
 const handleQueryErrors = (err, results) => {
   const errorMessage = 'Error executing query: ';
   if (err) {
@@ -76,12 +78,46 @@ const getUserInputFromConsole = (question) => {
   });
 };
 
-// Main code
-const main = () => {
+const main = async () => {
   console.log('Do some magic');
-  // TODO: one query at a time is allowed
-  showCountryCapital();
-  // listAllLanguagesInRegion();
-  // countCitiesWhereLanguageIsSpoken();
-  // listAllContinentsWithLanguagesCount();
+  const consoleOptionsMessages = [
+    'Select an option: ',
+    '1. What is the capital of a country?',
+    '2. List all the languages spoken in a region',
+    '3. Find the number of cities where a language is spoken',
+    '4. List all the continents with the number of languages spoken',
+    // '5. Check if any countries have the same official language or are in the same continent',
+    '5. Exit',
+  ];
+
+  consoleOptionsMessages.forEach((message) => console.log(message));
+
+  const option = await getUserInputFromConsole('Enter your choice (1-5): ');
+
+  switch (option) {
+    case '1':
+      console.log('Enter a country name: ');
+      showCountryCapital();
+      break;
+    case '2':
+      console.log('Enter a region name: ');
+      listAllLanguagesInRegion();
+      break;
+    case '3':
+      console.log('Enter a language: ');
+      countCitiesWhereLanguageIsSpoken();
+      break;
+    case '4':
+      listAllContinentsWithLanguagesCount();
+      break;
+    case '5':
+      console.log('Exiting...');
+      connection.end();
+      break;
+    default:
+      console.log('Invalid option');
+      connection.end();
+  }
+
+  interactWithConsole.close();
 };

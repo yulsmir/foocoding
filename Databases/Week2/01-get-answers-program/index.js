@@ -38,6 +38,7 @@ const getUserInput = (question) => {
 };
 
 // All functions
+// Helper function to handle error
 const handleQueryErrors = (err, results) => {
   const errorMessage = 'Error executing query: ';
   if (err) {
@@ -49,49 +50,7 @@ const handleQueryErrors = (err, results) => {
   connection.end(); // Close the connection after the query is completed
 };
 
-const showCountryCapital = async () => {
-  const countryName = await getUserInput('Enter a country name: ');
-  const prepareStatement =
-    "prepare statement from 'select city.name as capital from city inner join country on city.id = country.capital where country.name = ?';";
-  const assignVariable = 'set @countryName = ?;';
-  const executeStatement = 'execute statement using @countryname;';
-  const deallocateStatement = 'deallocate PREPARE statement;';
-
-  connection.query(prepareStatement, (err) => {
-    if (err) {
-      handleQueryErrors(err);
-      return;
-    }
-
-    connection.query(assignVariable, [countryName], (err) => {
-      if (err) {
-        handleQueryErrors(err);
-        return;
-      }
-
-      connection.query(executeStatement, (err, results) => {
-        if (err) {
-          handleQueryErrors(err);
-          return;
-        }
-
-        if (results.length > 0) {
-          const capital = results[0].capital;
-          console.log(`Capital of ${countryName} is ${capital}`);
-        } else {
-          console.log(`No results found for ${countryName}`);
-        }
-
-        connection.query(deallocateStatement, (err) => {
-          if (err) {
-            handleQueryErrors(err);
-          }
-        });
-      });
-    });
-  });
-};
-
+// Helper function to execute query with promises
 const executeQuery = (query, params = []) => {
   return new Promise((resolve, reject) => {
     connection.query(query, params, (err, results) => {
@@ -102,6 +61,33 @@ const executeQuery = (query, params = []) => {
       }
     });
   });
+};
+
+// Answer question "What is the capital of country X ? (Accept X from user)
+const showCountryCapital = async () => {
+  const countryName = await getUserInput('Enter a country name: ');
+  const prepareStatement =
+    "prepare statement from 'select city.name as capital from city inner join country on city.id = country.capital where country.name = ?';";
+  const assignVariable = 'set @countryName = ?;';
+  const executeStatement = 'execute statement using @countryname;';
+  const deallocateStatement = 'deallocate PREPARE statement;';
+
+  try {
+    await executeQuery(prepareStatement);
+    await executeQuery(assignVariable, [countryName]);
+    const results = await executeQuery(executeStatement);
+
+    if (results.length > 0) {
+      const capital = results[0].capital;
+      console.log(`Capital of ${countryName} is ${capital}`);
+    } else {
+      console.log(`No results found for ${countryName}`);
+    }
+  } catch (err) {
+    handleQueryErrors(err);
+  } finally {
+    await executeQuery(deallocateStatement);
+  }
 };
 
 const listAllLanguagesInRegion = async () => {

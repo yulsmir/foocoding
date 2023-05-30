@@ -73,5 +73,10 @@ insert into tag (item_id, name) values
   (2, 'Work'),
   (3, 'Health');
 
-
+-- View data
+show tables;
+select * from tag;
+select * from todoitem;
+select * from todolist;
+select * from user;
 

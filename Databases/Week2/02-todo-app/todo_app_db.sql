@@ -1,9 +1,9 @@
--- 1. Create database for a todo_app
+-- Create database for a todo_app
 create database if not exists todo_app;
 
 use todo_app;
 
--- 2. Create table user
+-- Create table user
 create table user (
   id int auto_increment not null,
   name varchar(255),
@@ -13,8 +13,8 @@ create table user (
   primary key(id)
 );
 
--- 3. Create table todolist
-create table todolist (
+-- Create table todolist
+create table if not exists todolist (
   id int auto_increment not null,
   name varchar(255),
   user_id int,
@@ -24,8 +24,8 @@ create table todolist (
     references user(id)
 );
 
--- 4. Create table todoitem
-create table todoitem(
+-- Create table todoitem
+create table if not exists todoitem(
   id int auto_increment not null,
   name varchar(255),
   list_id int,
@@ -38,8 +38,8 @@ create table todoitem(
     references todolist(id)
 );
 
--- 5. Create table tag
-create table tag(
+-- Create table tag
+create table if not exists tag(
   id int auto_increment,
   item_id int,
   name varchar(255),
@@ -49,6 +49,29 @@ create table tag(
     references todoitem(id)
   );
 
+-- Inserting sample data into the user table
+insert into user (name, email, password) values
+  ('John Doe', 'johndoe@mail.com', '6eyghug'),
+  ('Mister Smith', 'mistersmith@somedomain.com', '97yighsjkvndf'),
+  ('Mike Petersson', 'mikepetersson@email.com', 'edD09876rty.');
+
+-- Inserting sample data into the todolist table
+insert into todolist (name, user_id) values
+  ('Personal Tasks', 1),
+  ('Work Tasks', 1),
+  ('Grocery List', 2);
+
+-- Inserting sample data into the todoitem table
+insert into todoitem (name, list_id, completed, reminder) values
+  ('Buy milk', 3, 0, null),
+  ('Finish something', 2, 0, '2023-05-30 15:00:00'),
+  ('Go for a coffee', 1, 1, null);
+
+-- Inserting sample data into the tag table
+insert into tag (item_id, name) values
+  (1, 'Food'),
+  (2, 'Work'),
+  (3, 'Health');
 
 
 

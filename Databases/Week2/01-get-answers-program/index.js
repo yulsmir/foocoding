@@ -1,12 +1,17 @@
 'use strict';
 
+require('dotenv').config();
+
 const mysql = require('mysql2');
 const readline = require('readline');
 
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'password',
+  // Replace password with your root password or
+  // create file .env in root of 01-get-answers-program
+  // and add DB_PASSWORD=your_root_password_value
+  password: process.env.DB_PASSWORD,
   database: 'new_world',
 });
 

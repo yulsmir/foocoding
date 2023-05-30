@@ -9,6 +9,7 @@
   "author": "Yuliia Smirnova",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "mysql2": "^3.3.3",
     "readline": "^1.3.0"
   },

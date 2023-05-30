@@ -3,14 +3,6 @@
 const mysql = require('mysql2');
 const readline = require('readline');
 
-// Import prepared statements queries
-const {
-  countryCapital,
-  allLanguagesInRegionList,
-  citiesWhereLanguageIsSpokenCount,
-  allContinentsWithLanguagesCount,
-} = require('./prepared_statements');
-
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -18,20 +10,18 @@ const connection = mysql.createConnection({
   database: 'new_world',
 });
 
-// Setup user input with readline module
-const interactWithConsole = readline.createInterface({
+const userInput = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
-// Estabish connection with MySQL
+// Establish connection with MySQL
 connection.connect((err) => {
   if (err) {
     return console.error('error: ' + err.message);
   }
 
   console.log('Connected to the MySQL server.');
-  main();
 });
 
 // All functions
@@ -46,38 +36,78 @@ const handleQueryErrors = (err, results) => {
   connection.end(); // Close the connection after the query is completed
 };
 
-const showCountryCapital = () => {
-  connection.query(countryCapital, function (err, results, fields) {
-    handleQueryErrors(err, results);
+const showCountryCapital = async () => {
+  const countryName = await promptUser('Enter a country name: ');
+  const query = `select city.name as capital from city inner join country on capital = city.id where country.name = ?;`;
+  connection.query(query, [countryName], (err, results) => {
+    if (err) {
+      handleQueryErrors(err);
+    } else if (results.length > 0) {
+      const capital = results[0].capital;
+      console.log(`Capital of ${countryName} is ${capital}`);
+    } else {
+      console.log(`No results found for ${countryName}`);
+    }
   });
 };
 
-const listAllLanguagesInRegion = () => {
-  connection.query(allLanguagesInRegionList, function (err, results, fields) {
-    handleQueryErrors(err, results);
+const listAllLanguagesInRegion = async () => {
+  const regionName = await promptUser('Enter a region name: ');
+  const query = `select language from countrylanguage inner join country on country.code = countrylanguage.countrycode where country.region = ? group by language;`;
+  connection.query(query, [regionName], (err, results) => {
+    if (err) {
+      handleQueryErrors(err);
+    } else if (results.length > 0) {
+      console.log(`Languages spoken in ${regionName}:`);
+      results.forEach((row) => {
+        console.log(row.language);
+      });
+    } else {
+      console.log(`No results found for ${regionName}`);
+    }
   });
 };
 
-const countCitiesWhereLanguageIsSpoken = () => {
-  connection.query(citiesWhereLanguageIsSpokenCount, function (err, results, fields) {
-    handleQueryErrors(err, results);
+const showCitiesWhereLanguageIsSpokenCount = async () => {
+  const language = await promptUser('Enter a language: ');
+  const query = `select count(1) as cities from city inner join countrylanguage on city.countrycode = countrylanguage.countrycode where countrylanguage.language = ?;`;
+  connection.query(query, [language], (err, results) => {
+    if (err) {
+      handleQueryErrors(err);
+    } else if (results.length > 0) {
+      const citiesCount = results[0].cities;
+      console.log(`Number of cities where ${language} is spoken: ${citiesCount}`);
+    } else {
+      console.log(`No results found for ${language}`);
+    }
   });
 };
 
 const listAllContinentsWithLanguagesCount = () => {
-  connection.query(allContinentsWithLanguagesCount, function (err, results, fields) {
-    handleQueryErrors(err, results);
+  const query = `select country.continent, count(countrylanguage.language) as languages_number from country inner join countrylanguage on country.code = countrylanguage.countrycode group by country.continent;`;
+  connection.query(query, (err, results) => {
+    if (err) {
+      handleQueryErrors(err);
+    } else if (results.length > 0) {
+      console.log('Continents with the number of languages spoken:');
+      results.forEach((row) => {
+        console.log(`${row.continent}: ${row.languages_number}`);
+      });
+    } else {
+      console.log('No results found.');
+    }
   });
 };
 
-const getUserInputFromConsole = (question) => {
+const promptUser = (question) => {
   return new Promise((resolve) => {
-    interactWithConsole.question(question, (answer) => {
+    userInput.question(question, (answer) => {
       resolve(answer);
     });
   });
 };
 
+// Main program
 const main = async () => {
   console.log('Do some magic');
   const consoleOptionsMessages = [
@@ -86,26 +116,22 @@ const main = async () => {
     '2. List all the languages spoken in a region',
     '3. Find the number of cities where a language is spoken',
     '4. List all the continents with the number of languages spoken',
-    // '5. Check if any countries have the same official language or are in the same continent',
     '5. Exit',
   ];
 
   consoleOptionsMessages.forEach((message) => console.log(message));
 
-  const option = await getUserInputFromConsole('Enter your choice (1-5): ');
+  const option = await promptUser('Enter your choice (1-5): ');
 
   switch (option) {
     case '1':
-      console.log('Enter a country name: ');
-      showCountryCapital();
+      await showCountryCapital();
       break;
     case '2':
-      console.log('Enter a region name: ');
-      listAllLanguagesInRegion();
+      await listAllLanguagesInRegion();
       break;
     case '3':
-      console.log('Enter a language: ');
-      countCitiesWhereLanguageIsSpoken();
+      await showCitiesWhereLanguageIsSpokenCount();
       break;
     case '4':
       listAllContinentsWithLanguagesCount();
@@ -113,11 +139,13 @@ const main = async () => {
     case '5':
       console.log('Exiting...');
       connection.end();
+      userInput.close();
       break;
     default:
       console.log('Invalid option');
       connection.end();
+      userInput.close();
   }
-
-  interactWithConsole.close();
 };
+
+main();

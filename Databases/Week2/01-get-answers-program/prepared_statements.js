@@ -13,7 +13,7 @@ const allLanguagesInRegionList =
 // -- TODO: remove value Slovak in the query and put '?'
 // -- 3. Find the number of cities in which language Z is spoken (Accept Z from user)
 const citiesWhereLanguageIsSpokenCount =
-  'select count(1) from city inner join countrylanguage on city.countrycode = countrylanguage.countrycode where countrylanguage.language = "Slovak";';
+  'select count(1) as cities from city inner join countrylanguage on city.countrycode = countrylanguage.countrycode where countrylanguage.language = "Slovak";';
 
 // -- 4. List all the continents with the number of languages spoken in each continent
 const allContinentsWithLanguagesCount =

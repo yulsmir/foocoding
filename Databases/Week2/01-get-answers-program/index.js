@@ -56,7 +56,18 @@ const listAllLanguagesInRegion = () => {
     connection.end(); // Close the connection after the query is completed
   });
 };
-const countCitiesWhereLanguageIsSpoken = () => {};
+
+const countCitiesWhereLanguageIsSpoken = () => {
+  connection.query(citiesWhereLanguageIsSpokenCount, function (err, results, fields) {
+    if (err) {
+      console.error('Error executing query:', err);
+      connection.end(); // Close the connection in case of an error
+      return;
+    }
+    console.log(results); // Log the results inside the callback
+    connection.end(); // Close the connection after the query is completed
+  });
+};
 const listAllContinentsWithLanguagesCount = () => {};
 
 const getUserInputFromConsole = (question) => {
@@ -72,4 +83,5 @@ const main = () => {
   console.log('Do some magic');
   showCountryCapital();
   listAllLanguagesInRegion();
+  countCitiesWhereLanguageIsSpoken();
 };

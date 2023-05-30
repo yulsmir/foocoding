@@ -63,7 +63,8 @@ const executeQuery = (query, params = []) => {
   });
 };
 
-// Answer question "What is the capital of country X ? (Accept X from user)
+// Answer question
+// 1. What is the capital of country X ? (Accept X from user)
 const showCountryCapital = async () => {
   const countryName = await getUserInput('Enter a country name: ');
   const prepareStatement =
@@ -83,13 +84,14 @@ const showCountryCapital = async () => {
     } else {
       console.log(`No results found for ${countryName}`);
     }
+    await executeQuery(deallocateStatement);
   } catch (err) {
     handleQueryErrors(err);
-  } finally {
-    await executeQuery(deallocateStatement);
   }
 };
 
+// Answer question
+// 2. List all the languages spoken in the region Y(Accept Y from user)
 const listAllLanguagesInRegion = async () => {
   const regionName = await getUserInput('Enter a region name: ');
   const prepareStatement =
@@ -111,32 +113,21 @@ const listAllLanguagesInRegion = async () => {
     } else {
       console.log(`No results found for ${regionName}`);
     }
+    await executeQuery(deallocateStatement);
   } catch (err) {
     handleQueryErrors(err);
-  } finally {
-    await executeQuery(deallocateStatement);
   }
 };
 
+// Answer question
+// 3. Find the number of cities in which language Z is spoken (Accept Z from user)
 const showCitiesWhereLanguageIsSpokenCount = async () => {
   const language = await getUserInput('Enter a language: ');
-  // const query = `select count(1) as cities from city inner join countrylanguage on city.countrycode = countrylanguage.countrycode where countrylanguage.language = ?;`;
   const prepareStatement =
     "prepare statement from 'select count(1) as cities from city inner join countrylanguage on city.countrycode = countrylanguage.countrycode where countrylanguage.language = ?;'";
   const assignVariable = 'set @language = ?;';
   const executeStatement = 'execute statement using @language';
   const deallocateStatement = 'deallocate prepare statement';
-
-  // connection.query(query, [language], (err, results) => {
-  //   if (err) {
-  //     handleQueryErrors(err);
-  //   } else if (results.length > 0) {
-  //     const citiesCount = results[0].cities;
-  //     console.log(`Number of cities where ${language} is spoken: ${citiesCount}`);
-  //   } else {
-  //     console.log(`No results found for ${language}`);
-  //   }
-  // });
 
   try {
     await executeQuery(prepareStatement);
@@ -149,27 +140,37 @@ const showCitiesWhereLanguageIsSpokenCount = async () => {
     } else {
       console.log(`No results found for ${language}`);
     }
+    await executeQuery(deallocateStatement);
   } catch (err) {
     handleQueryErrors(err);
-  } finally {
-    await executeQuery(deallocateStatement);
   }
 };
 
-const listAllContinentsWithLanguagesCount = () => {
-  const query = `select country.continent, count(countrylanguage.language) as languages_number from country inner join countrylanguage on country.code = countrylanguage.countrycode group by country.continent;`;
-  connection.query(query, (err, results) => {
-    if (err) {
-      handleQueryErrors(err);
-    } else if (results.length > 0) {
-      console.log('Continents with the number of languages spoken:');
+// Answer question
+// 4. List all the continents with the number of languages spoken in each continent
+const listAllContinentsWithLanguagesCount = async () => {
+  // const query = `select country.continent, count(countrylanguage.language) as languages_number from country inner join countrylanguage on country.code = countrylanguage.countrycode group by country.continent;`;
+  const prepareStatement =
+    "prepare statement from 'select country.continent, count(countrylanguage.language) as languagesNumber from country inner join countrylanguage on country.code = countrylanguage.countrycode group by country.continent;'";
+  const executeStatement = 'execute statement';
+  const deallocateStatement = 'deallocate prepare statement';
+
+  try {
+    await executeQuery(prepareStatement);
+    const results = await executeQuery(executeStatement);
+
+    if (results.length > 0) {
+      console.log('Continents with the number of languages spoken: ');
       results.forEach((row) => {
-        console.log(`${row.continent}: ${row.languages_number}`);
+        console.log(`${row.continent}: ${row.languagesNumber}`);
       });
     } else {
       console.log('No results found.');
     }
-  });
+    await executeQuery(deallocateStatement);
+  } catch (err) {
+    handleQueryErrors(err);
+  }
 };
 
 // Main program

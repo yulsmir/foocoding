@@ -69,7 +69,7 @@ const showCountryCapital = async () => {
   const prepareStatement =
     "prepare statement from 'select city.name as capital from city inner join country on city.id = country.capital where country.name = ?';";
   const assignVariable = 'set @countryName = ?;';
-  const executeStatement = 'execute statement using @countryname;';
+  const executeStatement = 'execute statement using @countryName;';
   const deallocateStatement = 'deallocate prepare statement;';
 
   try {
@@ -92,10 +92,9 @@ const showCountryCapital = async () => {
 
 const listAllLanguagesInRegion = async () => {
   const regionName = await getUserInput('Enter a region name: ');
-  // const query = `select language from countrylanguage inner join country on country.code = countrylanguage.countrycode where country.region = ? group by language;`;
   const prepareStatement =
     "prepare statement from 'select language from countrylanguage inner join country on country.code = countrylanguage.countrycode where country.region = ? group by language;'";
-  const assignVariable = 'set @regionName = ?:';
+  const assignVariable = 'set @regionName = ?;';
   const executeStatement = 'execute statement using @regionName';
   const deallocateStatement = 'deallocate prepare statement';
 
@@ -121,17 +120,40 @@ const listAllLanguagesInRegion = async () => {
 
 const showCitiesWhereLanguageIsSpokenCount = async () => {
   const language = await getUserInput('Enter a language: ');
-  const query = `select count(1) as cities from city inner join countrylanguage on city.countrycode = countrylanguage.countrycode where countrylanguage.language = ?;`;
-  connection.query(query, [language], (err, results) => {
-    if (err) {
-      handleQueryErrors(err);
-    } else if (results.length > 0) {
+  // const query = `select count(1) as cities from city inner join countrylanguage on city.countrycode = countrylanguage.countrycode where countrylanguage.language = ?;`;
+  const prepareStatement =
+    "prepare statement from 'select count(1) as cities from city inner join countrylanguage on city.countrycode = countrylanguage.countrycode where countrylanguage.language = ?;'";
+  const assignVariable = 'set @language = ?;';
+  const executeStatement = 'execute statement using @language';
+  const deallocateStatement = 'deallocate prepare statement';
+
+  // connection.query(query, [language], (err, results) => {
+  //   if (err) {
+  //     handleQueryErrors(err);
+  //   } else if (results.length > 0) {
+  //     const citiesCount = results[0].cities;
+  //     console.log(`Number of cities where ${language} is spoken: ${citiesCount}`);
+  //   } else {
+  //     console.log(`No results found for ${language}`);
+  //   }
+  // });
+
+  try {
+    await executeQuery(prepareStatement);
+    await executeQuery(assignVariable, [language]);
+    const results = await executeQuery(executeStatement);
+
+    if (results.length > 0) {
       const citiesCount = results[0].cities;
       console.log(`Number of cities where ${language} is spoken: ${citiesCount}`);
     } else {
       console.log(`No results found for ${language}`);
     }
-  });
+  } catch (err) {
+    handleQueryErrors(err);
+  } finally {
+    await executeQuery(deallocateStatement);
+  }
 };
 
 const listAllContinentsWithLanguagesCount = () => {

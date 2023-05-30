@@ -33,11 +33,21 @@ connection.connect((err) => {
 });
 
 //TODO:  All functions
-const handleQueryErrors = (query) => {};
-const showCountryCapital = (query) => {};
-const listAllLanguagesInRegion = (query) => {};
-const countCitiesWhereLanguageIsSpoken = (query) => {};
-const listAllContinentsWithLanguagesCount = (query) => {};
+const handleQueryErrors = () => {};
+const showCountryCapital = () => {
+  connection.query(countryCapital, function (err, results, fields) {
+    if (err) {
+      console.error('Error executing query:', err);
+      connection.end(); // Close the connection in case of an error
+      return;
+    }
+    console.log(results); // Log the results inside the callback
+    connection.end(); // Close the connection after the query is completed
+  });
+};
+const listAllLanguagesInRegion = () => {};
+const countCitiesWhereLanguageIsSpoken = () => {};
+const listAllContinentsWithLanguagesCount = () => {};
 
 const getUserInputFromConsole = (question) => {
   return new Promise((resolve) => {
@@ -50,16 +60,5 @@ const getUserInputFromConsole = (question) => {
 // Main code
 const main = () => {
   console.log('Do some magic');
-  connection.query(
-    'SELECT country.name, city.name FROM city INNER JOIN country ON capital = city.id WHERE country.name = "Germany";',
-    function (err, results, fields) {
-      if (err) {
-        console.error('Error executing query:', err);
-        connection.end(); // Close the connection in case of an error
-        return;
-      }
-      console.log(results); // Log the results inside the callback
-      connection.end(); // Close the connection after the query is completed
-    },
-  );
+  showCountryCapital();
 };

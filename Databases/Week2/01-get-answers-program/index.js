@@ -97,8 +97,8 @@ const listAllLanguagesInRegion = async () => {
   const prepareStatement =
     "prepare statement from 'select language from countrylanguage inner join country on country.code = countrylanguage.countrycode where country.region = ? group by language;'";
   const assignVariable = 'set @regionName = ?;';
-  const executeStatement = 'execute statement using @regionName';
-  const deallocateStatement = 'deallocate prepare statement';
+  const executeStatement = 'execute statement using @regionName;';
+  const deallocateStatement = 'deallocate prepare statement;';
 
   try {
     await executeQuery(prepareStatement);
@@ -125,9 +125,9 @@ const showCitiesWhereLanguageIsSpokenCount = async () => {
   const language = await getUserInput('Enter a language: ');
   const prepareStatement =
     "prepare statement from 'select count(1) as cities from city inner join countrylanguage on city.countrycode = countrylanguage.countrycode where countrylanguage.language = ?;'";
-  const assignVariable = 'set @language = ?;';
-  const executeStatement = 'execute statement using @language';
-  const deallocateStatement = 'deallocate prepare statement';
+  const assignVariable = 'set @language = ?';
+  const executeStatement = 'execute statement using @language;';
+  const deallocateStatement = 'deallocate prepare statement;';
 
   try {
     await executeQuery(prepareStatement);
@@ -153,7 +153,7 @@ const listAllContinentsWithLanguagesCount = async () => {
   const prepareStatement =
     "prepare statement from 'select country.continent, count(countrylanguage.language) as languagesNumber from country inner join countrylanguage on country.code = countrylanguage.countrycode group by country.continent;'";
   const executeStatement = 'execute statement';
-  const deallocateStatement = 'deallocate prepare statement';
+  const deallocateStatement = 'deallocate prepare statement;';
 
   try {
     await executeQuery(prepareStatement);

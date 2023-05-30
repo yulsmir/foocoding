@@ -99,7 +99,7 @@ const listAllContinentsWithLanguagesCount = () => {
   });
 };
 
-const promptUser = (question) => {
+const gerUserInput = (question) => {
   return new Promise((resolve) => {
     userInput.question(question, (answer) => {
       resolve(answer);
@@ -121,7 +121,7 @@ const main = async () => {
 
   consoleOptionsMessages.forEach((message) => console.log(message));
 
-  const option = await promptUser('Enter your choice (1-5): ');
+  const option = await gerUserInput('Enter your choice (1-5): ');
 
   switch (option) {
     case '1':

@@ -24,6 +24,14 @@ connection.connect((err) => {
   console.log('Connected to the MySQL server.');
 });
 
+const gerUserInput = (question) => {
+  return new Promise((resolve) => {
+    userInput.question(question, (answer) => {
+      resolve(answer);
+    });
+  });
+};
+
 // All functions
 const handleQueryErrors = (err, results) => {
   const errorMessage = 'Error executing query: ';
@@ -37,7 +45,7 @@ const handleQueryErrors = (err, results) => {
 };
 
 const showCountryCapital = async () => {
-  const countryName = await promptUser('Enter a country name: ');
+  const countryName = await getUs('Enter a country name: ');
   const query = `select city.name as capital from city inner join country on capital = city.id where country.name = ?;`;
   connection.query(query, [countryName], (err, results) => {
     if (err) {
@@ -52,7 +60,7 @@ const showCountryCapital = async () => {
 };
 
 const listAllLanguagesInRegion = async () => {
-  const regionName = await promptUser('Enter a region name: ');
+  const regionName = await gerUserInput('Enter a region name: ');
   const query = `select language from countrylanguage inner join country on country.code = countrylanguage.countrycode where country.region = ? group by language;`;
   connection.query(query, [regionName], (err, results) => {
     if (err) {
@@ -69,7 +77,7 @@ const listAllLanguagesInRegion = async () => {
 };
 
 const showCitiesWhereLanguageIsSpokenCount = async () => {
-  const language = await promptUser('Enter a language: ');
+  const language = await gerUserInput('Enter a language: ');
   const query = `select count(1) as cities from city inner join countrylanguage on city.countrycode = countrylanguage.countrycode where countrylanguage.language = ?;`;
   connection.query(query, [language], (err, results) => {
     if (err) {
@@ -96,14 +104,6 @@ const listAllContinentsWithLanguagesCount = () => {
     } else {
       console.log('No results found.');
     }
-  });
-};
-
-const gerUserInput = (question) => {
-  return new Promise((resolve) => {
-    userInput.question(question, (answer) => {
-      resolve(answer);
-    });
   });
 };
 

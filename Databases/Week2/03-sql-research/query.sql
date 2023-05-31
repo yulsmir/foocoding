@@ -5,7 +5,7 @@
 --     Test your solution with example insert statements.
 
 delimiter //
-create trigger limit_laguages_count_to_10 after insert on countrylanguage
+create trigger limit_laguages_to_10 after insert on countrylanguage
 for each row
 begin
   if(select count(1) from countrylanguage where countrycode = new.countrycode) >= 9 then

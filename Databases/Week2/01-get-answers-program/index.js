@@ -189,9 +189,8 @@ const showCountriesWithSameOffLangAndContinent = async () => {
       results.forEach((row) => {
         console.log(`${row.country}`);
       });
-    } else {
-      console.log(`No results found for ${countryName}`);
     }
+
     await executeQuery(deallocateStatement);
   } catch (err) {
     handleQueryErrors(err);
@@ -245,8 +244,8 @@ const main = async () => {
       break;
     case '5':
       await showCountriesWithSameOffLangAndContinent();
-      // connection.end();
-      // userInput.close();
+      connection.end();
+      userInput.close();
       break;
     case '6':
       console.log('Exiting...');
@@ -258,24 +257,7 @@ const main = async () => {
       connection.end();
       userInput.close();
   }
-  // connection.end();
+  connection.end();
 };
 
 main();
-
-// Simple main
-// const main = () => {
-//   console.log('Do some magic');
-//   connection.query(
-//     'select country.name, city.name from city inner join country on capital = city.id where country.name = "Germany";',
-//     function (err, results, fields) {
-//       if (err) {
-//         console.error('Error executing query:', err);
-//         connection.end();
-//         return;
-//       }
-//       console.log(results);
-//       connection.end();
-//     },
-//   );
-// };

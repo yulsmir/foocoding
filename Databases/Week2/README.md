@@ -31,3 +31,9 @@ Multiple ToDo lists with different purposes.
     Each item can be marked completed.
     There could be reminders for some items.
 
+### Part 3. Todo app database design
+Get alerts when a country has >= 10 languages. E.g. If a country X has 9 languages in the CountryLanguage table, and a user INSERTs one more row in the CountryLanguage table, then I should get an alert.
+How can I achieve this ?
+
+-- Write the necessary SQL statements for this solution and
+-- Test your solution with example insert statements.

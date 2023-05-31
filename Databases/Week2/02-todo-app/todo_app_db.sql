@@ -7,7 +7,7 @@ use todo_app;
 create table user (
   id int auto_increment not null,
   name varchar(255),
-  email varchar(255),
+  email varchar(255) unique,
   password varchar(255),
   -- constraints
   primary key(id)
@@ -79,4 +79,6 @@ select * from tag;
 select * from todoitem;
 select * from todolist;
 select * from user;
+
+-- TODO: remove the list id from the tags-table, remove the FK item_id -> todoitem(id),  and replace it with a todolist.tag depending on tag(id).
 

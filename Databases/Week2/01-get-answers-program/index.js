@@ -1,5 +1,6 @@
 'use strict';
 
+// Password secure usage
 require('dotenv').config();
 
 const mysql = require('mysql2');
@@ -20,24 +21,7 @@ const userInput = readline.createInterface({
   output: process.stdout,
 });
 
-// Establish connection with MySQL
-connection.connect((err) => {
-  if (err) {
-    return console.error('error: ' + err.message);
-  }
-  console.log('Connected to the MySQL server.');
-  main();
-});
-
-const getUserInput = (question) => {
-  return new Promise((resolve) => {
-    userInput.question(question, (answer) => {
-      resolve(answer);
-    });
-  });
-};
-
-// All functions
+// Helper functions
 // Helper function to handle error
 const handleQueryErrors = (err, results) => {
   const errorMessage = 'Error executing query: ';
@@ -59,6 +43,15 @@ const executeQuery = (query, params = []) => {
       } else {
         resolve(results);
       }
+    });
+  });
+};
+
+// Helper function to handle user input
+const getUserInput = (question) => {
+  return new Promise((resolve) => {
+    userInput.question(question, (answer) => {
+      resolve(answer);
     });
   });
 };
@@ -172,16 +165,57 @@ const listAllContinentsWithLanguagesCount = async () => {
   }
 };
 
+// Answer question
+// 5. For the country given as input, is there any countries that
+//-- have the same official language
+//-- is in the same continent
+//   -- If yes, display those countries.
+//   -- If no, display FALSE
+const showCountriesWithSameOffLangAndContinent = async () => {
+  const countryName = await getUserInput('Enter a country name: ');
+  const prepareStatement = `prepare statement from 'select c2.name as country from country as c1 join country as c2 on c1.code != c2.code join countrylanguage as cl1 on c1.code = cl1.countrycode join countrylanguage as cl2 on c2.code = cl2.countrycode where c1.name = ? and cl1.isofficial = "T" and cl2.isofficial = "T" and cl1.language = cl2.language and c1.continent = c2.continent';`;
+  const assignVariable = 'set @countryName = ?;';
+  const executeStatement = 'execute statement using @countryName;';
+  const deallocateStatement = 'deallocate prepare statement;';
+
+  try {
+    await executeQuery(prepareStatement);
+    await executeQuery(assignVariable, [countryName]);
+    const results = await executeQuery(executeStatement);
+
+    if (results.length > 0) {
+      const country = results[0].country;
+      console.log(`Countries where official language and continent are similar: `);
+      results.forEach((row) => {
+        console.log(`${row.country}`);
+      });
+    } else {
+      console.log(`No results found for ${countryName}`);
+    }
+    await executeQuery(deallocateStatement);
+  } catch (err) {
+    handleQueryErrors(err);
+  }
+};
+
 // Main program
 const main = async () => {
-  console.log('Do some magic');
+  // Establish connection with mysql
+  connection.connect((err) => {
+    if (err) {
+      return console.error('error: ' + err.message);
+    }
+  });
+  console.log('Connected to the MySQL server...');
+
   const consoleOptionsMessages = [
     'Select an option: ',
     '1. What is the capital of a country?',
     '2. List all the languages spoken in a region',
     '3. Find the number of cities where a language is spoken',
     '4. List all the continents with the number of languages spoken',
-    '5. Exit',
+    '5. List countries having same official language and continent',
+    '6. Exit',
   ];
 
   consoleOptionsMessages.forEach((message) => console.log(message));
@@ -210,6 +244,11 @@ const main = async () => {
       userInput.close();
       break;
     case '5':
+      await showCountriesWithSameOffLangAndContinent();
+      // connection.end();
+      // userInput.close();
+      break;
+    case '6':
       console.log('Exiting...');
       connection.end();
       userInput.close();
@@ -219,7 +258,10 @@ const main = async () => {
       connection.end();
       userInput.close();
   }
+  // connection.end();
 };
+
+main();
 
 // Simple main
 // const main = () => {

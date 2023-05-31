@@ -69,10 +69,3 @@ const preparedAllContinentsWithLanguagesCount = `prepare statement from
 
 // -- If yes, display those countries.
 // -- If no, display FALSE
-
-module.exports = {
-  countryCapital,
-  allLanguagesInRegionList,
-  citiesWhereLanguageIsSpokenCount,
-  allContinentsWithLanguagesCount,
-};

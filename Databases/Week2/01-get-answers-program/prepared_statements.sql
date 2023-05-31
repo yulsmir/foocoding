@@ -49,9 +49,8 @@ deallocate prepare statement;
 -- 5. For the country given as input, is there any countries that
   -- have the same official language
   -- is in the same continent
-
-  -- If yes, display those countries.
-  -- If no, display FALSE
+    -- If yes, display those countries.
+    -- If no, display FALSE
 
 -- v1 with empty set if no countries fit
 select c2.name as country
@@ -81,20 +80,21 @@ where c1.name = ?
 set @country = ?;
 execute statement using @country;
 deallocate prepare statement;
+
 -- v2 with FALSE if no countries fit
 -- TODO: fix
--- select ifnull(
---   (
---     select c2.name as country
---     from country as c1
---     join country as c2 on c1.code != c2.code
---     join countrylanguage as cl1 on c1.code = cl1.countrycode
---     join countrylanguage as cl2 on c2.code = cl2.countrycode
---     where c1.name = 'United States'
---       and cl1.isofficial = 't'
---       and cl2.isofficial = 't'
---       and cl1.language = cl2.language
---       and c1.continent = c2.continent
---   ),
---   'FALSE'
--- ) as countries;
+select ifnull(
+  (
+    select c2.name as country
+    from country as c1
+    join country as c2 on c1.code != c2.code
+    join countrylanguage as cl1 on c1.code = cl1.countrycode
+    join countrylanguage as cl2 on c2.code = cl2.countrycode
+    where c1.name = 'United States'
+      and cl1.isofficial = 't'
+      and cl2.isofficial = 't'
+      and cl1.language = cl2.language
+      and c1.continent = c2.continent
+  ),
+  'FALSE'
+) as countries;

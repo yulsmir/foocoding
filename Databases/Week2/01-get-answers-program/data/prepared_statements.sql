@@ -37,11 +37,11 @@ deallocate prepare statement;
 
 -- 4. List all the continents with the number of languages spoken in each continent
 prepare statement from 
-select country.continent, count(countrylanguage.language) as languagesNumber 
+'select country.continent, count(countrylanguage.language) as languagesNumber 
 from country 
 inner join countrylanguage 
 on country.code = countrylanguage.countrycode 
-group by country.continent;
+group by country.continent;'
 
 execute statement;
 deallocate prepare statement;

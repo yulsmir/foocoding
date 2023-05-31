@@ -63,7 +63,6 @@ const executeQuery = (query, params = []) => {
   });
 };
 
-// Answer question
 // 1. What is the capital of country X ? (Accept X from user)
 const showCountryCapital = async () => {
   const countryName = await getUserInput('Enter a country name: ');
@@ -125,7 +124,7 @@ const showCitiesWhereLanguageIsSpokenCount = async () => {
   const language = await getUserInput('Enter a language: ');
   const prepareStatement =
     "prepare statement from 'select count(1) as cities from city inner join countrylanguage on city.countrycode = countrylanguage.countrycode where countrylanguage.language = ?;'";
-  const assignVariable = 'set @language = ?';
+  const assignVariable = 'set @language = ?;';
   const executeStatement = 'execute statement using @language;';
   const deallocateStatement = 'deallocate prepare statement;';
 
@@ -152,7 +151,7 @@ const listAllContinentsWithLanguagesCount = async () => {
   // const query = `select country.continent, count(countrylanguage.language) as languages_number from country inner join countrylanguage on country.code = countrylanguage.countrycode group by country.continent;`;
   const prepareStatement =
     "prepare statement from 'select country.continent, count(countrylanguage.language) as languagesNumber from country inner join countrylanguage on country.code = countrylanguage.countrycode group by country.continent;'";
-  const executeStatement = 'execute statement';
+  const executeStatement = 'execute statement;';
   const deallocateStatement = 'deallocate prepare statement;';
 
   try {
@@ -192,15 +191,23 @@ const main = async () => {
   switch (option) {
     case '1':
       await showCountryCapital();
+      connection.end();
+      userInput.close();
       break;
     case '2':
       await listAllLanguagesInRegion();
+      connection.end();
+      userInput.close();
       break;
     case '3':
       await showCitiesWhereLanguageIsSpokenCount();
+      connection.end();
+      userInput.close();
       break;
     case '4':
       await listAllContinentsWithLanguagesCount();
+      connection.end();
+      userInput.close();
       break;
     case '5':
       console.log('Exiting...');
@@ -213,3 +220,20 @@ const main = async () => {
       userInput.close();
   }
 };
+
+// Simple main
+// const main = () => {
+//   console.log('Do some magic');
+//   connection.query(
+//     'select country.name, city.name from city inner join country on capital = city.id where country.name = "Germany";',
+//     function (err, results, fields) {
+//       if (err) {
+//         console.error('Error executing query:', err);
+//         connection.end();
+//         return;
+//       }
+//       console.log(results);
+//       connection.end();
+//     },
+//   );
+// };

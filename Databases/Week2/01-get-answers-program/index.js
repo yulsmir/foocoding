@@ -59,8 +59,16 @@ const getUserInput = (question) => {
 // 1. What is the capital of country X ? (Accept X from user)
 const showCountryCapital = async () => {
   const countryName = await getUserInput('Enter a country name: ');
-  const prepareStatement =
-    "prepare statement from 'select city.name as capital from city inner join country on city.id = country.capital where country.name = ?';";
+  const prepareStatement = `prepare statement 
+    from 'select city.name as capital
+    from city
+    inner join country on city.id = country.capital
+    where country.name = ?';
+
+    set @countryName = ?;
+    execute statement using @countryName;
+    deallocate prepare statement;`;
+
   const assignVariable = 'set @countryName = ?;';
   const executeStatement = 'execute statement using @countryName;';
   const deallocateStatement = 'deallocate prepare statement;';
@@ -86,8 +94,14 @@ const showCountryCapital = async () => {
 // 2. List all the languages spoken in the region Y(Accept Y from user)
 const listAllLanguagesInRegion = async () => {
   const regionName = await getUserInput('Enter a region name: ');
-  const prepareStatement =
-    "prepare statement from 'select language from countrylanguage inner join country on country.code = countrylanguage.countrycode where country.region = ? group by language;'";
+  const prepareStatement = `prepare statement 
+    from 'select language 
+    from countrylanguage 
+    inner join country 
+    on country.code = countrylanguage.countrycode 
+    where country.region = ? 
+    group by language;'`;
+
   const assignVariable = 'set @regionName = ?;';
   const executeStatement = 'execute statement using @regionName;';
   const deallocateStatement = 'deallocate prepare statement;';
@@ -115,8 +129,13 @@ const listAllLanguagesInRegion = async () => {
 // 3. Find the number of cities in which language Z is spoken (Accept Z from user)
 const showCitiesWhereLanguageIsSpokenCount = async () => {
   const language = await getUserInput('Enter a language: ');
-  const prepareStatement =
-    "prepare statement from 'select count(1) as cities from city inner join countrylanguage on city.countrycode = countrylanguage.countrycode where countrylanguage.language = ?;'";
+  const prepareStatement = `prepare statement from 
+    'select count(1) as cities
+    from city
+    inner join countrylanguage
+    on city.countrycode = countrylanguage.countrycode
+    where countrylanguage.language = ?;'`;
+
   const assignVariable = 'set @language = ?;';
   const executeStatement = 'execute statement using @language;';
   const deallocateStatement = 'deallocate prepare statement;';
@@ -142,8 +161,13 @@ const showCitiesWhereLanguageIsSpokenCount = async () => {
 // 4. List all the continents with the number of languages spoken in each continent
 const listAllContinentsWithLanguagesCount = async () => {
   // const query = `select country.continent, count(countrylanguage.language) as languages_number from country inner join countrylanguage on country.code = countrylanguage.countrycode group by country.continent;`;
-  const prepareStatement =
-    "prepare statement from 'select country.continent, count(countrylanguage.language) as languagesNumber from country inner join countrylanguage on country.code = countrylanguage.countrycode group by country.continent;'";
+  const prepareStatement = `prepare statement from 
+    'select country.continent, count(countrylanguage.language) as languagesNumber 
+    from country 
+    inner join countrylanguage 
+    on country.code = countrylanguage.countrycode 
+    group by country.continent;'`;
+
   const executeStatement = 'execute statement;';
   const deallocateStatement = 'deallocate prepare statement;';
 

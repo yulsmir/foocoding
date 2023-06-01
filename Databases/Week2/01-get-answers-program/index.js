@@ -27,11 +27,11 @@ const handleQueryErrors = (err, results) => {
   const errorMessage = 'Error executing query: ';
   if (err) {
     console.error(errorMessage, err);
-    connection.end(); // Close the connection in case of an error
+    connection.end();
     return;
   }
-  console.log(results); // Log the results inside the callback
-  connection.end(); // Close the connection after the query is completed
+  console.log(results);
+  connection.end();
 };
 
 // Helper function to execute query with promises
@@ -294,6 +294,7 @@ const main = async () => {
       connection.end();
       userInput.close();
   }
+  // Close connection with mysql
   connection.end();
 };
 

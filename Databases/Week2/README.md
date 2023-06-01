@@ -20,7 +20,7 @@ Questions handled:
   OR 
   create file ```.env``` in root of ```01-get-answers-program``` and add `DB_PASSWORD=your_root_password` value.
 4. Run ```npm install``` in terminal.
-5. Run node ```index.js``` to start program in terminal.
+5. Run  ```node index.js``` to start program in terminal.
 
 ### Part 2. Todo app database design
 A database schema for the Todo app.

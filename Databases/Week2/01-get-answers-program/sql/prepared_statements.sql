@@ -64,7 +64,7 @@ where c1.name = 'Denmark'
   and cl1.language = cl2.language
   and c1.continent = c2.continent;
 
--- Prepared statement
+-- Prepared statement for v1
 prepare statement from
 'select c2.name as country
 from country as c1
@@ -72,8 +72,8 @@ join country as c2 on c1.code != c2.code
 join countrylanguage as cl1 on c1.code = cl1.countrycode
 join countrylanguage as cl2 on c2.code = cl2.countrycode
 where c1.name = ?
-  and cl1.isofficial = 'T'
-  and cl2.isofficial = 'T'
+  and cl1.isofficial = "T"
+  and cl2.isofficial = "T"
   and cl1.language = cl2.language
   and c1.continent = c2.continent;'
 
@@ -82,19 +82,40 @@ execute statement using @country;
 deallocate prepare statement;
 
 -- v2 with FALSE if no countries fit
--- TODO: fix
 select ifnull(
   (
-    select c2.name as country
+    select group_concat(c2.name separator ', ') as countries
     from country as c1
     join country as c2 on c1.code != c2.code
     join countrylanguage as cl1 on c1.code = cl1.countrycode
     join countrylanguage as cl2 on c2.code = cl2.countrycode
-    where c1.name = 'United States'
-      and cl1.isofficial = 't'
-      and cl2.isofficial = 't'
+    where c1.name = ?
+      and cl1.isofficial = 'T'
+      and cl2.isofficial = 'T'
       and cl1.language = cl2.language
       and c1.continent = c2.continent
   ),
   'FALSE'
 ) as countries;
+
+-- Prepared statement for v2
+prepare statement from 
+'select ifnull(
+  (
+    select group_concat(c2.name separator ', ') as countries
+    from country as c1
+    join country as c2 on c1.code != c2.code
+    join countrylanguage as cl1 on c1.code = cl1.countrycode
+    join countrylanguage as cl2 on c2.code = cl2.countrycode
+    where c1.name = ?
+      and cl1.isofficial = "T"
+      and cl2.isofficial = "T"
+      and cl1.language = cl2.language
+      and c1.continent = c2.continent
+  ),
+  "FALSE"
+) as countries;'
+
+set @country = ?;
+execute statement using @country;
+deallocate prepare statement;

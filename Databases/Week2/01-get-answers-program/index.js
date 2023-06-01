@@ -173,7 +173,11 @@ const listAllContinentsWithLanguagesCount = async () => {
 //   -- If no, display FALSE
 const showCountriesWithSameOffLangAndContinent = async () => {
   const countryName = await getUserInput('Enter a country name: ');
+  // Without FALSE message query
   const prepareStatement = `prepare statement from 'select c2.name as country from country as c1 join country as c2 on c1.code != c2.code join countrylanguage as cl1 on c1.code = cl1.countrycode join countrylanguage as cl2 on c2.code = cl2.countrycode where c1.name = ? and cl1.isofficial = "T" and cl2.isofficial = "T" and cl1.language = cl2.language and c1.continent = c2.continent';`;
+
+  // With FALSE message query
+  // const prepareStatement = `prepare statement from 'select ifnull((select group_concat(c2.name separator ", ") as countries from country as c1 join country as c2 on c1.code != c2.code join countrylanguage as cl1 on c1.code = cl1.countrycode join countrylanguage as cl2 on c2.code = cl2.countrycode where c1.name = ? and cl1.isofficial = "T" and cl2.isofficial = "T" and cl1.language = cl2.language and c1.continent = c2.continent), "FALSE") as countries;'`;
   const assignVariable = 'set @countryName = ?;';
   const executeStatement = 'execute statement using @countryName;';
   const deallocateStatement = 'deallocate prepare statement;';
@@ -184,11 +188,13 @@ const showCountriesWithSameOffLangAndContinent = async () => {
     const results = await executeQuery(executeStatement);
 
     if (results.length > 0) {
-      const country = results[0].country;
+      // const country = results[0].country;
       console.log(`Countries where official language and continent are similar: `);
       results.forEach((row) => {
         console.log(`${row.country}`);
       });
+    } else {
+      console.log('No matching countries. FALSE');
     }
 
     await executeQuery(deallocateStatement);

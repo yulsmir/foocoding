@@ -7,7 +7,6 @@ use todo_app;
 create table if not exists todolist (
   id int auto_increment not null,
   name varchar(255),
-  user_id int,
   -- constraints 
   primary key (id)
 );

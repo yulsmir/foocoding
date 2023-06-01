@@ -8,7 +8,7 @@ delimiter //
 create trigger limit_laguages_to_10 after insert on countrylanguage
 for each row
 begin
-  if(select count(1) from countrylanguage where countrycode = new.countrycode) >= 9 then
+  if(select count(1) from countrylanguage where countrycode = new.countrycode) >= 10 then
     signal sqlstate '45000' set message_text = 'Country has 10 or more languages';
   end if;
 

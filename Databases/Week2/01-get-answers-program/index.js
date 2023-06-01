@@ -64,10 +64,7 @@ const showCountryCapital = async () => {
     from city
     inner join country on city.id = country.capital
     where country.name = ?';
-
-    set @countryName = ?;
-    execute statement using @countryName;
-    deallocate prepare statement;`;
+  `;
 
   const assignVariable = 'set @countryName = ?;';
   const executeStatement = 'execute statement using @countryName;';
@@ -100,7 +97,8 @@ const listAllLanguagesInRegion = async () => {
     inner join country 
     on country.code = countrylanguage.countrycode 
     where country.region = ? 
-    group by language;'`;
+    group by language;'
+  `;
 
   const assignVariable = 'set @regionName = ?;';
   const executeStatement = 'execute statement using @regionName;';
@@ -134,7 +132,8 @@ const showCitiesWhereLanguageIsSpokenCount = async () => {
     from city
     inner join countrylanguage
     on city.countrycode = countrylanguage.countrycode
-    where countrylanguage.language = ?;'`;
+    where countrylanguage.language = ?;'
+  `;
 
   const assignVariable = 'set @language = ?;';
   const executeStatement = 'execute statement using @language;';
@@ -166,7 +165,8 @@ const listAllContinentsWithLanguagesCount = async () => {
     from country 
     inner join countrylanguage 
     on country.code = countrylanguage.countrycode 
-    group by country.continent;'`;
+    group by country.continent;'
+  `;
 
   const executeStatement = 'execute statement;';
   const deallocateStatement = 'deallocate prepare statement;';
@@ -197,11 +197,19 @@ const listAllContinentsWithLanguagesCount = async () => {
 //   -- If no, display FALSE
 const showCountriesWithSameOffLangAndContinent = async () => {
   const countryName = await getUserInput('Enter a country name: ');
-  // Without FALSE message query
-  const prepareStatement = `prepare statement from 'select c2.name as country from country as c1 join country as c2 on c1.code != c2.code join countrylanguage as cl1 on c1.code = cl1.countrycode join countrylanguage as cl2 on c2.code = cl2.countrycode where c1.name = ? and cl1.isofficial = "T" and cl2.isofficial = "T" and cl1.language = cl2.language and c1.continent = c2.continent';`;
+  // Without FALSE message IN query
+  const prepareStatement = `prepare statement from 'select c2.name as country
+    from country as c1
+    join country as c2 on c1.code != c2.code
+    join countrylanguage as cl1 on c1.code = cl1.countrycode
+    join countrylanguage as cl2 on c2.code = cl2.countrycode
+    where c1.name = ?
+      and cl1.isofficial = "T"
+      and cl2.isofficial = "T"
+      and cl1.language = cl2.language
+      and c1.continent = c2.continent;'
+  `;
 
-  // With FALSE message query
-  // const prepareStatement = `prepare statement from 'select ifnull((select group_concat(c2.name separator ", ") as countries from country as c1 join country as c2 on c1.code != c2.code join countrylanguage as cl1 on c1.code = cl1.countrycode join countrylanguage as cl2 on c2.code = cl2.countrycode where c1.name = ? and cl1.isofficial = "T" and cl2.isofficial = "T" and cl1.language = cl2.language and c1.continent = c2.continent), "FALSE") as countries;'`;
   const assignVariable = 'set @countryName = ?;';
   const executeStatement = 'execute statement using @countryName;';
   const deallocateStatement = 'deallocate prepare statement;';
@@ -212,7 +220,6 @@ const showCountriesWithSameOffLangAndContinent = async () => {
     const results = await executeQuery(executeStatement);
 
     if (results.length > 0) {
-      // const country = results[0].country;
       console.log(`Countries where official language and continent are similar: `);
       results.forEach((row) => {
         console.log(`${row.country}`);

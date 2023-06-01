@@ -79,7 +79,7 @@ insert into tag (name) values
   ('Stuff'),
   ('Smth'),
   ('Nothing'),
-  ('Ololo');
+  ('Ololo')
 ;
 
 insert into tagsitems (item_id, tag_id) values
@@ -94,6 +94,5 @@ show tables;
 select * from tag;
 select * from todoitem;
 select * from todolist;
-select * from user;
 select * from tagsitems;
 select * from reminder;

@@ -159,7 +159,6 @@ const showCitiesWhereLanguageIsSpokenCount = async () => {
 // Answer question
 // 4. List all the continents with the number of languages spoken in each continent
 const listAllContinentsWithLanguagesCount = async () => {
-  // const query = `select country.continent, count(countrylanguage.language) as languages_number from country inner join countrylanguage on country.code = countrylanguage.countrycode group by country.continent;`;
   const prepareStatement = `prepare statement from 
     'select country.continent, count(countrylanguage.language) as languagesNumber 
     from country 

@@ -49,7 +49,6 @@ create table if not exists tagsitems (
 );
 
 
-
 -- Inserting some data into todolist
 insert into todolist (name) values
   ('Some stuff todo'),

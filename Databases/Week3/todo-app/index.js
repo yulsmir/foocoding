@@ -16,21 +16,28 @@ const pool = mysql.createPool({
 const router = express.Router();
 
 // ---- LISTS ----
-// Get user's todolist
+// Get user's todo list
 router.get('/:userId/lists/:listId', showList);
 
-// Create a todolist
+// Create a todo list
 router.post('/:userId/lists', createList);
 
-// Delete a todolist
+// Delete a todo list
 router.delete('/:userId/lists/:listId', deleteList);
 
 // Add reminder for the list
-router.post('/userId/lists/:listId/reminders', addReminder);
+router.post('/userId/lists/:listId/reminders', addListReminder);
 
 // --- ITEMS ----
 // Insert item(s) in todo list
 router.post('/:userId/lists/:listId/items', addItem);
+
+// FUNCTIONS
+const showList = (req, res) => {};
+const createList = (req, res) => {};
+const deleteList = (req, res) => {};
+const addListReminder = (req, res) => {};
+const addItem = (req, res) => {};
 
 const app = express();
 const port = 3000;

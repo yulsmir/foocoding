@@ -1,20 +1,31 @@
 'use strict';
 
+// Password secure usage
+require('dotenv').config();
+
 const express = require('express');
-const mysql = require('mysql2');
 const port = 3000;
 const app = express();
 
 // Define routes
 const router = express.Router();
+const mysql = require('mysql2');
 
 // Create a MySQL connection pool
-const connection = mysql.createPool({
+const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  port: 3306,
   password: process.env.DB_PASSWORD,
   database: 'todo_app',
+  rowsAsArray: true,
+});
+
+const sql = 'select * from todolist';
+connection.query(sql, function (err, results, fields) {
+  console.log(sql);
+  console.log(err);
+  console.log(results); // results contains rows returned by server
+  console.log(fields); // fields contains extra meta data about results, if available
 });
 
 const main = async () => {
@@ -27,8 +38,33 @@ const main = async () => {
   router.get(`/:${userId}/lists`, (req, res) => {
     userId = req.params.userId;
 
-    console.log('lists shown');
-    res.status(200).json({ result: 'lists' });
+    // console.log('lists shown');
+    // res.status(200).json({ result: 'lists' });
+
+    const sql = 'select * from `todolist` where `user_id` = 1';
+    connection.query(sql, function (err, results, fields) {
+      console.log(results); // results contains rows returned by server
+      console.log(fields); // fields contains extra meta data about results, if available
+    });
+    // connection.prepare((error, conn) => {
+    //   if (error) {
+    //     console.error('Error connecting to the database:', error);
+    //     res.status(500).json({ error: 'Internal server error' });
+    //     return;
+    //   }
+
+    //   conn.execute(sql, [userId], (error, results) => {
+    //     conn.release();
+
+    //     if (error) {
+    //       console.error('Error retrieving lists:', error);
+    //       res.status(500).json({ error: 'Internal server error' });
+    //     } else {
+    //       console.log('Lists fetched successfully');
+    //       res.status(200).json({ result: results });
+    //     }
+    //   });
+    // });
   });
 
   // Get user's todo list
@@ -36,22 +72,8 @@ const main = async () => {
     userId = req.params.userId;
     listId = req.params.listId;
 
-    // console.log('list shown');
-    // res.status(200).json({ result: 'list' });
-
-    connection.query(
-      'SELECT * FROM todolist WHERE user_id = ? and id = ?',
-      [userId, listId],
-      (error, results) => {
-        if (error) {
-          console.error('Error retrieving lists:', error);
-          res.status(500).json({ error: 'Internal server error' });
-        } else {
-          console.log('Lists fetched successfully');
-          res.status(200).json({ result: results });
-        }
-      },
-    );
+    console.log('list shown');
+    res.status(200).json({ result: 'list' });
   });
 
   // Create a todo list

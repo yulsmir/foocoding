@@ -19,7 +19,7 @@ Functions implemented:
 | Delete a todo list                      | DELETE | `http://localhost:3000/:userId/lists/:listId`     | `http://localhost:3000/1/lists/1`  |
 | Add reminder to the list                | POST   | `http://localhost:3000/:userId/lists/:listId/reminders` | `http://localhost:3000/1/lists/1/reminders` 
 | Insert item(s) in todo list             | PATCH  | `http://localhost:3000/:userId/lists/:listId/items` | `http://localhost:3000/1/lists/1/items`        
-
+| Add reminder to the item                | POST   | `http://localhost:3000/:userId/lists/:listId/items/:itemId/reminders` | `http://localhost:3000/1/lists/1/items/1/reminders` 
 ## Project setup
 1. Clone repo
 2. Run ```npm install``` to install dependencies

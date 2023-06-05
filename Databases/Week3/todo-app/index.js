@@ -9,70 +9,96 @@ const app = express();
 const router = express.Router();
 
 // Create a MySQL connection pool
-const connection = mysql.createConnection({
+const connectionPool = mysql.createPool({
   host: 'localhost',
-  port: 3306,
   user: 'root',
   password: process.env.DB_PASSWORD,
   database: 'todo_app',
 });
 
-const executeQuery = (userRequest, mySqlRequest, callback) => {
-  const request = prompt(userRequest);
+// const executeQuery = (userRequest, mySqlRequest, callback) => {
+//   const request = prompt(userRequest);
 
-  connection.prepare(mySqlRequest, (err, statement) => {
-    console.log(statement);
-    statement.execute([request], callback);
-    statement.close();
-  });
-};
+//   connection.prepare(mySqlRequest, (err, statement) => {
+//     console.log(statement);
+//     statement.execute([request], callback);
+//     statement.close();
+//   });
+// };
 
-const handleError = (err, results) => {
-  if (results) {
-    console.log(results);
-  } else {
-    console.log('An error occurred:', err);
-  }
-};
+// const handleError = (err, results) => {
+//   if (results) {
+//     console.log(results);
+//   } else {
+//     console.log('An error occurred:', err);
+//   }
+// };
 
 const main = async () => {
-  const userId = 1;
-  const listId = 1;
+  let userId = null;
+  let listId = null;
+  let itemId = null;
 
   // ---- LISTS ----
   // Get user's todo lists
   router.get(`/:user${userId}/lists`, (req, res) => {
+    userId = req.params.userId;
+
     console.log('lists shown');
     res.status(200).json({ result: 'lists' });
   });
 
   // Get user's todo list
-  router.get(`/:user${userId}/lists/:${listId}`, (req, res) => {
+  router.get(`/:${userId}/lists/:${listId}`, (req, res) => {
+    userId = req.params.userId;
+
     console.log('list shown');
     res.status(200).json({ result: 'list' });
   });
 
   // Create a todo list
-  router.post(`/:user${userId}/lists`, (req, res) => {
+  router.post(`/:${userId}/lists`, (req, res) => {
+    userId = req.params.userId;
+
     console.log('List is created');
-    res.status(200).json({ result: 'lists with new list' });
+    res.status(200).json({ result: 'new list is created' });
   });
 
   // Delete a todo list
-  router.delete(`/:user${userId}/lists/:${listId}`, (req, res) => {
+  router.delete(`/:${userId}/lists/:${listId}`, (req, res) => {
+    userId = req.params.userId;
+
     console.log('List is deleted');
-    res.status(201).json({ result: 'list' });
+    res.status(201).json({ result: 'list is deleted' });
   });
 
-  // Add reminder for the list
-  router.post(`/:user${userId}/lists/:${listId}/reminders`, (req, res) => {
+  // Add reminder to the list
+  router.post(`/:${userId}/lists/:${listId}/reminders`, (req, res) => {
+    userId = req.params.userId;
+    listId = req.params.listId;
+
     console.log('Reminder is added');
+    res.status(201).json({ result: 'Reminder is added to the list' });
   });
 
   // --- ITEMS ----
   // Insert item(s) in todo list
-  router.patch(`/:user${userId}/lists/:${listId}/items`, (req, res) => {
+  router.post(`/:${userId}/lists/:${listId}/items`, (req, res) => {
+    userId = req.params.userId;
+    listId = req.params.listId;
+
     console.log('Item is added to the list');
+    res.status(201).json({ result: 'Item is added to the list' });
+  });
+
+  // Add reminder to the item
+  router.post(`/:${userId}/lists/:${listId}/items/${itemId}/reminders`, (req, res) => {
+    userId = req.params.userId;
+    listId = req.params.listId;
+    itemId = req.params.itemId;
+
+    console.log('Reminder is added');
+    res.status(201).json({ result: 'Reminder is added to the item' });
   });
 
   // Middleware

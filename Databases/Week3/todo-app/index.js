@@ -1,6 +1,4 @@
 'use strict';
-// Password secure usage
-require('dotenv').config();
 
 const express = require('express');
 const mysql = require('mysql2');
@@ -13,6 +11,7 @@ const router = express.Router();
 // Create a MySQL connection pool
 const connection = mysql.createConnection({
   host: 'localhost',
+  port: 3306,
   user: 'root',
   password: process.env.DB_PASSWORD,
   database: 'todo_app',
@@ -37,31 +36,18 @@ const handleError = (err, results) => {
 };
 
 const main = async () => {
-  // FUNCTIONS
-  // const showList = (req, res) => {};
-
-  // const createList = (req, res) => {
-  //   console.log('List is created');
-  // };
-
-  // const deleteList = (req, res) => {
-  //   console.log('List is deleted');
-  // };
-
-  // const addListReminder = (req, res) => {
-  //   console.log('Reminder is added');
-  // };
-
-  // const addItem = (req, res) => {
-  //   console.log('Item is added to a list');
-  // };
-
   const userId = 1;
   const listId = 1;
 
   // ---- LISTS ----
+  // Get user's todo lists
+  router.get(`/:user${userId}/lists`, (req, res) => {
+    console.log('lists shown');
+    res.status(200).json({ result: 'lists' });
+  });
+
   // Get user's todo list
-  router.get(`/:user${userId}/lists/${listId}`, (req, res) => {
+  router.get(`/:user${userId}/lists/:${listId}`, (req, res) => {
     console.log('list shown');
     res.status(200).json({ result: 'list' });
   });

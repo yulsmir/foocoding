@@ -78,15 +78,21 @@ insert into user (name) values
 -- Inserting some data into todolist
 insert into todolist (name, user_id) values
   ('Some stuff todo', 1),
-  ('Homework', 2)
+  ('Homework', 2),
+  ('Simple stuff', 1),
+  ('Some work', 2)
 ;
 
 -- Insert some data into todoitem
 insert into todoitem (name, list_id, completed) values
   ('Buy bread', 1, 0),
   ('Finish something', 2, 0),
+  ('Go for a coffee', 3, 1),
+  ('But sneackers', 4, 1),
+  ('Buy bread', 3, 0),
+  ('Finish something', 2, 0),
   ('Go for a coffee', 1, 1),
-  ('But sneackers', 2, 1)
+  ('But sneackers', 4, 1)
 ;
 
 -- Insert some data into itemreminders table
@@ -100,8 +106,9 @@ insert into itemreminders (remind_at, item_id) values
 -- Insert some data into listreminders table
 insert into listreminders (remind_at, list_id) values
   ('2024-11-05 11:00:00', 1),
-  ('2024-11-05 11:00:00', 2)
-
+  ('2024-11-05 11:00:00', 2),
+  ('2024-11-05 11:00:00', 3),
+  ('2024-11-05 11:00:00', 4)
 ;
 
 -- Insert some data into tag table

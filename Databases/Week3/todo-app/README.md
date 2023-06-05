@@ -26,5 +26,6 @@ Functions implemented:
 5. Open in browser ```localhost:3000``` or ```127.0.0.1:3000```
 6. Check urls from endpoints implemented and response results in dev tools:
 7. Make sure to replace ```:userId`` with value 1 or 2, so you can see lists of 2 separate users.
+8. Link to my postman requests to test app: https://www.postman.com/yulsmir/workspace/my-public-env/collection/10283822-bf799acc-b067-4b49-9932-12b716e53f09?action=share&creator=10283822
 
 

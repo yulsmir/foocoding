@@ -33,20 +33,20 @@ const main = async () => {
     // console.log('lists shown');
     // res.status(200).json({ result: 'lists' });
 
-    const sql = 'select id, name from `todolist` where `user_id` = ?';
+    const sql = 'select id, name from todolist where user_id = ?';
 
     connection.query(sql, [userId], (err, results) => {
       if (err) {
         console.log(err);
         res.status(404).json({ error: err });
       } else {
-        res.status(200).json({ lists: results });
+        res.status(200).json({ userId: userId, lists: results });
       }
     });
   });
 
   // Get user's todo list
-  router.get(`/:${userId}/lists/:${listId}`, (req, res) => {
+  router.get(`/:userId/lists/:listId`, (req, res) => {
     userId = req.params.userId;
     listId = req.params.listId;
 

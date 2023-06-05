@@ -16,24 +16,6 @@ const connectionPool = mysql.createPool({
   database: 'todo_app',
 });
 
-// const executeQuery = (userRequest, mySqlRequest, callback) => {
-//   const request = prompt(userRequest);
-
-//   connection.prepare(mySqlRequest, (err, statement) => {
-//     console.log(statement);
-//     statement.execute([request], callback);
-//     statement.close();
-//   });
-// };
-
-// const handleError = (err, results) => {
-//   if (results) {
-//     console.log(results);
-//   } else {
-//     console.log('An error occurred:', err);
-//   }
-// };
-
 const main = async () => {
   let userId = null;
   let listId = null;

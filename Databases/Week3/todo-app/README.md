@@ -1,6 +1,4 @@
-# todo-express-api
-Todo api with express module
-
+# Todo app
 ### Short description
 Functions implemented:
 - Insert item(s) in ToDo list
@@ -26,6 +24,6 @@ Functions implemented:
 3. Run ```nodemon run``` or ```nodemon index.js```to start server
 4. Open in browser ```localhost:3000``` or ```127.0.0.1:3000```
 5. Check urls from endpoints implemented and response results in dev tools:
-6. Make sure to replace ```:userId`` with value 1 or 2, so you can see lists of separate users.
+6. Make sure to replace ```:userId`` with value 1 or 2, so you can see lists of 2 separate users.
 
 

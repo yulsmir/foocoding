@@ -92,7 +92,7 @@ const main = async () => {
   });
 
   // Add reminder to the item
-  router.post(`/:${userId}/lists/:${listId}/items/${itemId}/reminders`, (req, res) => {
+  router.post(`/:${userId}/lists/:${listId}/items/:${itemId}/reminders`, (req, res) => {
     userId = req.params.userId;
     listId = req.params.listId;
     itemId = req.params.itemId;

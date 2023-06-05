@@ -9,9 +9,10 @@ const app = express();
 const router = express.Router();
 
 // Create a MySQL connection pool
-const connectionPool = mysql.createPool({
+const connection = mysql.createPool({
   host: 'localhost',
   user: 'root',
+  port: 3306,
   password: process.env.DB_PASSWORD,
   database: 'todo_app',
 });
@@ -23,7 +24,7 @@ const main = async () => {
 
   // ---- LISTS ----
   // Get user's todo lists
-  router.get(`/:user${userId}/lists`, (req, res) => {
+  router.get(`/:${userId}/lists`, (req, res) => {
     userId = req.params.userId;
 
     console.log('lists shown');
@@ -33,9 +34,24 @@ const main = async () => {
   // Get user's todo list
   router.get(`/:${userId}/lists/:${listId}`, (req, res) => {
     userId = req.params.userId;
+    listId = req.params.listId;
 
-    console.log('list shown');
-    res.status(200).json({ result: 'list' });
+    // console.log('list shown');
+    // res.status(200).json({ result: 'list' });
+
+    connection.query(
+      'SELECT * FROM todolist WHERE user_id = ? and id = ?',
+      [userId, listId],
+      (error, results) => {
+        if (error) {
+          console.error('Error retrieving lists:', error);
+          res.status(500).json({ error: 'Internal server error' });
+        } else {
+          console.log('Lists fetched successfully');
+          res.status(200).json({ result: results });
+        }
+      },
+    );
   });
 
   // Create a todo list

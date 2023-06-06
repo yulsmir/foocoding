@@ -15,7 +15,7 @@ const mysql = require('mysql2');
 const connection = mysql.createConnection({
   host: '127.0.0.1',
   user: 'root',
-  password: process.env.DB_PASSWORD,
+  password: process.env.DB_PASSWORD, // Insert your mysql root pwd here
   database: 'todo_app',
   rowsAsArray: true,
 });
@@ -61,7 +61,7 @@ const main = async () => {
   router.post(`/:userId/lists`, (req, res) => {
     userId = req.params.userId;
 
-    const sql = `insert into todolist (name, user_id) values('New list to todo', ?)`;
+    const sql = `insert into todolist (name, user_id) values('Newly created list to todo', ?)`;
 
     connection.query(sql, [userId], (err, results) => {
       if (err) {
@@ -92,16 +92,31 @@ const main = async () => {
     });
   });
 
+  // TODO: Fix
   // Add reminder to the list
   router.post(`/:userId/lists/:listId/reminders`, (req, res) => {
     userId = req.params.userId;
     listId = req.params.listId;
 
-    console.log('Reminder is added');
-    res.status(201).json({ result: 'Reminder is added to the list' });
+    const sql = `insert into listreminders (remind_at, list_id) values(2024-14-12 22:10:05, ?)`;
+
+    connection.query(sql, [listId], (err, results) => {
+      if (err) {
+        res.status(404).json({ error: err });
+      } else {
+        res.status(200).json({
+          userId: userId,
+          listId: listId,
+          results: `Reminder for ${listId} is added successfully`,
+        });
+      }
+    });
+
+    // console.log('Reminder is added');
+    // res.status(201).json({ result: 'Reminder is added to the list' });
   });
 
-  // --- ITEMS ----
+  // ---- ITEMS ----
   // Insert item(s) in todo list
   router.post(`/:userId/lists/:listId/items`, (req, res) => {
     userId = req.params.userId;

@@ -25,13 +25,13 @@ Functions implemented:
 4. Navigate to ```index.js``` and inside ```const connection``` change ```password``` to your msql root user password.
   OR 
   Create a file ```.env``` in a root of todo-app directory and insert your root password as ```DB_PASSWORD=your_root_password``` into ```.env``` file.
-4. Import ```todo_app.sql``` database or just run sql queries in mysql console to create a db. 
-5. Make sure your database is called ```todo_app```.
-6. To start server run any of the listed commands
-  - ```nodemon run``` 
-  - ```nodemon index.js``` 
-  - ```node index.js``` 
-7. Open in browser ```localhost:3000``` or ```127.0.0.1:3000```
+5. Import ```todo_app.sql``` database or just run sql queries in mysql console to create a db. 
+6. Make sure your database is called ```todo_app```.
+7. To start server run any of the listed commands
+    - ```nodemon run```
+    - ```nodemon index.js```
+    - ```node index.js```
+8. Open in browser ```localhost:3000``` or ```127.0.0.1:3000```
 
 ## Testing
 1. Check urls from endpoints table and response results in browser devtools response for get requests.

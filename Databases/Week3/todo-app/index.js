@@ -50,8 +50,19 @@ const main = async () => {
     userId = req.params.userId;
     listId = req.params.listId;
 
-    console.log('list shown');
-    res.status(200).json({ result: 'list' });
+    const sql = 'select id, name from todolist where user_id = ? and id = ?';
+
+    connection.query(sql, [userId, listId], (err, results) => {
+      if (err) {
+        console.log(err);
+        res.status(404).json({ error: err });
+      } else {
+        res.status(200).json({ userId: userId, listId: listId, results });
+      }
+    });
+
+    // console.log('list shown');
+    // res.status(200).json({ result: 'list' });
   });
 
   // Create a todo list

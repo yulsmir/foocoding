@@ -81,9 +81,22 @@ const main = async () => {
   // Delete a todo list by id
   router.delete(`/:userId/lists/:listId`, (req, res) => {
     userId = req.params.userId;
+    listId = req.params.listId;
 
-    console.log('List is deleted');
-    res.status(201).json({ result: 'list is deleted' });
+    const sql = `delete from todolist where user_id = ? and id = ?`;
+
+    connection.query(sql, [userId, listId], (err, results) => {
+      if (err) {
+        console.log(err);
+        res.status(404).json({ error: err });
+      } else {
+        res.status(200).json({
+          userId: userId,
+          listId: listId,
+          results: `List with id ${listId} is deleted successfully`,
+        });
+      }
+    });
   });
 
   // Add reminder to the list

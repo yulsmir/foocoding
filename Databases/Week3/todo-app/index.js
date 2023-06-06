@@ -89,6 +89,16 @@ const main = async () => {
     res.status(201).json({ result: 'Item is added to the list' });
   });
 
+  // Delete item(s) from todo list
+  router.delete(`/:userId/lists/:listId/items/:itemId`, (req, res) => {
+    userId = req.params.userId;
+    listId = req.params.listId;
+    itemId = req.params.itemId;
+
+    console.log('Item is deleted from the list');
+    res.status(201).json({ result: 'Item is deleted from the list' });
+  });
+
   // Middleware
   app.use(express.json());
   app.use('/', router);

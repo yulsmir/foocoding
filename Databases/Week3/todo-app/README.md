@@ -17,6 +17,7 @@ Functions implemented:
 | Delete a todo list                      | DELETE | `http://localhost:3000/:userId/lists/:listId`     | `http://localhost:3000/1/lists/1`  |
 | Add reminder to the list                | POST   | `http://localhost:3000/:userId/lists/:listId/reminders` | `http://localhost:3000/1/lists/1/reminders` 
 | Insert item(s) in todo list             | POST  | `http://localhost:3000/:userId/lists/:listId/items` | `http://localhost:3000/1/lists/1/items`|
+| Delete item(s) from todo list             | DELETE  | `http://localhost:3000/:userId/lists/:listId/items/:itemId` | `http://localhost:3000/1/lists/1/items/1`|
 ## Project setup
 1. Clone repo
 2. Navigate to ```Databases/Week3/todo-app```
@@ -29,5 +30,9 @@ Functions implemented:
 6. Check urls from endpoints implemented and response results in dev tools:
 7. Make sure to replace ```:userId`` with value 1 or 2, so you can see lists of 2 separate users.
 8. Link to my postman requests to test app: https://www.postman.com/yulsmir/workspace/my-public-env/collection/10283822-bf799acc-b067-4b49-9932-12b716e53f09?action=share&creator=10283822
+ In params Path Variables change: 
+ - userId value to 1 or 2;
+ - listId - 1...4;
+ - itemId - 1...4;
 
 

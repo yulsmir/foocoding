@@ -92,13 +92,13 @@ const main = async () => {
     });
   });
 
-  // TODO: Fix
   // Add reminder to the list
+  // TODO: add check if reminder exists or overwrite it
   router.post(`/:userId/lists/:listId/reminders`, (req, res) => {
     userId = req.params.userId;
     listId = req.params.listId;
 
-    const sql = `insert into listreminders (remind_at, list_id) values(2024-14-12 22:10:05, ?)`;
+    const sql = `insert into listreminders (remind_at, list_id) values('2024-11-12 22:10:00', ?)`;
 
     connection.query(sql, [listId], (err, results) => {
       if (err) {
@@ -107,13 +107,10 @@ const main = async () => {
         res.status(200).json({
           userId: userId,
           listId: listId,
-          results: `Reminder for ${listId} is added successfully`,
+          results: `Reminder for list ${listId} is added successfully`,
         });
       }
     });
-
-    // console.log('Reminder is added');
-    // res.status(201).json({ result: 'Reminder is added to the list' });
   });
 
   // ---- ITEMS ----
@@ -122,8 +119,18 @@ const main = async () => {
     userId = req.params.userId;
     listId = req.params.listId;
 
-    console.log('Item is added to the list');
-    res.status(201).json({ result: 'Item is added to the list' });
+    const sql = `insert into todoitems (name, list_id, completed) values('Newly created item to todo', ?, 0)`;
+
+    connection.query(sql, [userId, list_id], (err, results) => {
+      if (err) {
+        res.status(404).json({ error: err });
+      } else {
+        res.status(200).json({ userId: userId, listId: listId, results });
+      }
+    });
+
+    // console.log('Item is added to the list');
+    // res.status(201).json({ result: 'Item is added to the list' });
   });
 
   // Delete item(s) from todo list

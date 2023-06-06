@@ -22,7 +22,7 @@ Functions implemented:
 1. Clone repo
 2. Navigate to ```Databases/Week3/todo-app```
 3. Run ```npm install``` to install dependencies
-4. Navigate to ```index.js``` and inside ```const connection``` change ```password``` to your msql root user password.
+4. Navigate to ```index.js``` and inside ```const connection``` change ```password``` to your mysql ```root user``` password.
   OR 
   Create a file ```.env``` in a root of todo-app directory and insert your root password as ```DB_PASSWORD=your_root_password``` into ```.env``` file.
 5. Import ```todo_app.sql``` database or just run sql queries in mysql console to create a db. 

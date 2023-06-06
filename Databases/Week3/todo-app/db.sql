@@ -42,15 +42,6 @@ create table if not exists todoitem (
   foreign key (list_id) references todolist(id)
 );
 
--- Create table reminder
-create table if not exists itemreminders (
-  id int auto_increment not null,
-  remind_at datetime,
-  item_id int,
-  -- constraints
-  primary key (id),
-  foreign key (item_id) references todoitem(id)
-);
 
 -- Create table tag
 create table if not exists tag(
@@ -95,14 +86,6 @@ insert into todoitem (name, list_id, completed) values
   ('But sneackers', 4, 1)
 ;
 
--- Insert some data into itemreminders table
-insert into itemreminders (remind_at, item_id) values
-  ('2024-11-05 11:00:00', 1),
-  ('2024-12-05 11:00:00', 1),
-  ('2024-11-05 11:00:00', 2),
-  ('2024-11-05 11:00:00', 4)
-;
-
 -- Insert some data into listreminders table
 insert into listreminders (remind_at, list_id) values
   ('2024-11-05 11:00:00', 1),
@@ -133,5 +116,4 @@ select * from tag;
 select * from todoitem;
 select * from todolist;
 select * from tagsitems;
-select * from itemreminders;
 select * from listreminders;

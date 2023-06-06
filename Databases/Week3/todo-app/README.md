@@ -27,12 +27,11 @@ Functions implemented:
   - ```nodemon index.js``` 
   - ```node index.js``` 
 5. Open in browser ```localhost:3000``` or ```127.0.0.1:3000```
-6. Check urls from endpoints implemented and response results in dev tools:
-7. Make sure to replace ```:userId`` with value 1 or 2, so you can see lists of 2 separate users.
-8. Link to my postman requests to test app: https://www.postman.com/yulsmir/workspace/my-public-env/collection/10283822-bf799acc-b067-4b49-9932-12b716e53f09?action=share&creator=10283822
+6. Check urls from endpoints tables and response results in browser devtools response for get requests.
+7. Use Postman or Thunder Client VS Code extension https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client to check endpoints.
+ 
+  - Link to my postman requests created to test app: https://www.postman.com/yulsmir/workspace/my-public-env/collection/10283822-bf799acc-b067-4b49-9932-12b716e53f09?action=share&creator=10283822
  In params Path Variables change: 
- - userId value to 1 or 2;
- - listId - 1...4;
- - itemId - 1...4;
-
-
+    - userId value to 1 or 2 (only 2 users in db now)
+    - listId - 1...4;
+    - itemId - 1...4.

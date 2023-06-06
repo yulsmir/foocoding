@@ -22,15 +22,17 @@ Functions implemented:
 1. Clone repo
 2. Navigate to ```Databases/Week3/todo-app```
 3. Run ```npm install``` to install dependencies
-4. To start server run any of the listed commands
+4. Import ```todo_app.sql``` database or just run sql queries in mysql console to create a db. 
+5. Make sure your database is called ```todo_app```.
+6. To start server run any of the listed commands
   - ```nodemon run``` 
   - ```nodemon index.js``` 
   - ```node index.js``` 
-5. Open in browser ```localhost:3000``` or ```127.0.0.1:3000```
-6. Check urls from endpoints tables and response results in browser devtools response for get requests.
-7. Use Postman or Thunder Client VS Code extension https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client to check endpoints.
+7. Open in browser ```localhost:3000``` or ```127.0.0.1:3000```
+8. Check urls from endpoints tables and response results in browser devtools response for get requests.
+9. Use Postman or Thunder Client VS Code extension to check endpoints. => [link](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client)
  
-  - Link to my postman requests created to test app: https://www.postman.com/yulsmir/workspace/my-public-env/collection/10283822-bf799acc-b067-4b49-9932-12b716e53f09?action=share&creator=10283822
+  - Link to my postman requests created to test app => [link](https://www.postman.com/yulsmir/workspace/my-public-env/collection/10283822-bf799acc-b067-4b49-9932-12b716e53f09?action=share&creator=10283822)
  In params Path Variables change: 
     - userId value to 1 or 2 (only 2 users in db now)
     - listId - 1...4;

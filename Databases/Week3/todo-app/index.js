@@ -60,20 +60,25 @@ const main = async () => {
         res.status(200).json({ userId: userId, listId: listId, results });
       }
     });
-
-    // console.log('list shown');
-    // res.status(200).json({ result: 'list' });
   });
 
   // Create a todo list
   router.post(`/:userId/lists`, (req, res) => {
     userId = req.params.userId;
 
-    console.log('List is created');
-    res.status(200).json({ result: 'new list is created' });
+    const sql = `insert into todolist (name, user_id) values('New list to todo', ?)`;
+
+    connection.query(sql, [userId], (err, results) => {
+      if (err) {
+        console.log(err);
+        res.status(404).json({ error: err });
+      } else {
+        res.status(200).json({ userId: userId, listId: listId, results });
+      }
+    });
   });
 
-  // Delete a todo list
+  // Delete a todo list by id
   router.delete(`/:userId/lists/:listId`, (req, res) => {
     userId = req.params.userId;
 

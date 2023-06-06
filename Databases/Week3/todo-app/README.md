@@ -35,9 +35,12 @@ Functions implemented:
 
 ## Testing
 1. Check urls from endpoints table and response results in browser devtools response for get requests.
-2. Use Postman or Thunder Client VS Code extension to check endpoints all requests implemented => [link](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client)
+2. Use Postman or Thunder Client VS Code extension to check endpoints all requests implemented: 
+  https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client
  
-3. Link to my postman requests created to test app => [link](https://www.postman.com/yulsmir/workspace/my-public-env/collection/10283822-bf799acc-b067-4b49-9932-12b716e53f09?action=share&creator=10283822)
+3. Link to my prepared postman requests created to test this app:
+  https://www.postman.com/yulsmir/workspace/my-public-env/collection/10283822-bf799acc-b067-4b49-9932-12b716e53f09?action=share&creator=10283822
+  Don't forget to install postman agent.
  
 4. To test requests for different lists, users, items in Postman got to  ```Params => Path Variables``` and change value of tested parameter: 
     - userId - 1 or 2 (only 2 users in db now)

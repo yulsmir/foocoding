@@ -136,9 +136,7 @@ const main = async () => {
 
   // Delete item(s) from todo list
   router.delete(`/:userId/lists/:listId/items/:itemId`, (req, res) => {
-    listId = req.params.listId;
     itemId = req.params.itemId;
-    userId = req.params.userId;
 
     const sql = `delete from todoitem where id = ?`;
 
@@ -153,9 +151,6 @@ const main = async () => {
         });
       }
     });
-
-    // console.log('Item is deleted from the list');
-    // res.status(201).json({ result: 'Item is deleted from the list' });
   });
 
   // TODO: Mark item as completed

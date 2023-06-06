@@ -45,7 +45,7 @@ const main = async () => {
     });
   });
 
-  // Get user's todo list
+  // Get user's todo list by id
   router.get(`/:userId/lists/:listId`, (req, res) => {
     userId = req.params.userId;
     listId = req.params.listId;
@@ -55,7 +55,7 @@ const main = async () => {
   });
 
   // Create a todo list
-  router.post(`/:${userId}/lists`, (req, res) => {
+  router.post(`/:userId/lists`, (req, res) => {
     userId = req.params.userId;
 
     console.log('List is created');
@@ -63,7 +63,7 @@ const main = async () => {
   });
 
   // Delete a todo list
-  router.delete(`/:${userId}/lists/:${listId}`, (req, res) => {
+  router.delete(`/:userId/lists/:listId`, (req, res) => {
     userId = req.params.userId;
 
     console.log('List is deleted');
@@ -71,7 +71,7 @@ const main = async () => {
   });
 
   // Add reminder to the list
-  router.post(`/:${userId}/lists/:${listId}/reminders`, (req, res) => {
+  router.post(`/:userId/lists/:listId/reminders`, (req, res) => {
     userId = req.params.userId;
     listId = req.params.listId;
 
@@ -81,22 +81,12 @@ const main = async () => {
 
   // --- ITEMS ----
   // Insert item(s) in todo list
-  router.post(`/:${userId}/lists/:${listId}/items`, (req, res) => {
+  router.post(`/:userId/lists/:listId/items`, (req, res) => {
     userId = req.params.userId;
     listId = req.params.listId;
 
     console.log('Item is added to the list');
     res.status(201).json({ result: 'Item is added to the list' });
-  });
-
-  // Add reminder to the item
-  router.post(`/:${userId}/lists/:${listId}/items/:${itemId}/reminders`, (req, res) => {
-    userId = req.params.userId;
-    listId = req.params.listId;
-    itemId = req.params.itemId;
-
-    console.log('Reminder is added');
-    res.status(201).json({ result: 'Reminder is added to the item' });
   });
 
   // Middleware

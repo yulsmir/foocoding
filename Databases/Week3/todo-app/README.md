@@ -16,13 +16,15 @@ Functions implemented:
 | Create a todo list                      | POST   | `http://localhost:3000/:userId/lists`             | `http://localhost:3000/1/lists`                 
 | Delete a todo list                      | DELETE | `http://localhost:3000/:userId/lists/:listId`     | `http://localhost:3000/1/lists/1`  |
 | Add reminder to the list                | POST   | `http://localhost:3000/:userId/lists/:listId/reminders` | `http://localhost:3000/1/lists/1/reminders` 
-| Insert item(s) in todo list             | POST  | `http://localhost:3000/:userId/lists/:listId/items` | `http://localhost:3000/1/lists/1/items`        
-| Add reminder to the item                | POST   | `http://localhost:3000/:userId/lists/:listId/items/:itemId/reminders` | `http://localhost:3000/1/lists/1/items/1/reminders` 
+| Insert item(s) in todo list             | POST  | `http://localhost:3000/:userId/lists/:listId/items` | `http://localhost:3000/1/lists/1/items`|
 ## Project setup
 1. Clone repo
 2. Navigate to ```Databases/Week3/todo-app```
 3. Run ```npm install``` to install dependencies
-4. Run ```nodemon run``` or ```nodemon index.js```to start server
+4. To start server run any of the listed commands
+  - ```nodemon run``` 
+  - ```nodemon index.js``` 
+  - ```node index.js``` 
 5. Open in browser ```localhost:3000``` or ```127.0.0.1:3000```
 6. Check urls from endpoints implemented and response results in dev tools:
 7. Make sure to replace ```:userId`` with value 1 or 2, so you can see lists of 2 separate users.

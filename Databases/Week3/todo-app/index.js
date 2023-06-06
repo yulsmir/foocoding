@@ -119,18 +119,19 @@ const main = async () => {
     userId = req.params.userId;
     listId = req.params.listId;
 
-    const sql = `insert into todoitems (name, list_id, completed) values('Newly created item to todo', ?, 0)`;
+    const sql = `insert into todoitem (name, list_id, completed) values('Buy something new', ?, 0)`;
 
-    connection.query(sql, [userId, list_id], (err, results) => {
+    connection.query(sql, [listId], (err, results) => {
       if (err) {
         res.status(404).json({ error: err });
       } else {
-        res.status(200).json({ userId: userId, listId: listId, results });
+        res.status(200).json({
+          userId: userId,
+          listId: listId,
+          results: `Todoitem into list ${listId} is added successfully`,
+        });
       }
     });
-
-    // console.log('Item is added to the list');
-    // res.status(201).json({ result: 'Item is added to the list' });
   });
 
   // Delete item(s) from todo list

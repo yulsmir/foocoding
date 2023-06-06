@@ -30,14 +30,10 @@ const main = async () => {
   router.get(`/:userId/lists`, (req, res) => {
     userId = req.params.userId;
 
-    // console.log('lists shown');
-    // res.status(200).json({ result: 'lists' });
-
     const sql = 'select id, name from todolist where user_id = ?';
 
     connection.query(sql, [userId], (err, results) => {
       if (err) {
-        console.log(err);
         res.status(404).json({ error: err });
       } else {
         res.status(200).json({ userId: userId, lists: results });
@@ -54,7 +50,6 @@ const main = async () => {
 
     connection.query(sql, [userId, listId], (err, results) => {
       if (err) {
-        console.log(err);
         res.status(404).json({ error: err });
       } else {
         res.status(200).json({ userId: userId, listId: listId, results });
@@ -70,7 +65,6 @@ const main = async () => {
 
     connection.query(sql, [userId], (err, results) => {
       if (err) {
-        console.log(err);
         res.status(404).json({ error: err });
       } else {
         res.status(200).json({ userId: userId, listId: listId, results });
@@ -87,7 +81,6 @@ const main = async () => {
 
     connection.query(sql, [userId, listId], (err, results) => {
       if (err) {
-        console.log(err);
         res.status(404).json({ error: err });
       } else {
         res.status(200).json({
@@ -126,6 +119,15 @@ const main = async () => {
 
     console.log('Item is deleted from the list');
     res.status(201).json({ result: 'Item is deleted from the list' });
+  });
+
+  // TODO: Mark item as completed
+  router.patch(`/:userId/lists/:listId/items/:itemId`, (req, res) => {
+    userId = req.params.userId;
+    listId = req.params.listId;
+    itemId = req.params.itemId;
+
+    res.status(201).json({ result: 'Item is marked as completed' });
   });
 
   // Middleware

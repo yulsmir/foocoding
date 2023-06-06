@@ -135,12 +135,14 @@ const main = async () => {
   });
 
   // Delete item(s) from todo list
-  router.delete(`/:userId/lists/:listId/items/:itemId`, (req, res) => {
+  // TODO: fix foreign key
+  router.delete(`/:userId/lists/:/items/:itemId`, (req, res) => {
     itemId = req.params.itemId;
+    listId = req.params.listId;
 
-    const sql = `delete from todoitem where id = ?`;
+    const sql = `delete from todoitem where id = ? and list_id = ?`;
 
-    connection.query(sql, [itemId], (err, results) => {
+    connection.query(sql, [itemId, listId], (err, results) => {
       if (err) {
         res.status(404).json({ error: err });
       } else {

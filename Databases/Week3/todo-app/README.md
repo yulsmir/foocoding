@@ -22,6 +22,9 @@ Functions implemented:
 1. Clone repo
 2. Navigate to ```Databases/Week3/todo-app```
 3. Run ```npm install``` to install dependencies
+4. Navigate to ```index.js``` and inside ```const connection``` change ```password``` to your msql root user password.
+  OR 
+  Create a file ```.env``` in a root of todo-app directory and insert your root password as ```DB_PASSWORD=your_root_password``` into ```.env``` file.
 4. Import ```todo_app.sql``` database or just run sql queries in mysql console to create a db. 
 5. Make sure your database is called ```todo_app```.
 6. To start server run any of the listed commands
@@ -29,11 +32,14 @@ Functions implemented:
   - ```nodemon index.js``` 
   - ```node index.js``` 
 7. Open in browser ```localhost:3000``` or ```127.0.0.1:3000```
-8. Check urls from endpoints tables and response results in browser devtools response for get requests.
-9. Use Postman or Thunder Client VS Code extension to check endpoints. => [link](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client)
+
+## Testing
+1. Check urls from endpoints table and response results in browser devtools response for get requests.
+2. Use Postman or Thunder Client VS Code extension to check endpoints all requests implemented => [link](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client)
  
-  - Link to my postman requests created to test app => [link](https://www.postman.com/yulsmir/workspace/my-public-env/collection/10283822-bf799acc-b067-4b49-9932-12b716e53f09?action=share&creator=10283822)
- In params Path Variables change: 
-    - userId value to 1 or 2 (only 2 users in db now)
-    - listId - 1...4;
-    - itemId - 1...4.
+3. Link to my postman requests created to test app => [link](https://www.postman.com/yulsmir/workspace/my-public-env/collection/10283822-bf799acc-b067-4b49-9932-12b716e53f09?action=share&creator=10283822)
+ 
+4. To test requests for different lists, users, items in Postman got to  ```Params => Path Variables``` and change value of tested parameter: 
+        - userId - 1 or 2 (only 2 users in db now)
+        - listId - 1...4;
+        - itemId - 1...4.

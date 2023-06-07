@@ -95,7 +95,6 @@ const main = async () => {
   // Add reminder to the list
   // TODO: add check if reminder exists or overwrite it
   router.post(`/:userId/lists/:listId/reminders`, (req, res) => {
-    userId = req.params.userId;
     listId = req.params.listId;
 
     const sql = `insert into listreminders (remind_at, list_id) values('2024-11-12 22:10:00', ?)`;
@@ -105,7 +104,6 @@ const main = async () => {
         res.status(404).json({ error: err });
       } else {
         res.status(200).json({
-          userId: userId,
           listId: listId,
           results: `Reminder for list ${listId} is added successfully`,
         });
@@ -126,7 +124,6 @@ const main = async () => {
         res.status(404).json({ error: err });
       } else {
         res.status(200).json({
-          userId: userId,
           listId: listId,
           results: `Todoitem into list ${listId} is added successfully`,
         });
@@ -136,7 +133,7 @@ const main = async () => {
 
   // Delete item(s) from todo list
   // TODO: fix foreign key
-  router.delete(`/:userId/lists/:/items/:itemId`, (req, res) => {
+  router.delete(`/:userId/lists/:listId/items/:itemId`, (req, res) => {
     itemId = req.params.itemId;
     listId = req.params.listId;
 
@@ -147,7 +144,6 @@ const main = async () => {
         res.status(404).json({ error: err });
       } else {
         res.status(200).json({
-          userId: userId,
           listId: listId,
           results: `Item with id ${itemId} is deleted successfully`,
         });

@@ -75,15 +75,15 @@ insert into todolist (name, user_id) values
 ;
 
 -- Insert some data into todoitem
-insert into todoitem (name, list_id, completed) values
-  ('Buy bread', 1, 0),
-  ('Finish something', 2, 0),
-  ('Go for a coffee', 3, 1),
-  ('But sneackers', 4, 1),
-  ('Buy bread', 3, 0),
-  ('Finish something', 2, 0),
-  ('Go for a coffee', 1, 1),
-  ('But sneackers', 4, 1)
+insert into todoitem (name, list_id) values
+  ('Buy bread', 1),
+  ('Finish something', 2),
+  ('Go for a coffee', 3),
+  ('Buy sneackers', 4),
+  ('Buy bread', 3),
+  ('Finish something', 2),
+  ('Go for a coffee', 1),
+  ('But sneackers', 4)
 ;
 
 -- Insert some data into listreminders table
@@ -117,3 +117,38 @@ select * from todoitem;
 select * from todolist;
 select * from tagsitems;
 select * from listreminders;
+
+-- Modify database
+alter table todoitem modify column completed boolean default null;
+alter table listreminders modify column remind_at datetime default null;
+
+-- Insert more data into todoitem
+insert into todoitem (name, list_id) values
+  ('Buy car', 1),
+  ('Buy milk', 1),
+  ('Buy cat', 1),
+  ('Buy potatoes', 1),
+  ('Buy apartment', 1),
+  ('Buy furniture', 1),
+  ('Buy bicycle', 1),
+  ('Buy water', 1),
+  ('Buy dog', 1),
+  ('Buy mirror', 1),
+  ('Finish something', 2),
+  ('Finish book', 2),
+  ('Finish song', 2),
+  ('Finish task', 2),
+  ('Finish again smth', 2),
+  ('Finish reading', 2),
+  ('Finish watching movies', 2),
+  ('Finish studies', 2),
+  ('Finish bottle of water', 2),
+  ('Call someone', 2),
+  ('Go for a coffee', 3),
+  ('Go for a walk', 3),
+  ('Go for a talk', 3),
+  ('Go just for a go', 3),
+  ('Paint sneackers', 4),
+  ('Dry fruits', 4),
+  ('Play with a cat', 4)
+;

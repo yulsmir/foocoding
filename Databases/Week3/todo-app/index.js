@@ -18,9 +18,9 @@ const connection = mysql.createConnection({
 });
 
 const main = async () => {
-  let userId = null;
-  let listId = null;
-  let itemId = null;
+  let userId;
+  let listId;
+  let itemId;
 
   // ---- LISTS ----
   // Get user's todo lists
@@ -90,7 +90,6 @@ const main = async () => {
   });
 
   // Add reminder to the list
-  // TODO: add check if reminder exists or overwrite it
   app.post(`/:userId/lists/:listId/reminders`, (req, res) => {
     listId = req.params.listId;
 
@@ -147,26 +146,22 @@ const main = async () => {
     });
   });
 
-  // TODO: Mark item as completed
+  //Mark item as completed
   app.patch(`/:userId/lists/:listId/items/:itemId`, (req, res) => {
-    userId = req.params.userId;
     listId = req.params.listId;
     itemId = req.params.itemId;
 
+    const sql = `insert into todoitem(completed) values(true) where id = ? and list_id = ?`;
     connection.query(sql, [itemId, listId], (err, results) => {
       if (err) {
         res.status(404).json({ error: err });
       } else {
         res.status(200).json({
           listId: listId,
-          results: `Item with id ${itemId} is deleted successfully`,
+          results: `Item with id ${itemId} is marked completed`,
         });
       }
     });
-
-    const sql = `delete from todoitem where id = ? and list_id = ?`;
-
-    res.status(201).json({ result: 'Item is marked as completed' });
   });
 
   // Middleware

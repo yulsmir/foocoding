@@ -20,15 +20,12 @@ Functions implemented:
 | Delete item(s) from todo list             | DELETE  | `http://localhost:3000/:userId/lists/:listId/items/:itemId` | `http://localhost:3000/1/lists/1/items/1`|
 | Mark item as completed             | PATCH  | `http://localhost:3000/:userId/lists/:listId/items/:itemId` | `http://localhost:3000/1/lists/1/items/1`|
 
-## Project settings
-- Node.js - 18.16 LTS
-- MySQL - 5.7
 ## Project setup
 1. Clone repo
 2. Navigate to ```Databases/Week3/todo-app```
 3. Run ```npm install``` to install dependencies
 4. Navigate to ```index.js``` and inside ```const connection``` change 
-    - ```password``` to your user password
+    - ```password``` to your app user password
     - ```user``` to your app user name
 5. Import ```todo_app.sql``` database or just run sql queries in mysql console to create a db. 
 6. Make sure your database is called ```todo_app```.

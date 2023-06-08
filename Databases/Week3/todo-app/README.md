@@ -24,9 +24,9 @@ Functions implemented:
 1. Clone repo
 2. Navigate to ```Databases/Week3/todo-app```
 3. Run ```npm install``` to install dependencies
-4. Navigate to ```index.js``` and inside ```const connection``` change 
-    - ```password``` to your app user password
+4. Navigate to ```index.js``` and inside ```const connection``` change
     - ```user``` to your app user name
+    - ```password``` to your app user password
 5. Import ```todo_app.sql``` database or just run sql queries in mysql console to create a db. 
 6. Make sure your database is called ```todo_app```.
 7. To start server run any of the listed commands

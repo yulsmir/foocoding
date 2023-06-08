@@ -146,7 +146,7 @@ const main = async () => {
     });
   });
 
-  //Mark item as completed
+  // Mark item as completed
   app.patch(`/:userId/lists/:listId/items/:itemId`, (req, res) => {
     listId = req.params.listId;
     itemId = req.params.itemId;

@@ -6,9 +6,6 @@ require('dotenv').config();
 const express = require('express');
 const port = 3000;
 const app = express();
-
-// Define routes
-const router = express.Router();
 const mysql = require('mysql2');
 
 // Create a MySQL connection pool
@@ -27,7 +24,7 @@ const main = async () => {
 
   // ---- LISTS ----
   // Get user's todo lists
-  router.get(`/:userId/lists`, (req, res) => {
+  app.get(`/:userId/lists`, (req, res) => {
     userId = req.params.userId;
 
     const sql = 'select id, name from todolist where user_id = ?';
@@ -42,7 +39,7 @@ const main = async () => {
   });
 
   // Get user's todo list by id
-  router.get(`/:userId/lists/:listId`, (req, res) => {
+  app.get(`/:userId/lists/:listId`, (req, res) => {
     userId = req.params.userId;
     listId = req.params.listId;
 
@@ -58,7 +55,7 @@ const main = async () => {
   });
 
   // Create a todo list
-  router.post(`/:userId/lists`, (req, res) => {
+  app.post(`/:userId/lists`, (req, res) => {
     userId = req.params.userId;
 
     const sql = `insert into todolist (name, user_id) values('Newly created list to todo', ?)`;
@@ -73,7 +70,7 @@ const main = async () => {
   });
 
   // Delete a todo list by id
-  router.delete(`/:userId/lists/:listId`, (req, res) => {
+  app.delete(`/:userId/lists/:listId`, (req, res) => {
     userId = req.params.userId;
     listId = req.params.listId;
 
@@ -94,7 +91,7 @@ const main = async () => {
 
   // Add reminder to the list
   // TODO: add check if reminder exists or overwrite it
-  router.post(`/:userId/lists/:listId/reminders`, (req, res) => {
+  app.post(`/:userId/lists/:listId/reminders`, (req, res) => {
     listId = req.params.listId;
 
     const sql = `insert into listreminders (remind_at, list_id) values('2024-11-12 22:10:00', ?)`;
@@ -113,7 +110,7 @@ const main = async () => {
 
   // ---- ITEMS ----
   // Insert item(s) in todo list
-  router.post(`/:userId/lists/:listId/items`, (req, res) => {
+  app.post(`/:userId/lists/:listId/items`, (req, res) => {
     userId = req.params.userId;
     listId = req.params.listId;
 
@@ -132,8 +129,7 @@ const main = async () => {
   });
 
   // Delete item(s) from todo list
-  // TODO: fix foreign key
-  router.delete(`/:userId/lists/:listId/items/:itemId`, (req, res) => {
+  app.delete(`/:userId/lists/:listId/items/:itemId`, (req, res) => {
     itemId = req.params.itemId;
     listId = req.params.listId;
 
@@ -152,7 +148,7 @@ const main = async () => {
   });
 
   // TODO: Mark item as completed
-  router.patch(`/:userId/lists/:listId/items/:itemId`, (req, res) => {
+  app.patch(`/:userId/lists/:listId/items/:itemId`, (req, res) => {
     userId = req.params.userId;
     listId = req.params.listId;
     itemId = req.params.itemId;
@@ -162,7 +158,6 @@ const main = async () => {
 
   // Middleware
   app.use(express.json());
-  app.use('/', router);
 
   // Start the server
   app.listen(port, () => {

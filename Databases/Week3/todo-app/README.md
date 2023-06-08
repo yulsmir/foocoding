@@ -47,4 +47,4 @@ Functions implemented:
 4. To test requests for different lists, users, items in Postman got to  ```Params => Path Variables``` and change value of tested parameter: 
     - userId - 1 or 2 (only 2 users in db now)
     - listId - 1...4;
-    - itemId - 1...4.
+    - itemId - 1...35.

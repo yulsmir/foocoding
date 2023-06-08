@@ -11,8 +11,8 @@ const mysql = require('mysql2');
 // Create a MySQL connection pool
 const connection = mysql.createConnection({
   host: '127.0.0.1',
-  user: 'root',
-  password: process.env.DB_PASSWORD, // Insert your mysql root pwd here
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
   database: 'todo_app',
   rowsAsArray: true,
 });
@@ -152,6 +152,19 @@ const main = async () => {
     userId = req.params.userId;
     listId = req.params.listId;
     itemId = req.params.itemId;
+
+    connection.query(sql, [itemId, listId], (err, results) => {
+      if (err) {
+        res.status(404).json({ error: err });
+      } else {
+        res.status(200).json({
+          listId: listId,
+          results: `Item with id ${itemId} is deleted successfully`,
+        });
+      }
+    });
+
+    const sql = `delete from todoitem where id = ? and list_id = ?`;
 
     res.status(201).json({ result: 'Item is marked as completed' });
   });

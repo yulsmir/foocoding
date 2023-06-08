@@ -151,7 +151,7 @@ const main = async () => {
     listId = req.params.listId;
     itemId = req.params.itemId;
 
-    const sql = `insert into todoitem(completed) values(true) where id = ? and list_id = ?`;
+    const sql = `update todoitem set completed = true where id = ? and list_id = ?`;
     connection.query(sql, [itemId, listId], (err, results) => {
       if (err) {
         res.status(404).json({ error: err });

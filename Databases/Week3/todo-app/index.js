@@ -10,11 +10,10 @@ const mysql = require('mysql2');
 
 // Create a MySQL connection pool
 const connection = mysql.createConnection({
-  host: '127.0.0.1',
-  user: 'test',
-  password: 'testpassword',
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
   database: 'todo_app',
-  port: 3306,
   rowsAsArray: true,
 });
 
@@ -37,11 +36,7 @@ const main = async () => {
     const sql = 'select id, name from todolist where user_id = ?';
 
     connection.query(sql, [userId], (err, results) => {
-      if (err) {
-        res.status(404).json({ error: err });
-      } else {
-        res.status(200).json({ userId: userId, lists: results });
-      }
+      res.status(200).json({ userId: userId, lists: results });
     });
   });
 
@@ -53,11 +48,7 @@ const main = async () => {
     const sql = 'select id, name from todolist where user_id = ? and id = ?';
 
     connection.query(sql, [userId, listId], (err, results) => {
-      if (err) {
-        res.status(404).json({ error: err });
-      } else {
-        res.status(200).json({ userId: userId, listId: listId, results });
-      }
+      res.status(200).json({ userId: userId, listId: listId, results });
     });
   });
 
@@ -68,11 +59,7 @@ const main = async () => {
     const sql = `insert into todolist (name, user_id) values('Newly created list to todo', ?)`;
 
     connection.query(sql, [userId], (err, results) => {
-      if (err) {
-        res.status(404).json({ error: err });
-      } else {
-        res.status(200).json({ userId: userId, listId: listId, results });
-      }
+      res.status(200).json({ userId: userId, listId: listId, results });
     });
   });
 
@@ -84,15 +71,11 @@ const main = async () => {
     const sql = `delete from todolist where user_id = ? and id = ?`;
 
     connection.query(sql, [userId, listId], (err, results) => {
-      if (err) {
-        res.status(404).json({ error: err });
-      } else {
-        res.status(200).json({
-          userId: userId,
-          listId: listId,
-          results: `List with id ${listId} is deleted successfully`,
-        });
-      }
+      res.status(200).json({
+        userId: userId,
+        listId: listId,
+        results: `List with id ${listId} is deleted successfully`,
+      });
     });
   });
 
@@ -103,14 +86,10 @@ const main = async () => {
     const sql = `insert into listreminders (remind_at, list_id) values('2024-11-12 22:10:00', ?)`;
 
     connection.query(sql, [listId], (err, results) => {
-      if (err) {
-        res.status(404).json({ error: err });
-      } else {
-        res.status(200).json({
-          listId: listId,
-          results: `Reminder for list ${listId} is added successfully`,
-        });
-      }
+      res.status(200).json({
+        listId: listId,
+        results: `Reminder for list ${listId} is added successfully`,
+      });
     });
   });
 
@@ -123,14 +102,10 @@ const main = async () => {
     const sql = `insert into todoitem (name, list_id, completed) values('Buy something new', ?, 0)`;
 
     connection.query(sql, [listId], (err, results) => {
-      if (err) {
-        res.status(404).json({ error: err });
-      } else {
-        res.status(200).json({
-          listId: listId,
-          results: `Todoitem into list ${listId} is added successfully`,
-        });
-      }
+      res.status(200).json({
+        listId: listId,
+        results: `Todoitem into list ${listId} is added successfully`,
+      });
     });
   });
 
@@ -142,14 +117,10 @@ const main = async () => {
     const sql = `delete from todoitem where id = ? and list_id = ?`;
 
     connection.query(sql, [itemId, listId], (err, results) => {
-      if (err) {
-        res.status(404).json({ error: err });
-      } else {
-        res.status(200).json({
-          listId: listId,
-          results: `Item with id ${itemId} is deleted successfully`,
-        });
-      }
+      res.status(200).json({
+        listId: listId,
+        results: `Item with id ${itemId} is deleted successfully`,
+      });
     });
   });
 
@@ -160,19 +131,18 @@ const main = async () => {
 
     const sql = `update todoitem set completed = true where id = ? and list_id = ?`;
     connection.query(sql, [itemId, listId], (err, results) => {
-      if (err) {
-        res.status(404).json({ error: err });
-      } else {
-        res.status(200).json({
-          listId: listId,
-          results: `Item with id ${itemId} is marked completed`,
-        });
-      }
+      res.status(200).json({
+        listId: listId,
+        results: `Item with id ${itemId} is marked completed`,
+      });
     });
   });
 
   // Middleware
   app.use(express.json());
+  app.use((err, req, res, next) => {
+    res.status(500).json('Some error');
+  });
 
   // Start the server
   app.listen(port, () => {

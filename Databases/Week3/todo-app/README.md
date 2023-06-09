@@ -30,9 +30,9 @@ Functions implemented:
 5. Import ```todo_app.sql``` database or just run sql queries in mysql console to create a db. 
 6. Make sure your database is called ```todo_app```.
 7. To start server run any of the listed commands
-    - ```nodemon run```
-    - ```nodemon index.js```
+    - ```npm start```
     - ```node index.js```
+    - ```nodemon run```
 8. Open in browser ```localhost:3000``` or ```127.0.0.1:3000```
 
 ## Testing

@@ -24,6 +24,12 @@ const main = async () => {
   let itemId;
 
   // ---- LISTS ----
+
+  // Homepage
+  app.get('/', (req, res) => {
+    res.send('<h1>todoapp</h1>');
+  });
+
   // Get user's todo lists
   app.get(`/:userId/lists`, (req, res) => {
     userId = req.params.userId;

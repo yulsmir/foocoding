@@ -11,6 +11,7 @@ Functions implemented:
 ### Endpoints implemented
 | Description                                 | Method | URL  pattern                                             | Example to check                                     
 |-----------------------------------------|--------|---------------------------------------------------|----------------------------------------------------------------------------------------------|
+| Simple homepage                         | GET    | `http://localhost:3000` or `http://localhost:3000/` 
 | Get user's todo lists                   | GET    | `http://localhost:3000/:userId/lists`             | `http://localhost:3000/1/lists` |
 | Get user's todo list by ID              | GET    | `http://localhost:3000/:userId/lists/:listId`     | `http://localhost:3000/1/lists/1`|
 | Create a todo list                      | POST   | `http://localhost:3000/:userId/lists`             | `http://localhost:3000/1/lists`                 

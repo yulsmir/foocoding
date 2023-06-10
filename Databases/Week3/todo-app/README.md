@@ -19,7 +19,7 @@ Functions implemented:
 | Add reminder to the list                | POST   | `http://localhost:3000/:userId/lists/:listId/reminders` | http://localhost:3000/1/lists/1/reminders  | https://todoapptest.fly.dev/1/lists/3/reminders |
 | Insert item(s) in todo list             | POST  | `http://localhost:3000/:userId/lists/:listId/items` | http://localhost:3000/1/lists/1/items | https://todoapptest.fly.dev/1/lists/4/items
 | Delete item(s) from todo list             | DELETE  | `http://localhost:3000/:userId/lists/:listId/items/:itemId` | http://localhost:3000/1/lists/1/items/1 | https://todoapptest.fly.dev/1/lists/1/items/34/ 
-| Mark item as completed             | PATCH  | `http://localhost:3000/:userId/lists/:listId/items/:itemId` | http://localhost:3000/1/lists/1/items/1 | https://todoapptest.fly.dev/1/lists/items/2 |
+| Mark item as completed             | PATCH  | `http://localhost:3000/:userId/lists/:listId/items/:itemId` | http://localhost:3000/1/lists/1/items/1 | https://todoapptest.fly.dev/1/lists/items/2|
 
 
 ## Project setup
@@ -53,6 +53,6 @@ Functions implemented:
     - itemId - 1...35.
 
 ## Deployments
-- Database: https://todoapp-mysql-db.fly.dev/
+- Database: https://todoapp-mysql-db.fly.dev/ (private service, available only from fly.io account)
 - Database setup repo: https://github.com/yulsmir/todo-app-mysqldb-fly.io
 - App: https://todoapptest.fly.dev/

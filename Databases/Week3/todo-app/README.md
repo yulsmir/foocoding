@@ -52,4 +52,5 @@ Functions implemented:
 
 ## Deployments
 - Database: https://todoapp-mysql-db.fly.dev/
+- Database setup repo: https://github.com/yulsmir/todo-app-mysqldb-fly.io
 - App: https://todoapptest.fly.dev/

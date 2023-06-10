@@ -49,3 +49,7 @@ Functions implemented:
     - userId - 1 or 2 (only 2 users in db now)
     - listId - 1...4;
     - itemId - 1...35.
+
+## Deployments
+- Database: https://todoapp-mysql-db.fly.dev/
+- App: https://todoapptest.fly.dev/

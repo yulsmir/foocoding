@@ -13,7 +13,7 @@ const mysql = require('mysql2');
 const connection = mysql.createConnection({
   // For test locally
   // host: '127.0.0.1',
-  host: '2a09:8280:1::5b:292b',
+  host: process.env.MYSQL_HOST,
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASSWORD,
   database: 'todo_app',

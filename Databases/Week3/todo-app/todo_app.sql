@@ -152,3 +152,10 @@ insert into todoitem (name, list_id) values
   ('Dry fruits', 4),
   ('Play with a cat', 4)
 ;
+
+-- add unique constraint to tagsitems
+alter table tagsitems
+add constraint unique_tagsitems unique(item_id, tag_id);
+
+-- test constraint
+insert into tagsitems (item_id, tag_id) values(2, 3);

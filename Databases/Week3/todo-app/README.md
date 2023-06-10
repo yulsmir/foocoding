@@ -25,16 +25,17 @@ Functions implemented:
 1. Clone repo
 2. Navigate to ```Databases/Week3/todo-app```
 3. Run ```npm install``` to install dependencies
-4. Navigate to ```index.js``` and inside ```const connection``` change
-    - ```user``` to your app user name
-    - ```password``` to your app user password
-5. Import ```todo_app.sql``` database or just run sql queries in mysql console to create a db. 
-6. Make sure your database is called ```todo_app```.
-7. To start server run any of the listed commands
+4. Make a copy of ```.env.sample``` and rename it as ```.env```.
+5. Inside ```.env```:
+    - put your database user name into MYSQL_USER and
+    - put your database user password into MYSQL_PASSWORD and
+6. Import ```todo_app.sql``` database or just run sql queries in mysql console to create a db. 
+7. Make sure your database is called ```todo_app```.
+8. To start server run any of the listed commands
     - ```npm start```
     - ```node index.js```
     - ```nodemon run```
-8. Open in browser ```localhost:3000``` or ```127.0.0.1:3000```
+9. Open in browser ```localhost:3000``` or ```127.0.0.1:3000```
 
 ## Testing
 1. Check urls from endpoints table and response results in browser devtools response for get requests.

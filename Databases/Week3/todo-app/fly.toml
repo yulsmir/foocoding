@@ -12,3 +12,7 @@ primary_region = "cdg"
   auto_stop_machines = true
   auto_start_machines = true
   min_machines_running = 0
+
+[env]
+  MYSQL_HOST="todoapp-mysql-db.internal"
+  MYSQL_DATABASE = "todo_app"

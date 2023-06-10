@@ -20,23 +20,7 @@ const connection = mysql.createConnection({
   rowsAsArray: true,
 });
 
-// // Setup databse from sql dump file
-// const getSqlDump = (path) => {
-//   return readFileSync(path, 'utf-8');
-// };
-
-// const preparedDb = getSqlDump('./todo_app.sql');
-
-// // Prepare db
-// connection.query(preparedDb, (err, res) => {
-//   if (err) {
-//     console.error(err);
-//   }
-//   console.log('Database set up completed');
-// });
-
 // Main app
-// const main = async () => {
 let userId;
 let listId;
 let itemId;
@@ -199,6 +183,3 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
-// };
-
-// main();

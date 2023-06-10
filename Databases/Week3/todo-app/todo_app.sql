@@ -159,3 +159,22 @@ add constraint unique_tagsitems unique(item_id, tag_id);
 
 -- test constraint
 insert into tagsitems (item_id, tag_id) values(2, 3);
+
+-- for mysql5.7
+-- add on delete cascade for tagsitems
+alter table tagsitems
+drop foreign key tagsitems_ibfk_1;
+
+alter table tagsitems
+add constraint tagsitems_ibfk_1
+foreign key(item_id) references todoitem(id)
+on delete cascade;
+
+-- add on delete cascade for todoitem
+alter table todoitem
+drop foreign key todoitem_ibfk_1;
+
+alter table todoitem 
+add constraint todoitem_ifbk_1
+foreign key(list_id) references todolist(id)
+on delete cascade;

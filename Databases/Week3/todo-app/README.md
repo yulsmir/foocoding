@@ -11,15 +11,15 @@ Functions implemented:
 ### Endpoints implemented
 | Description                                 | Method | URL  pattern                                             | Example to check                                     
 |-----------------------------------------|--------|---------------------------------------------------|----------------------------------------------------------------------------------------------|
-| Simple homepage                         | GET    | `http://localhost:3000` or `http://localhost:3000/` 
-| Get user's todo lists                   | GET    | `http://localhost:3000/:userId/lists`             | `http://localhost:3000/1/lists` |
-| Get user's todo list by ID              | GET    | `http://localhost:3000/:userId/lists/:listId`     | `http://localhost:3000/1/lists/1`|
-| Create a todo list                      | POST   | `http://localhost:3000/:userId/lists`             | `http://localhost:3000/1/lists`                 
-| Delete a todo list                      | DELETE | `http://localhost:3000/:userId/lists/:listId`     | `http://localhost:3000/1/lists/1`  |
-| Add reminder to the list                | POST   | `http://localhost:3000/:userId/lists/:listId/reminders` | `http://localhost:3000/1/lists/1/reminders` 
-| Insert item(s) in todo list             | POST  | `http://localhost:3000/:userId/lists/:listId/items` | `http://localhost:3000/1/lists/1/items`|
-| Delete item(s) from todo list             | DELETE  | `http://localhost:3000/:userId/lists/:listId/items/:itemId` | `http://localhost:3000/1/lists/1/items/1`|
-| Mark item as completed             | PATCH  | `http://localhost:3000/:userId/lists/:listId/items/:itemId` | `http://localhost:3000/1/lists/1/items/1`|
+| Simple homepage                         | GET    | `http://localhost:3000` or `http://localhost:3000/` | http://localhost:3000/ or http://localhost:3000/
+| Get user's todo lists                   | GET    | `http://localhost:3000/:userId/lists`             | http://localhost:3000/1/lists |
+| Get user's todo list by ID              | GET    | `http://localhost:3000/:userId/lists/:listId`     | http://localhost:3000/1/lists/1|
+| Create a todo list                      | POST   | `http://localhost:3000/:userId/lists`             | http://localhost:3000/1/lists                 
+| Delete a todo list                      | DELETE | `http://localhost:3000/:userId/lists/:listId`     | http://localhost:3000/1/lists/1  |
+| Add reminder to the list                | POST   | `http://localhost:3000/:userId/lists/:listId/reminders` | http://localhost:3000/1/lists/1/reminders 
+| Insert item(s) in todo list             | POST  | `http://localhost:3000/:userId/lists/:listId/items` | http://localhost:3000/1/lists/1/items|
+| Delete item(s) from todo list             | DELETE  | `http://localhost:3000/:userId/lists/:listId/items/:itemId` | http://localhost:3000/1/lists/1/items/1|
+| Mark item as completed             | PATCH  | `http://localhost:3000/:userId/lists/:listId/items/:itemId` | http://localhost:3000/1/lists/1/items/1|
 
 ## Project setup
 1. Clone repo

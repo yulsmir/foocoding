@@ -83,7 +83,7 @@ app.post('/:userId/lists', async (req, res) => {
 
   const results = await getData(res, statement, [userId]);
   const listId = results.insertId;
-  res.status(200).json({ userId: userId, listId: listId, results });
+  res.status(201).json({ userId: userId, listId: listId, results });
 });
 
 // Delete a todo list by id
@@ -93,7 +93,7 @@ app.delete('/:userId/lists/:listId', async (req, res) => {
   const statement = `DELETE FROM todolist WHERE user_id = ? AND id = ?`;
 
   await getData(res, statement, [userId, listId]);
-  res.status(200).json({
+  res.status(204).json({
     userId: userId,
     listId: listId,
     results: `List with id ${listId} is deleted successfully`,
@@ -106,7 +106,7 @@ app.post('/:userId/lists/:listId/reminders', async (req, res) => {
   const statement = `INSERT INTO listreminders (remind_at, list_id) VALUES ('2024-11-12 22:10:00', ?)`;
 
   await getData(res, statement, [listId]);
-  res.status(200).json({
+  res.status(201).json({
     listId: listId,
     results: `Reminder for list ${listId} is added successfully`,
   });
@@ -115,12 +115,11 @@ app.post('/:userId/lists/:listId/reminders', async (req, res) => {
 // ---- ITEMS ----
 // Insert item(s) in todo list
 app.post('/:userId/lists/:listId/items', async (req, res) => {
-  const userId = req.params.userId;
   const listId = req.params.listId;
   const statement = `INSERT INTO todoitem (name, list_id, completed) VALUES ('Buy something new', ?, 0)`;
 
   await getData(res, statement, [listId]);
-  res.status(200).json({
+  res.status(201).json({
     listId: listId,
     results: `Todoitem into list ${listId} is added successfully`,
   });
@@ -133,7 +132,7 @@ app.delete('/:userId/lists/:listId/items/:itemId', async (req, res) => {
   const statement = `DELETE FROM todoitem WHERE id = ? AND list_id = ?`;
 
   await getData(res, statement, [itemId, listId]);
-  res.status(200).json({
+  res.status(204).json({
     listId: listId,
     results: `Item with id ${itemId} is deleted successfully`,
   });
@@ -146,7 +145,7 @@ app.patch('/:userId/lists/:listId/items/:itemId', async (req, res) => {
   const statement = `UPDATE todoitem SET completed = true WHERE id = ? AND list_id = ?`;
 
   await getData(res, statement, [itemId, listId]);
-  res.status(200).json({
+  res.status(201).json({
     listId: listId,
     results: `Item with id ${itemId} is marked completed`,
   });
@@ -154,7 +153,7 @@ app.patch('/:userId/lists/:listId/items/:itemId', async (req, res) => {
 
 // Middleware
 app.use(express.json());
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   res.status(500).json('Some error');
 });
 

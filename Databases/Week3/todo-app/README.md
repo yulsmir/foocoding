@@ -1,4 +1,7 @@
 # Todo app
+### Requirements
+- Node.js 18.16 LTS
+- MySQL 5.7
 ### Short description
 Functions implemented:
 - Insert item(s) in ToDo list
@@ -20,7 +23,6 @@ Functions implemented:
 | Insert item(s) in todo list             | POST  | `http://localhost:3000/:userId/lists/:listId/items` | http://localhost:3000/1/lists/1/items | https://todoapptest.fly.dev/1/lists/4/items
 | Delete item(s) from todo list             | DELETE  | `http://localhost:3000/:userId/lists/:listId/items/:itemId` | http://localhost:3000/1/lists/1/items/1 | https://todoapptest.fly.dev/1/lists/1/items/34/ 
 | Mark item as completed             | PATCH  | `http://localhost:3000/:userId/lists/:listId/items/:itemId` | http://localhost:3000/1/lists/1/items/1 | https://todoapptest.fly.dev/1/lists/items/2|
-
 
 ## Project setup
 1. Clone repo

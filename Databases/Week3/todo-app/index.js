@@ -125,6 +125,21 @@ app.post('/:userId/lists/:listId/items', async (req, res) => {
   });
 });
 
+// Get all item(s) from todo list
+app.get('/:userId/lists/:listId/items', async (req, res) => {
+  const listId = req.params.listId;
+  const userId = req.params.userId;
+
+  const statement = `SELECT * from todoitem where list_id = ? `;
+
+  const results = await getData(res, statement, [listId]);
+  res.status(200).json({
+    userId: userId,
+    listId: listId,
+    items: results,
+  });
+});
+
 // Delete item(s) from todo list
 app.delete('/:userId/lists/:listId/items/:itemId', async (req, res) => {
   const itemId = req.params.itemId;

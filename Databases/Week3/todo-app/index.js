@@ -2,7 +2,6 @@
 
 // Password secure usage
 require('dotenv').config();
-// const { readFileSync } = require('fs');
 
 const express = require('express');
 const port = 3000;
@@ -18,13 +17,7 @@ const connection = mysql.createConnection({
   rowsAsArray: true,
 });
 
-// Main app
-let userId;
-let listId;
-let itemId;
-
 // ---- LISTS ----
-
 // Homepage
 app.get('/', (req, res) => {
   res.send('<h1>todoapp</h1>');
@@ -32,7 +25,7 @@ app.get('/', (req, res) => {
 
 // Get user's todo lists
 app.get(`/:userId/lists`, (req, res) => {
-  userId = req.params.userId;
+  const userId = req.params.userId;
 
   const sql = 'select id, name from todolist where user_id = ?';
 
@@ -47,8 +40,8 @@ app.get(`/:userId/lists`, (req, res) => {
 
 // Get user's todo list by id
 app.get(`/:userId/lists/:listId`, (req, res) => {
-  userId = req.params.userId;
-  listId = req.params.listId;
+  const userId = req.params.userId;
+  const listId = req.params.listId;
 
   const sql = 'select id, name from todolist where user_id = ? and id = ?';
 
@@ -63,7 +56,7 @@ app.get(`/:userId/lists/:listId`, (req, res) => {
 
 // Create a todo list
 app.post(`/:userId/lists`, (req, res) => {
-  userId = req.params.userId;
+  const userId = req.params.userId;
 
   const sql = `insert into todolist (name, user_id) values('Newly created list to todo', ?)`;
 
@@ -78,8 +71,8 @@ app.post(`/:userId/lists`, (req, res) => {
 
 // Delete a todo list by id
 app.delete(`/:userId/lists/:listId`, (req, res) => {
-  userId = req.params.userId;
-  listId = req.params.listId;
+  const userId = req.params.userId;
+  const listId = req.params.listId;
 
   const sql = `delete from todolist where user_id = ? and id = ?`;
 
@@ -98,7 +91,7 @@ app.delete(`/:userId/lists/:listId`, (req, res) => {
 
 // Add reminder to the list
 app.post(`/:userId/lists/:listId/reminders`, (req, res) => {
-  listId = req.params.listId;
+  const listId = req.params.listId;
 
   const sql = `insert into listreminders (remind_at, list_id) values('2024-11-12 22:10:00', ?)`;
 
@@ -117,8 +110,8 @@ app.post(`/:userId/lists/:listId/reminders`, (req, res) => {
 // ---- ITEMS ----
 // Insert item(s) in todo list
 app.post(`/:userId/lists/:listId/items`, (req, res) => {
-  userId = req.params.userId;
-  listId = req.params.listId;
+  const userId = req.params.userId;
+  const listId = req.params.listId;
 
   const sql = `insert into todoitem (name, list_id, completed) values('Buy something new', ?, 0)`;
 
@@ -136,8 +129,8 @@ app.post(`/:userId/lists/:listId/items`, (req, res) => {
 
 // Delete item(s) from todo list
 app.delete(`/:userId/lists/:listId/items/:itemId`, (req, res) => {
-  itemId = req.params.itemId;
-  listId = req.params.listId;
+  const itemId = req.params.itemId;
+  const listId = req.params.listId;
 
   const sql = `delete from todoitem where id = ? and list_id = ?`;
 
@@ -155,8 +148,8 @@ app.delete(`/:userId/lists/:listId/items/:itemId`, (req, res) => {
 
 // Mark item as completed
 app.patch(`/:userId/lists/:listId/items/:itemId`, (req, res) => {
-  listId = req.params.listId;
-  itemId = req.params.itemId;
+  const listId = req.params.listId;
+  const itemId = req.params.itemId;
 
   const sql = `update todoitem set completed = true where id = ? and list_id = ?`;
   connection.query(sql, [itemId, listId], (err, results) => {

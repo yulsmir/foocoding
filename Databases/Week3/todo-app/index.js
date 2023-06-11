@@ -23,8 +23,8 @@ async function prepareConnection() {
 
 // Execute a prepared statement
 async function executeStatement(connection, statement, params) {
-  const preparedStmt = await connection.prepare(statement);
-  const [results] = await preparedStmt.execute(params);
+  const preparedStatement = await connection.prepare(statement);
+  const [results] = await preparedStatement.execute(params);
   return results;
 }
 

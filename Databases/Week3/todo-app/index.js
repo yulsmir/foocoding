@@ -58,7 +58,7 @@ app.get('/', (req, res) => {
 });
 
 // Get user's todo lists
-app.get('/:userId/lists', async (req, res) => {
+app.get('/user/:userId/lists', async (req, res) => {
   const userId = req.params.userId;
   const statement = 'SELECT id, name FROM todolist WHERE user_id = ?';
 
@@ -67,7 +67,7 @@ app.get('/:userId/lists', async (req, res) => {
 });
 
 // Get user's todo list by id
-app.get('/:userId/lists/:listId', async (req, res) => {
+app.get('/user/:userId/lists/:listId', async (req, res) => {
   const userId = req.params.userId;
   const listId = req.params.listId;
   const statement = 'SELECT id, name FROM todolist WHERE user_id = ? AND id = ?';
@@ -77,7 +77,7 @@ app.get('/:userId/lists/:listId', async (req, res) => {
 });
 
 // Create a todo list
-app.post('/:userId/lists', async (req, res) => {
+app.post('/user/:userId/lists', async (req, res) => {
   const userId = req.params.userId;
   const statement = `INSERT INTO todolist (name, user_id) VALUES ('Newly created list to todo', ?)`;
 
@@ -87,7 +87,7 @@ app.post('/:userId/lists', async (req, res) => {
 });
 
 // Delete a todo list by id
-app.delete('/:userId/lists/:listId', async (req, res) => {
+app.delete('/user/:userId/lists/:listId', async (req, res) => {
   const userId = req.params.userId;
   const listId = req.params.listId;
   const statement = `DELETE FROM todolist WHERE user_id = ? AND id = ?`;
@@ -101,7 +101,7 @@ app.delete('/:userId/lists/:listId', async (req, res) => {
 });
 
 // Add reminder to the list
-app.post('/:userId/lists/:listId/reminders', async (req, res) => {
+app.post('/user/:userId/lists/:listId/reminders', async (req, res) => {
   const listId = req.params.listId;
   const statement = `INSERT INTO listreminders (remind_at, list_id) VALUES ('2024-11-12 22:10:00', ?)`;
 
@@ -114,7 +114,7 @@ app.post('/:userId/lists/:listId/reminders', async (req, res) => {
 
 // ---- ITEMS ----
 // Insert item(s) in todo list
-app.post('/:userId/lists/:listId/items', async (req, res) => {
+app.post('/user/:userId/lists/:listId/items', async (req, res) => {
   const listId = req.params.listId;
   const statement = `INSERT INTO todoitem (name, list_id, completed) VALUES ('Buy something new', ?, 0)`;
 
@@ -126,7 +126,7 @@ app.post('/:userId/lists/:listId/items', async (req, res) => {
 });
 
 // Get all item(s) from todo list
-app.get('/:userId/lists/:listId/items', async (req, res) => {
+app.get('/user/:userId/lists/:listId/items', async (req, res) => {
   const listId = req.params.listId;
   const userId = req.params.userId;
 
@@ -141,7 +141,7 @@ app.get('/:userId/lists/:listId/items', async (req, res) => {
 });
 
 // Delete item(s) from todo list
-app.delete('/:userId/lists/:listId/items/:itemId', async (req, res) => {
+app.delete('/user/:userId/lists/:listId/items/:itemId', async (req, res) => {
   const itemId = req.params.itemId;
   const listId = req.params.listId;
   const statement = `DELETE FROM todoitem WHERE id = ? AND list_id = ?`;
@@ -154,7 +154,7 @@ app.delete('/:userId/lists/:listId/items/:itemId', async (req, res) => {
 });
 
 // Mark item as completed
-app.patch('/:userId/lists/:listId/items/:itemId', async (req, res) => {
+app.patch('/user/:userId/lists/:listId/items/:itemId', async (req, res) => {
   const listId = req.params.listId;
   const itemId = req.params.itemId;
   const statement = `UPDATE todoitem SET completed = true WHERE id = ? AND list_id = ?`;

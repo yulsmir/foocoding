@@ -2,8 +2,6 @@ import http from 'node:http';
 import { URLPattern } from 'urlpattern-polyfill';
 import { requestHandler } from './utils/index.js';
 
-globalThis.URLPattern = URLPattern;
-
 const HOST = process.env.HOST ?? 'localhost';
 const PORT = process.env.PORT ?? 3000;
 

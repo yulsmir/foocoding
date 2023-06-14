@@ -52,7 +52,7 @@ export const requestHandler = async (request, response) => {
           response.setHeader('Content-Type', 'application/json');
 
           try {
-            await writeJsonFile('./data/users.json', users); // Write the updated users array to the file
+            await writeJsonFile('./data/users.json', users);
             response.statusCode = StatusCodes.CREATED;
             response.end(JSON.stringify({ user: newUser }));
           } catch (err) {
@@ -108,25 +108,47 @@ export const requestHandler = async (request, response) => {
       const body = await getRequestData(request);
       const postsPattern = new URLPattern({ pathname: '/posts/:id' });
       const postsEndpoint = postsPattern.exec(fullEndpoint);
-      const id = postsEndpoint?.pathname?.groups?.id;
+      const id = postsPattern?.pathname?.groups?.id;
+      const postsData = await readJsonFile('./data/posts.json');
+      const posts = JSON.parse(postsData);
+      const post = posts.find((post) => post.id === parseInt(id));
 
       // console.log(`dealing with posts - id: ${postsEndpoint.pathname.groups.id}`);
 
       switch (method) {
         case 'POST':
-          response.statusCode = StatusCodes.CREATED;
-          data.status = ReasonPhrases.CREATED;
-          data.message = 'New post added';
+          const newPost = {
+            post_id: 1234567,
+            user_id: 2,
+            post_text:
+              'Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.\n\nSed ante. Vivamus tortor. Duis mattis egestas metus.',
+            post_date: '2/6/2021',
+            likes: 1111,
+            comments: 1111,
+            hashtags: '#followme',
+            location: 'Fanhu',
+            post_image: 'https://robohash.org/rerumautea.png?size=50x50&set=set1',
+          };
+
+          posts.push(newPost);
+          response.setHeader('Content-Type', 'application/json');
+
+          try {
+            await writeJsonFile('./data/posts.json', posts);
+            response.statusCode = StatusCodes.CREATED;
+            response.end(JSON.stringify({ posts: newPost }));
+          } catch (err) {
+            response.statusCode = StatusCodes.INTERNAL_SERVER_ERROR;
+            response.end(JSON.stringify({ error: 'Failed to add new user' }));
+          }
           break;
 
         case 'GET':
           if (id) {
             response.statusCode = StatusCodes.OK;
-            data.status = ReasonPhrases.OK;
-            data.message = `Getting post by id ${id}`;
+            response.setHeader('Content-Type', 'application/json');
+            response.end(JSON.stringify(post));
           } else {
-            const postsData = await readJsonFile('./data/posts.json');
-            const posts = JSON.parse(postsData);
             response.statusCode = StatusCodes.OK;
             response.setHeader('Content-Type', 'application/json');
             response.end(JSON.stringify({ posts }));
@@ -162,31 +184,4 @@ export const requestHandler = async (request, response) => {
       break;
     }
   }
-
-  // TODO: move all to separate functions
-  // TODO: add dataCheckFunction before any other actions
-  // switch (path) {
-  //   case 'users': {
-  //     if (method === 'GET') {
-  //       await handleGetUser(request, response);
-  //     } else if (method === 'POST') {
-  //       await handlePostUser(request, response);
-  //     } else if
-  //     break;
-  //   }
-
-  //   case 'posts': {
-  //     if (method === 'GET') {
-  //       await handleGetPost(request, response);
-  //     } else if (method === 'POST') {
-  //       await handlePostPost(request, response);
-  //     }
-  //     break;
-  //   }
-  // }
-
-  // response.statusCode = StatusCodes.OK;
-
-  // response.write(JSON.stringify(data));
-  // response.end();
 };

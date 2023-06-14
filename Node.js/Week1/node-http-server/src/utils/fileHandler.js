@@ -4,8 +4,8 @@ import { readFile } from 'node:fs/promises';
 
 export const readJsonFile = async (filePath) => {
   try {
-    const contents = await readFile(filePath, { encoding: 'utf8' });
-    console.log(contents);
+    return await readFile(filePath, { encoding: 'utf8' });
+    // console.log(contents);
   } catch (err) {
     console.error(err.message);
   }
@@ -31,6 +31,6 @@ export const writeJsonFile = async (filePath, data) => {
 };
 
 // TEST
-const result = await readJsonFile('./data/users.json');
+// export const usersData = await readJsonFile('./data/users.json');
 // const write = await writeJsonFile('./data/users.json', 'test'); // TODO: fix so it appends, not rewrites
 // const writeFile = console.log(write);

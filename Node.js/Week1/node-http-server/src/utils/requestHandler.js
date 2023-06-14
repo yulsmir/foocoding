@@ -21,18 +21,22 @@ export const requestHandler = async (request, response) => {
   console.log(url);
   const path = url.split('/')[1];
 
-  const data = {
+  let data = {
     status: ReasonPhrases.OK,
     message: 'success',
   };
 
+  response.setHeader('Content-Type', 'application/json');
+
   switch (path) {
     case 'users': {
       const body = await getRequestData(request);
-
       const usersPattern = new URLPattern({ pathname: '/users/:id' });
       const usersEndpoint = usersPattern.exec(fullEndpoint);
       const id = usersEndpoint?.pathname?.groups?.id;
+      const usersData = await readJsonFile('./data/users.json');
+      const users = JSON.parse(usersData);
+      const user = users.find((user) => user.id === parseInt(id));
 
       switch (method) {
         case 'POST':
@@ -44,11 +48,12 @@ export const requestHandler = async (request, response) => {
         case 'GET':
           if (id) {
             response.statusCode = StatusCodes.OK;
-            data.status = ReasonPhrases.OK;
-            data.message = `Getting user by id ${id}`;
+            response.setHeader('Content-Type', 'application/json');
+            response.end(JSON.stringify(user));
           } else {
-            data.status = ReasonPhrases.OK;
-            data.message = `Getting ALL Users`;
+            response.statusCode = StatusCodes.OK;
+            response.setHeader('Content-Type', 'application/json');
+            response.end(JSON.stringify({ users }));
           }
           break;
 
@@ -104,8 +109,11 @@ export const requestHandler = async (request, response) => {
             data.status = ReasonPhrases.OK;
             data.message = `Getting post by id ${id}`;
           } else {
-            data.status = ReasonPhrases.OK;
-            data.message = `Getting ALL Posts`;
+            const postsData = await readJsonFile('./data/posts.json');
+            const posts = JSON.parse(postsData);
+            response.statusCode = StatusCodes.OK;
+            response.setHeader('Content-Type', 'application/json');
+            response.end(JSON.stringify({ posts }));
           }
           break;
 
@@ -161,9 +169,8 @@ export const requestHandler = async (request, response) => {
   //   }
   // }
 
-  response.setHeader('Content-Type', 'application/json');
   // response.statusCode = StatusCodes.OK;
 
-  response.write(JSON.stringify(data));
-  response.end();
+  // response.write(JSON.stringify(data));
+  // response.end();
 };

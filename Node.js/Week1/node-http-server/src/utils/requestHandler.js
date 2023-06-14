@@ -2,7 +2,7 @@
 
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
-import { getRequestData } from './getRequestData.js';
+// import { getRequestData } from './getRequestData.js';
 import { readJsonFile, writeJsonFile } from './fileHandler.js';
 import { IncomingMessage, ServerResponse } from 'http';
 
@@ -30,15 +30,28 @@ export const requestHandler = async (request, response) => {
 
   switch (path) {
     case 'users': {
-      const body = await getRequestData(request);
+      // const body = await getRequestData(request);
       const usersPattern = new URLPattern({ pathname: '/users/:id' });
       const usersEndpoint = usersPattern.exec(fullEndpoint);
       const id = usersEndpoint?.pathname?.groups?.id;
       const usersData = await readJsonFile('./data/users.json');
       const users = JSON.parse(usersData);
-      const user = users.find((user) => user.id === parseInt(id));
+      const user = users?.find((user) => user.id === parseInt(id));
+      const searchIndex = users?.findIndex((user) => user.id === parseInt(id));
 
       switch (method) {
+        case 'GET':
+          if (id) {
+            response.statusCode = StatusCodes.OK;
+            response.setHeader('Content-Type', 'application/json');
+            response.end(JSON.stringify(user));
+          } else {
+            response.statusCode = StatusCodes.OK;
+            response.setHeader('Content-Type', 'application/json');
+            response.end(JSON.stringify({ users }));
+          }
+          break;
+
         case 'POST':
           const newUser = {
             id: 123456789,
@@ -61,23 +74,13 @@ export const requestHandler = async (request, response) => {
           }
           break;
 
-        case 'GET':
-          if (id) {
-            response.statusCode = StatusCodes.OK;
-            response.setHeader('Content-Type', 'application/json');
-            response.end(JSON.stringify(user));
-          } else {
-            response.statusCode = StatusCodes.OK;
-            response.setHeader('Content-Type', 'application/json');
-            response.end(JSON.stringify({ users }));
-          }
-          break;
-
         case 'PATCH':
           if (id) {
-            response.statusCode = StatusCodes.CREATED;
-            data.status = ReasonPhrases.CREATED;
-            data.message = `Editing user by id ${id}`;
+            // TODO: add patch user
+            response.statusCode = StatusCodes.OK;
+            response.setHeader('Content-Type', 'application/json');
+            data.message = `User with id ${id} was successfully edited`;
+            response.end(JSON.stringify({ data }));
           } else {
             data.status = ReasonPhrases.NOT_FOUND;
             response.statusCode = StatusCodes.NOT_FOUND;
@@ -87,9 +90,11 @@ export const requestHandler = async (request, response) => {
 
         case 'DELETE':
           if (id) {
-            response.statusCode = StatusCodes.NO_CONTENT;
-            data.status = ReasonPhrases.NO_CONTENT;
-            data.message = `Deleted user by id ${id}`;
+            // TODO: add filter or slice of users without id
+            response.statusCode = StatusCodes.OK;
+            response.setHeader('Content-Type', 'application/json');
+            data.message = `User with id ${id} was successfully deleted`;
+            response.end(JSON.stringify({ data }));
           } else {
             data.status = ReasonPhrases.BAD_REQUEST;
             response.statusCode = StatusCodes.BAD_REQUEST;
@@ -105,7 +110,7 @@ export const requestHandler = async (request, response) => {
     }
 
     case 'posts': {
-      const body = await getRequestData(request);
+      // const body = await getRequestData(request);
       const postsPattern = new URLPattern({ pathname: '/posts/:id' });
       const postsEndpoint = postsPattern.exec(fullEndpoint);
       const id = postsPattern?.pathname?.groups?.id;
@@ -120,8 +125,7 @@ export const requestHandler = async (request, response) => {
           const newPost = {
             post_id: 1234567,
             user_id: 2,
-            post_text:
-              'Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.\n\nSed ante. Vivamus tortor. Duis mattis egestas metus.',
+            post_text: 'Test test test test',
             post_date: '2/6/2021',
             likes: 1111,
             comments: 1111,

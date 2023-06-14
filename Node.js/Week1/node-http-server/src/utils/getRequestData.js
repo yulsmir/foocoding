@@ -5,7 +5,7 @@
  * @returns {Promise<Object.<string, any>>}
  */
 export const getRequestData = (request) => {
-  return new Promise((sucess, reject) => {
+  return new Promise((success, reject) => {
     const body = [];
 
     request
@@ -16,7 +16,7 @@ export const getRequestData = (request) => {
         body.push(chunk);
       })
       .on('end', () => {
-        sucess(Buffer.concat(body).toString());
+        success(Buffer.concat(body).toString());
       });
   });
 };

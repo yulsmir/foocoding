@@ -2,38 +2,45 @@
 
 import fs from 'fs';
 
-const readJsonFile = (filePath) => {
-  return new Promise((resolve, reject) => {
-    fs.readFile(filePath, 'utf8', (err, data) => {
-      if (err) {
+export const readJsonFile = async (filePath) => {
+  return new Promise((success, reject) => {
+    const body = [];
+    const fileStream = fs.createReadStream(filePath, 'utf8');
+
+    fileStream
+      .on('error', (err) => {
         reject(err);
-      } else {
-        try {
-          const jsonData = JSON.parse(data);
-          resolve(jsonData);
-        } catch (error) {
-          reject(error);
-        }
-      }
-    });
+      })
+      .on('data', (chunk) => {
+        body.push(chunk);
+      })
+      .on('end', () => {
+        const jsonData = JSON.parse(body.join(''));
+        success(jsonData);
+      });
   });
 };
 
-const writeJsonFile = (filePath, data) => {
-  return new Promise((resolve, reject) => {
+export const writeJsonFile = async (filePath, data) => {
+  return new Promise((success, reject) => {
+    const body = [];
+    const fileStream = fs.createWriteStream(filePath, 'utf8');
+
     const jsonData = JSON.stringify(data, null, 2);
 
-    fs.writeFile(filePath, jsonData, (err) => {
-      if (err) {
+    fileStream.write(jsonData);
+
+    fileStream
+      .on('error', (err) => {
         reject(err);
-      } else {
-        resolve();
-      }
-    });
+      })
+      .on('end', () => {
+        success();
+      });
   });
 };
 
-module.exports = {
-  readJsonFile,
-  writeJsonFile,
-};
+// TEST
+const result = await readJsonFile('./data/users.json');
+const write = await writeJsonFile('./data/users.json', 'test');
+const writeFile = console.log(write);

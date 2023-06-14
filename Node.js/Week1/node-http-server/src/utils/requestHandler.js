@@ -12,6 +12,7 @@ import { IncomingMessage, ServerResponse } from 'http';
  * @param {IncomingMessage} request
  * @param {ServerResponse} response
  */
+
 export const requestHandler = async (request, response) => {
   const { headers, method, url } = request;
   const { address, port } = request.socket.server.address();
@@ -31,11 +32,7 @@ export const requestHandler = async (request, response) => {
 
       const usersPattern = new URLPattern({ pathname: '/users/:id' });
       const usersEndpoint = usersPattern.exec(fullEndpoint);
-
-      const idIdentifier = '/users/';
-      const idIndex = url.indexOf(idIdentifier);
-      const idStartIndex = idIndex + idIdentifier.length;
-      const id = parseInt(url.slice(idStartIndex));
+      const id = usersEndpoint?.pathname?.groups?.id;
 
       switch (method) {
         case 'POST':
@@ -89,13 +86,9 @@ export const requestHandler = async (request, response) => {
       const body = await getRequestData(request);
       const postsPattern = new URLPattern({ pathname: '/posts/:id' });
       const postsEndpoint = postsPattern.exec(fullEndpoint);
-      // const id = postsEndpoint?.pathname?.groups?.id;
+      const id = postsEndpoint?.pathname?.groups?.id;
 
-      // console.log(`dealing with posts - id: ${postsEndpoint.pathname.groups.id}`);
-      const idIdentifier = '/posts/';
-      const idIndex = url.indexOf(idIdentifier);
-      const idStartIndex = idIndex + idIdentifier.length;
-      const id = parseInt(url.slice(idStartIndex));
+      console.log(`dealing with posts - id: ${postsEndpoint.pathname.groups.id}`);
 
       switch (method) {
         case 'POST':
@@ -144,6 +137,27 @@ export const requestHandler = async (request, response) => {
       break;
     }
   }
+
+  // TODO: switch path
+  // switch (path) {
+  //   case 'users': {
+  //     if (method === 'GET') {
+  //       await handleGetUser(request, response);
+  //     } else if (method === 'POST') {
+  //       await handlePostUser(request, response);
+  //     }
+  //     break;
+  //   }
+
+  //   case 'posts': {
+  //     if (method === 'GET') {
+  //       await handleGetPost(request, response);
+  //     } else if (method === 'POST') {
+  //       await handlePostPost(request, response);
+  //     }
+  //     break;
+  //   }
+  // }
 
   response.setHeader('Content-Type', 'application/json');
   // response.statusCode = StatusCodes.OK;

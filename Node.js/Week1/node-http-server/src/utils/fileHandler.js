@@ -1,6 +1,7 @@
 'use strict';
 
 import fs from 'fs';
+// import { open } from 'node:fs/promises';
 
 export const readJsonFile = async (filePath) => {
   return new Promise((success, reject) => {
@@ -23,7 +24,7 @@ export const readJsonFile = async (filePath) => {
 
 export const writeJsonFile = async (filePath, data) => {
   return new Promise((success, reject) => {
-    const body = [];
+    // const body = [];
     const fileStream = fs.createWriteStream(filePath, 'utf8');
 
     const jsonData = JSON.stringify(data, null, 2);

@@ -22,7 +22,7 @@ export const requestHandler = async (request, response) => {
   const path = url.split('/')[1];
 
   const data = {
-    error: ReasonPhrases.OK,
+    status: ReasonPhrases.OK,
     message: 'success',
   };
 
@@ -37,17 +37,17 @@ export const requestHandler = async (request, response) => {
       switch (method) {
         case 'POST':
           response.statusCode = StatusCodes.CREATED;
-          data.error = ReasonPhrases.CREATED;
+          data.status = ReasonPhrases.CREATED;
           data.message = 'New user added';
           break;
 
         case 'GET':
           if (id) {
             response.statusCode = StatusCodes.OK;
-            data.error = ReasonPhrases.OK;
+            data.status = ReasonPhrases.OK;
             data.message = `Getting user by id ${id}`;
           } else {
-            data.error = ReasonPhrases.OK;
+            data.status = ReasonPhrases.OK;
             data.message = `Getting ALL Users`;
           }
           break;
@@ -55,10 +55,10 @@ export const requestHandler = async (request, response) => {
         case 'PATCH':
           if (id) {
             response.statusCode = StatusCodes.CREATED;
-            data.error = ReasonPhrases.CREATED;
+            data.status = ReasonPhrases.CREATED;
             data.message = `Editing user by id ${id}`;
           } else {
-            data.error = ReasonPhrases.NOT_FOUND;
+            data.status = ReasonPhrases.NOT_FOUND;
             response.statusCode = StatusCodes.NOT_FOUND;
             data.message = `No user id is specified`;
           }
@@ -66,11 +66,12 @@ export const requestHandler = async (request, response) => {
 
         case 'DELETE':
           if (id) {
-            response.statusCode = StatusCodes.ACCEPTED;
-            data.error = ReasonPhrases.ACCEPTED;
+            response.statusCode = StatusCodes.NO_CONTENT;
+            data.status = ReasonPhrases.NO_CONTENT;
             data.message = `Deleted user by id ${id}`;
           } else {
-            data.error = ReasonPhrases.response.statusCode = StatusCodes.BAD_REQUEST;
+            data.status = ReasonPhrases.BAD_REQUEST;
+            response.statusCode = StatusCodes.BAD_REQUEST;
             data.message = `No user id is specified`;
           }
           break;
@@ -88,22 +89,22 @@ export const requestHandler = async (request, response) => {
       const postsEndpoint = postsPattern.exec(fullEndpoint);
       const id = postsEndpoint?.pathname?.groups?.id;
 
-      console.log(`dealing with posts - id: ${postsEndpoint.pathname.groups.id}`);
+      // console.log(`dealing with posts - id: ${postsEndpoint.pathname.groups.id}`);
 
       switch (method) {
         case 'POST':
           response.statusCode = StatusCodes.CREATED;
-          data.error = ReasonPhrases.CREATED;
+          data.status = ReasonPhrases.CREATED;
           data.message = 'New post added';
           break;
 
         case 'GET':
           if (id) {
             response.statusCode = StatusCodes.OK;
-            data.error = ReasonPhrases.OK;
+            data.status = ReasonPhrases.OK;
             data.message = `Getting post by id ${id}`;
           } else {
-            data.error = ReasonPhrases.OK;
+            data.status = ReasonPhrases.OK;
             data.message = `Getting ALL Posts`;
           }
           break;
@@ -111,10 +112,10 @@ export const requestHandler = async (request, response) => {
         case 'PATCH':
           if (id) {
             response.statusCode = StatusCodes.CREATED;
-            data.error = ReasonPhrases.CREATED;
+            data.status = ReasonPhrases.CREATED;
             data.message = `Editing post by id ${id}`;
           } else {
-            data.error = ReasonPhrases.NOT_FOUND;
+            data.status = ReasonPhrases.NOT_FOUND;
             response.statusCode = StatusCodes.NOT_FOUND;
             data.message = `No post id is specified`;
           }
@@ -122,11 +123,11 @@ export const requestHandler = async (request, response) => {
 
         case 'DELETE':
           if (id) {
-            response.statusCode = StatusCodes.ACCEPTED;
-            data.error = ReasonPhrases.ACCEPTED;
+            response.statusCode = StatusCodes.NO_CONTENT;
+            data.status = ReasonPhrases.NO_CONTENT;
             data.message = `Deleted post by id ${id}`;
           } else {
-            data.error = ReasonPhrases.response.statusCode = StatusCodes.BAD_REQUEST;
+            data.status = ReasonPhrases.response.statusCode = StatusCodes.NOT_FOUND;
             data.message = `No post id is specified`;
           }
           break;
@@ -138,14 +139,15 @@ export const requestHandler = async (request, response) => {
     }
   }
 
-  // TODO: switch path
+  // TODO: move all to separate functions
+  // TODO: add dataCheckFunction before any other actions
   // switch (path) {
   //   case 'users': {
   //     if (method === 'GET') {
   //       await handleGetUser(request, response);
   //     } else if (method === 'POST') {
   //       await handlePostUser(request, response);
-  //     }
+  //     } else if
   //     break;
   //   }
 

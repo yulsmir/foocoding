@@ -40,9 +40,26 @@ export const requestHandler = async (request, response) => {
 
       switch (method) {
         case 'POST':
-          response.statusCode = StatusCodes.CREATED;
-          data.status = ReasonPhrases.CREATED;
-          data.message = 'New user added';
+          const newUser = {
+            id: 123456789,
+            first_name: 'User',
+            last_name: 'Test',
+            email: 'test.user@email.com',
+            gender: 'Female',
+          };
+
+          users.push(newUser);
+
+          try {
+            await writeJsonFile('./data/users.json', users); // Write the updated users array to the file
+            response.statusCode = StatusCodes.CREATED;
+            response.setHeader('Content-Type', 'application/json');
+            response.end(JSON.stringify({ user: newUser }));
+          } catch (err) {
+            response.statusCode = StatusCodes.INTERNAL_SERVER_ERROR;
+            response.setHeader('Content-Type', 'application/json');
+            response.end(JSON.stringify({ error: 'Failed to add new user' }));
+          }
           break;
 
         case 'GET':

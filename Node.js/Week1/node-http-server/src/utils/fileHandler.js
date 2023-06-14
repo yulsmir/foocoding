@@ -41,6 +41,6 @@ export const writeJsonFile = async (filePath, data) => {
 };
 
 // TEST
-const result = await readJsonFile('./data/users.json');
-const write = await writeJsonFile('./data/users.json', 'test');
-const writeFile = console.log(write);
+// const result = await readJsonFile('./data/users.json');
+// const write = await writeJsonFile('./data/users.json', 'test'); // TODO: fix so it appends, not rewrites
+// const writeFile = console.log(write);

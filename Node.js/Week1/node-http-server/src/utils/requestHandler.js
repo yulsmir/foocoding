@@ -17,24 +17,52 @@ export const requestHandler = async (request, response) => {
   console.log(url);
   const path = url.split('/')[1];
 
+  const data = {
+    error: ReasonPhrases.OK,
+    message: 'success',
+  };
+
   switch (path) {
     case 'users': {
       const usersPattern = new URLPattern({ pathname: '/users/:id' });
       const usersEndpoint = usersPattern.exec(fullEndpoint);
       const id = usersEndpoint?.pathname?.groups?.id;
+      const body = await getRequestData(request);
 
       switch (method) {
         case 'POST':
-          const body = await getRequestData(request);
-          console.log('Add new user: ', body);
+          console.log('Add new user: ');
+          response.statusCode = StatusCodes.CREATED;
+          data.error = ReasonPhrases.CREATED;
+          data.message = 'New user added';
           break;
 
         case 'GET':
-          if (id) {
-            console.log(`Getting An User By Id: ${id}`);
-          } else {
-            console.log('Getting All Users');
-          }
+          console.log(id);
+          console.log(`Getting A User By Id: ${id}`);
+          response.statusCode = StatusCodes.OK;
+          data.error = ReasonPhrases.OK;
+          data.message = `Getting user by ${id}`;
+          break;
+
+        case 'PATCH':
+          console.log(id);
+          data.error = ReasonPhrases.OK;
+          response.statusCode = StatusCodes.CREATED;
+          data.message = `Editing user by ${id}`;
+          console.log(`Editing A User By Id: ${id}`);
+          // console.log('No id selected');
+          break;
+
+        case 'DELETE':
+          console.log(id);
+          data.error = ReasonPhrases.GONE;
+          response.statusCode = StatusCodes.NO_CONTENT;
+          console.log(`Deleting A User By Id: ${id}`);
+          // console.log('No id selected');
+          // }
+          break;
+
         default:
           break;
       }
@@ -54,13 +82,8 @@ export const requestHandler = async (request, response) => {
     }
   }
 
-  const data = {
-    error: ReasonPhrases.OK,
-    message: 'sucess',
-  };
-
   response.setHeader('Content-Type', 'application/json');
-  response.statusCode = StatusCodes.OK;
+  // response.statusCode = StatusCodes.OK;
 
   response.write(JSON.stringify(data));
   response.end();

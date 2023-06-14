@@ -87,42 +87,53 @@ export const requestHandler = async (request, response) => {
       const body = await getRequestData(request);
       const postsPattern = new URLPattern({ pathname: '/posts/:id' });
       const postsEndpoint = postsPattern.exec(fullEndpoint);
-      const id = postsEndpoint?.pathname?.groups?.id;
+      // const id = postsEndpoint?.pathname?.groups?.id;
 
-      console.log(`dealing with posts - id: ${postsEndpoint.pathname.groups.id}`);
+      // console.log(`dealing with posts - id: ${postsEndpoint.pathname.groups.id}`);
+      const idIdentifier = '/posts/';
+      const idIndex = url.indexOf(idIdentifier);
+      const idStartIndex = idIndex + idIdentifier.length;
+      const id = parseInt(url.slice(idStartIndex));
 
       switch (method) {
         case 'POST':
-          console.log('Add new user: ');
           response.statusCode = StatusCodes.CREATED;
           data.error = ReasonPhrases.CREATED;
-          data.message = 'New user added';
+          data.message = 'New post added';
           break;
 
         case 'GET':
-          console.log(id);
-          console.log(`Getting A User By Id: ${id}`);
-          response.statusCode = StatusCodes.OK;
-          data.error = ReasonPhrases.OK;
-          data.message = `Getting user by ${id}`;
+          if (id) {
+            response.statusCode = StatusCodes.OK;
+            data.error = ReasonPhrases.OK;
+            data.message = `Getting post by id ${id}`;
+          } else {
+            data.error = ReasonPhrases.OK;
+            data.message = `Getting ALL Posts`;
+          }
           break;
 
         case 'PATCH':
-          console.log(id);
-          data.error = ReasonPhrases.OK;
-          response.statusCode = StatusCodes.CREATED;
-          data.message = `Editing user by ${id}`;
-          console.log(`Editing A User By Id: ${id}`);
-          // console.log('No id selected');
+          if (id) {
+            response.statusCode = StatusCodes.CREATED;
+            data.error = ReasonPhrases.CREATED;
+            data.message = `Editing post by id ${id}`;
+          } else {
+            data.error = ReasonPhrases.NOT_FOUND;
+            response.statusCode = StatusCodes.NOT_FOUND;
+            data.message = `No post id is specified`;
+          }
           break;
 
         case 'DELETE':
-          console.log(id);
-          data.error = ReasonPhrases.GONE;
-          response.statusCode = StatusCodes.NO_CONTENT;
-          console.log(`Deleting A User By Id: ${id}`);
-          // console.log('No id selected');
-          // }
+          if (id) {
+            response.statusCode = StatusCodes.ACCEPTED;
+            data.error = ReasonPhrases.ACCEPTED;
+            data.message = `Deleted post by id ${id}`;
+          } else {
+            data.error = ReasonPhrases.response.statusCode = StatusCodes.BAD_REQUEST;
+            data.message = `No post id is specified`;
+          }
           break;
 
         default:

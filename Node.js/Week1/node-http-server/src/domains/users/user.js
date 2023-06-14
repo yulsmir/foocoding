@@ -1,3 +1,4 @@
+'use strict';
 export class User {
   constructor(id, firstName, lastName, email, gender) {
     this.id = id;

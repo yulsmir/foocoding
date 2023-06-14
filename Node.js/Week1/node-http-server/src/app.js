@@ -1,3 +1,5 @@
+'use strict';
+
 import http from 'node:http';
 import { URLPattern } from 'urlpattern-polyfill';
 import { requestHandler } from './utils/index.js';

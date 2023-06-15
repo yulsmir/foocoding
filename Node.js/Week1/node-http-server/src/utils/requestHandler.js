@@ -18,7 +18,6 @@ export const requestHandler = async (request, response) => {
   const { address, port } = request.socket.server.address();
   const fullEndpoint = `http://${address}:${port}${url}`;
 
-  console.log(url);
   const path = url.split('/')[1];
 
   let data = {
@@ -43,11 +42,9 @@ export const requestHandler = async (request, response) => {
         case 'GET':
           if (id) {
             response.statusCode = StatusCodes.OK;
-            response.setHeader('Content-Type', 'application/json');
             response.end(JSON.stringify(user));
           } else {
             response.statusCode = StatusCodes.OK;
-            response.setHeader('Content-Type', 'application/json');
             response.end(JSON.stringify({ users }));
           }
           break;
@@ -76,11 +73,22 @@ export const requestHandler = async (request, response) => {
 
         case 'PATCH':
           if (id) {
-            // TODO: add patch user
-            response.statusCode = StatusCodes.OK;
-            response.setHeader('Content-Type', 'application/json');
-            data.message = `User with id ${id} was successfully edited`;
-            response.end(JSON.stringify({ data }));
+            if (searchIndex !== users.length) {
+              const userToUpDate = users[searchIndex];
+              // Params to update
+              // userToUpDate.first_name = 'New first name';
+              // userToUpDate.last_name = 'Some crazy last name';
+
+              userToUpDate.email = 'somenew@email.com';
+              try {
+                await writeJsonFile('./data/users.json', users);
+                response.statusCode = StatusCodes.CREATED;
+                response.end(JSON.stringify(userToUpDate));
+              } catch (err) {
+                response.statusCode = StatusCodes.INTERNAL_SERVER_ERROR;
+                response.end(JSON.stringify({ error: 'Failed to update user' }));
+              }
+            }
           } else {
             data.status = ReasonPhrases.NOT_FOUND;
             response.statusCode = StatusCodes.NOT_FOUND;
@@ -188,4 +196,9 @@ export const requestHandler = async (request, response) => {
       break;
     }
   }
+
+  // response.statusCode = StatusCodes.OK;
+
+  // response.write(JSON.stringify(data));
+  // response.end();
 };

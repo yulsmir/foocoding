@@ -83,7 +83,7 @@ export const requestHandler = async (request, response) => {
               try {
                 await writeJsonFile('./data/users.json', users);
                 response.statusCode = StatusCodes.CREATED;
-                response.end(JSON.stringify(userToUpDate));
+                response.end(JSON.stringify({ updatedUser: userToUpDate }));
               } catch (err) {
                 response.statusCode = StatusCodes.INTERNAL_SERVER_ERROR;
                 response.end(JSON.stringify({ error: 'Failed to update user' }));
@@ -97,12 +97,18 @@ export const requestHandler = async (request, response) => {
           break;
 
         case 'DELETE':
-          if (id) {
-            // TODO: add filter or slice of users without id
-            response.statusCode = StatusCodes.OK;
-            response.setHeader('Content-Type', 'application/json');
-            data.message = `User with id ${id} was successfully deleted`;
-            response.end(JSON.stringify({ data }));
+          const filteredUsers = users.filter((user) => user.id !== parseInt(id));
+          if (filteredUsers.length < users.length) {
+            try {
+              await writeJsonFile('./data/users.json', filteredUsers);
+              response.statusCode = StatusCodes.NO_CONTENT;
+              data.status = ReasonPhrases.NO_CONTENT;
+              data.message = `User with id ${id} is deleted successfully`;
+              response.end(JSON.stringify({ data }));
+            } catch (err) {
+              response.statusCode = StatusCodes.INTERNAL_SERVER_ERROR;
+              response.end(JSON.stringify({ error: 'Failed to delete user' }));
+            }
           } else {
             data.status = ReasonPhrases.BAD_REQUEST;
             response.statusCode = StatusCodes.BAD_REQUEST;
@@ -121,25 +127,34 @@ export const requestHandler = async (request, response) => {
       // const body = await getRequestData(request);
       const postsPattern = new URLPattern({ pathname: '/posts/:id' });
       const postsEndpoint = postsPattern.exec(fullEndpoint);
-      const id = postsPattern?.pathname?.groups?.id;
+      const id = postsEndpoint?.pathname?.groups?.id;
       const postsData = await readJsonFile('./data/posts.json');
       const posts = JSON.parse(postsData);
-      const post = posts.find((post) => post.id === parseInt(id));
-
-      // console.log(`dealing with posts - id: ${postsEndpoint.pathname.groups.id}`);
+      const post = posts?.find((post) => post.post_id === parseInt(id));
+      const searchIndex = posts?.findIndex((post) => post.post_id === parseInt(id));
 
       switch (method) {
+        case 'GET':
+          if (id) {
+            response.statusCode = StatusCodes.OK;
+            response.end(JSON.stringify(post));
+          } else {
+            response.statusCode = StatusCodes.OK;
+            response.end(JSON.stringify({ posts }));
+          }
+          break;
+
         case 'POST':
           const newPost = {
-            post_id: 1234567,
-            user_id: 2,
-            post_text: 'Test test test test',
-            post_date: '2/6/2021',
-            likes: 1111,
-            comments: 1111,
+            post_id: 23456789,
+            user_id: 11,
+            post_text: 'Phasellus in felis. ',
+            post_date: '4/20/2021',
+            likes: 11111,
+            comments: 111,
             hashtags: '#followme',
-            location: 'Fanhu',
-            post_image: 'https://robohash.org/rerumautea.png?size=50x50&set=set1',
+            location: 'Milan',
+            post_image: 'https://robohash.org/ipsumullamaut.png?size=50x50&set=set1',
           };
 
           posts.push(newPost);
@@ -148,30 +163,30 @@ export const requestHandler = async (request, response) => {
           try {
             await writeJsonFile('./data/posts.json', posts);
             response.statusCode = StatusCodes.CREATED;
-            response.end(JSON.stringify({ posts: newPost }));
+            response.end(JSON.stringify({ updatedPost: newPost }));
           } catch (err) {
             response.statusCode = StatusCodes.INTERNAL_SERVER_ERROR;
-            response.end(JSON.stringify({ error: 'Failed to add new user' }));
-          }
-          break;
-
-        case 'GET':
-          if (id) {
-            response.statusCode = StatusCodes.OK;
-            response.setHeader('Content-Type', 'application/json');
-            response.end(JSON.stringify(post));
-          } else {
-            response.statusCode = StatusCodes.OK;
-            response.setHeader('Content-Type', 'application/json');
-            response.end(JSON.stringify({ posts }));
+            response.end(JSON.stringify({ error: 'Failed to add new post' }));
           }
           break;
 
         case 'PATCH':
           if (id) {
-            response.statusCode = StatusCodes.CREATED;
-            data.status = ReasonPhrases.CREATED;
-            data.message = `Editing post by id ${id}`;
+            if (searchIndex !== posts.length) {
+              const postToUpdate = post;
+              // Params to update
+              postToUpdate.location = 'Some crazy  new location';
+              // postToUpdate.post_text = 'Some new text';
+              // postToUpdate.hashtags = '#newhashtag';
+              try {
+                await writeJsonFile('./data/posts.json', posts);
+                response.statusCode = StatusCodes.CREATED;
+                response.end(JSON.stringify(postToUpdate));
+              } catch (err) {
+                response.statusCode = StatusCodes.INTERNAL_SERVER_ERROR;
+                response.end(JSON.stringify({ error: 'Failed to update post' }));
+              }
+            }
           } else {
             data.status = ReasonPhrases.NOT_FOUND;
             response.statusCode = StatusCodes.NOT_FOUND;
@@ -180,12 +195,21 @@ export const requestHandler = async (request, response) => {
           break;
 
         case 'DELETE':
-          if (id) {
-            response.statusCode = StatusCodes.NO_CONTENT;
-            data.status = ReasonPhrases.NO_CONTENT;
-            data.message = `Deleted post by id ${id}`;
+          const filteredPosts = posts.filter((post) => post.id !== parseInt(id));
+          if (filteredPosts.length < posts.length) {
+            try {
+              await writeJsonFile('./data/posts.json', filteredUPosts);
+              response.statusCode = StatusCodes.NO_CONTENT;
+              data.status = ReasonPhrases.NO_CONTENT;
+              data.message = `Post with id ${id} is deleted successfully`;
+              response.end(JSON.stringify({ data }));
+            } catch (err) {
+              response.statusCode = StatusCodes.INTERNAL_SERVER_ERROR;
+              response.end(JSON.stringify({ error: 'Failed to delete post' }));
+            }
           } else {
-            data.status = ReasonPhrases.response.statusCode = StatusCodes.NOT_FOUND;
+            data.status = ReasonPhrases.BAD_REQUEST;
+            response.statusCode = StatusCodes.BAD_REQUEST;
             data.message = `No post id is specified`;
           }
           break;
@@ -193,6 +217,7 @@ export const requestHandler = async (request, response) => {
         default:
           break;
       }
+
       break;
     }
   }

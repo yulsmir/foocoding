@@ -12,7 +12,6 @@ import { IncomingMessage, ServerResponse } from 'http';
  * @param {IncomingMessage} request
  * @param {ServerResponse} response
  */
-
 export const requestHandler = async (request, response) => {
   const { headers, method, url } = request;
   const { address, port } = request.socket.server.address();

@@ -1,6 +1,6 @@
 'use strict';
 
-import { readFile, writeFile, appendFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 
 export const readJsonFile = async (filePath) => {
   try {
@@ -18,8 +18,3 @@ export const writeJsonFile = async (filePath, data) => {
     console.error(err.message);
   }
 };
-
-// TEST
-// export const usersData = await readJsonFile('./data/users.json');
-// const write = await writeJsonFile('./data/users.json', 'test'); // TODO: fix so it appends, not rewrites
-// console.log(write);

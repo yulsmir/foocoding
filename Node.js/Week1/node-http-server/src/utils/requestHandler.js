@@ -221,9 +221,4 @@ export const requestHandler = async (request, response) => {
       break;
     }
   }
-
-  // response.statusCode = StatusCodes.OK;
-
-  // response.write(JSON.stringify(data));
-  // response.end();
 };

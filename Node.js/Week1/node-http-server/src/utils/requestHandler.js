@@ -5,6 +5,7 @@ import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 // import { getRequestData } from './getRequestData.js';
 import { readJsonFile, writeJsonFile } from './fileHandler.js';
 import { IncomingMessage, ServerResponse } from 'http';
+import { generateNewUserId, generateNewPostId } from './newIdHandler.js';
 
 /**
  * This function manage a HTTP request
@@ -12,6 +13,7 @@ import { IncomingMessage, ServerResponse } from 'http';
  * @param {IncomingMessage} request
  * @param {ServerResponse} response
  */
+
 export const requestHandler = async (request, response) => {
   const { headers, method, url } = request;
   const { address, port } = request.socket.server.address();
@@ -50,7 +52,7 @@ export const requestHandler = async (request, response) => {
 
         case 'POST':
           const newUser = {
-            id: 123456789,
+            id: generateNewUserId(users),
             first_name: 'User',
             last_name: 'Test',
             email: 'test.user@email.com',
@@ -145,7 +147,7 @@ export const requestHandler = async (request, response) => {
 
         case 'POST':
           const newPost = {
-            post_id: 23456789,
+            post_id: generateNewPostId(posts),
             user_id: 11,
             post_text: 'Phasellus in felis. ',
             post_date: '4/20/2021',

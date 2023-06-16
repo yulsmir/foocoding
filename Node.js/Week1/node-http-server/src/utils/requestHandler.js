@@ -39,11 +39,17 @@ export const requestHandler = async (request, response) => {
       case 'GET':
         if (id) {
           const user = await getUserById(id);
-          response.statusCode = StatusCodes.OK;
-          response.end(JSON.stringify(user));
+          if (user) {
+            response.statusCode = StatusCodes.OK;
+            response.end(JSON.stringify(user));
+          } else {
+            response.statusCode = StatusCodes.NOT_FOUND;
+            data.message = `No user found with id ${id}`;
+            response.end(JSON.stringify({ data }));
+          }
         } else {
           const users = await getUsers();
-          response.statusCode = StatusCodes.OK;
+          response.statusCode = StatusCodes.NOT_FOUND;
           response.end(JSON.stringify({ users }));
         }
         break;

@@ -22,8 +22,8 @@ export const requestHandler = async (request, response) => {
   const path = url.split('/')[1];
 
   let data = {
-    status: ReasonPhrases.OK,
-    message: 'success',
+    status: ReasonPhrases.NOT_FOUND,
+    message: 'error',
   };
 
   response.setHeader('Content-Type', 'application/json');
@@ -85,8 +85,8 @@ export const requestHandler = async (request, response) => {
             response.end(JSON.stringify({ updatedUser: userToUpdate }));
           } else {
             data.status = ReasonPhrases.NOT_FOUND;
-            response.statusCode = StatusCodes.NOT_FOUND;
             data.message = `No user found with id ${id}`;
+            response.statusCode = StatusCodes.NOT_FOUND;
             response.end(JSON.stringify({ data }));
           }
         } else {
@@ -104,20 +104,20 @@ export const requestHandler = async (request, response) => {
           if (userToDelete) {
             await deleteUser(id);
 
-            response.statusCode = StatusCodes.NO_CONTENT;
             data.status = ReasonPhrases.NO_CONTENT;
             data.message = `User with id ${id} is deleted successfully`;
+            response.statusCode = StatusCodes.NO_CONTENT;
             response.end(JSON.stringify({ data }));
           } else {
             data.status = ReasonPhrases.NOT_FOUND;
-            response.statusCode = StatusCodes.NOT_FOUND;
             data.message = `No user found with id ${id}`;
+            response.statusCode = StatusCodes.NOT_FOUND;
             response.end(JSON.stringify({ data }));
           }
         } else {
           data.status = ReasonPhrases.BAD_REQUEST;
-          response.statusCode = StatusCodes.BAD_REQUEST;
           data.message = `No user id is specified`;
+          response.statusCode = StatusCodes.BAD_REQUEST;
           response.end(JSON.stringify({ data }));
         }
         break;
@@ -142,9 +142,9 @@ export const requestHandler = async (request, response) => {
             response.statusCode = StatusCodes.OK;
             response.end(JSON.stringify(post));
           } else {
-            response.statusCode = StatusCodes.NOT_FOUND;
             data.status = StatusCodes.NOT_FOUND;
             data.message = `No post found with id ${id}`;
+            response.statusCode = StatusCodes.NOT_FOUND;
             response.end(JSON.stringify({ data }));
           }
         } else {
@@ -189,14 +189,14 @@ export const requestHandler = async (request, response) => {
             response.end(JSON.stringify({ updatedPost: postToUpdate }));
           } else {
             data.status = ReasonPhrases.NOT_FOUND;
-            response.statusCode = StatusCodes.NOT_FOUND;
             data.message = `No post found with id ${id}`;
+            response.statusCode = StatusCodes.NOT_FOUND;
             response.end(JSON.stringify({ data }));
           }
         } else {
           data.status = ReasonPhrases.NOT_FOUND;
-          response.statusCode = StatusCodes.NOT_FOUND;
           data.message = `No post id is specified`;
+          response.statusCode = StatusCodes.NOT_FOUND;
           response.end(JSON.stringify({ data }));
         }
         break;
@@ -209,18 +209,16 @@ export const requestHandler = async (request, response) => {
             await deletePost(id);
 
             response.statusCode = StatusCodes.NO_CONTENT;
-            data.status = ReasonPhrases.NO_CONTENT;
-            data.message = `Post with id ${id} is deleted successfully`;
             response.end(JSON.stringify({ data }));
           } else {
             data.status = ReasonPhrases.NOT_FOUND;
-            response.statusCode = StatusCodes.NOT_FOUND;
             data.message = `No post found with id ${id}`;
+            response.statusCode = StatusCodes.NOT_FOUND;
             response.end(JSON.stringify({ data }));
           }
         } else {
-          data.status = ReasonPhrases.BAD_REQUEST;
           response.statusCode = StatusCodes.BAD_REQUEST;
+          data.status = ReasonPhrases.BAD_REQUEST;
           data.message = `No post id is specified`;
           response.end(JSON.stringify({ data }));
         }

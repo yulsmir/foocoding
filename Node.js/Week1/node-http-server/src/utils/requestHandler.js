@@ -34,8 +34,6 @@ export const requestHandler = async (request, response) => {
     const id = usersEndpoint?.pathname?.groups?.id;
     const usersData = await readJsonFile('./data/users.json');
     const users = JSON.parse(usersData);
-    const user = users?.find((user) => user.id === parseInt(id));
-    const searchIndex = users?.findIndex((user) => user.id === parseInt(id));
 
     switch (method) {
       case 'GET':
@@ -129,8 +127,6 @@ export const requestHandler = async (request, response) => {
     const id = postsEndpoint?.pathname?.groups?.id;
     const postsData = await readJsonFile('./data/posts.json');
     const posts = JSON.parse(postsData);
-    const post = posts?.find((post) => post.post_id === parseInt(id));
-    const searchIndex = posts?.findIndex((post) => post.post_id === parseInt(id));
 
     switch (method) {
       case 'GET':

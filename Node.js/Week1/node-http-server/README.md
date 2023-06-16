@@ -1,0 +1,6 @@
+### TASK
+
+Using the code that we developed in yesterday's session and that is in the repository https://github.com/aagamezl/node-http-server, we must perform the following tasks:
+1. Complete all CRUD operations for users and posts, that is, you need to create the POST, GET (all and by id), PATCH, DELETE methods. In the repository there is a directory called data that contains 2 files users.json and posts.json, you must read the content of these files to the memory of your programs and use them with the data source, for example the GET(all) method of users should return all the users in the users.json file, the DELETE (by ID) method should remove the record with the specified ID from the data they hold in memory.
+2. Make sure to always return the correct HTTP status code for each operation; in this link you can find a list of the most used ones and their description: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status.
+3. After completing task 1, they should save back to the corresponding file (users.json and posts.json) any changes made to the data in memory, for example a PATCH update or a DELETE delete and make sure to always return the correct values after some modification.

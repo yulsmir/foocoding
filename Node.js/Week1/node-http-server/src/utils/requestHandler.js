@@ -177,7 +177,7 @@ export const requestHandler = async (request, response) => {
             await updatePost(postToUpdate);
 
             response.statusCode = StatusCodes.CREATED;
-            response.end(JSON.stringify(postToUpdate));
+            response.end(JSON.stringify({ updatedPost: postToUpdate }));
           } else {
             data.status = ReasonPhrases.NOT_FOUND;
             response.statusCode = StatusCodes.NOT_FOUND;

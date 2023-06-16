@@ -138,8 +138,15 @@ export const requestHandler = async (request, response) => {
       case 'GET':
         if (id) {
           const post = await getPostById(id);
-          response.statusCode = StatusCodes.OK;
-          response.end(JSON.stringify(post));
+          if (post) {
+            response.statusCode = StatusCodes.OK;
+            response.end(JSON.stringify(post));
+          } else {
+            response.statusCode = StatusCodes.NOT_FOUND;
+            data.status = StatusCodes.NOT_FOUND;
+            data.message = `No post found with id ${id}`;
+            response.end(JSON.stringify({ data }));
+          }
         } else {
           const posts = await getPosts();
           response.statusCode = StatusCodes.OK;

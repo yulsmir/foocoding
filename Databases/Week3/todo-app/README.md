@@ -22,7 +22,7 @@ Functions implemented:
 | Add reminder to the list                | POST   | `http://localhost:3000/user/:userId/lists/:listId/reminders` | http://localhost:3000/user/1/lists/1/reminders  | https://todoapptest.fly.dev/user/1/lists/3/reminders |
 | Insert item(s) in todo list             | POST  | `http://localhost:3000/user/:userId/lists/:listId/items` | http://localhost:3000/user/1/lists/1/items | https://todoapptest.fly.dev/user/1/lists/4/items
 | Get item(s) from a todo list            | GET  | `http://localhost:3000/user/:userId/lists/:listId/items` | http://localhost:3000/user/1/lists/1/items | https://todoapptest.fly.dev/user/1/lists/4/items
-| Delete item(s) from todo list           | DELETE  | `http://localhost:3000/user/:userId/lists/:listId/items/:itemId` | http://localhost:3000/user/1/lists/1/items/1 | https://todoapptest.fly.dev/user/1/lists/1/items/34/ 
+| Delete item(s) from todo list           | DELETE  | `http://localhost:3000/user/:userId/lists/:listId/items/:itemId` | http://localhost:3000/user/1/lists/1/items/1 | https://todoapptest.fly.dev/user/1/lists/1/items/18/ 
 | Mark item as completed                  | PATCH  | `http://localhost:3000/user/:userId/lists/:listId/items/:itemId` | http://localhost:3000/user/1/lists/1/items/1 | https://todoapptest.fly.dev/user/1/lists/items/2|
 
 ## Project setup

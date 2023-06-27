@@ -1,176 +1,244 @@
 'use strict';
 
+import { ReasonPhrases, StatusCodes } from 'http-status-codes';
+import { IncomingMessage, ServerResponse } from 'http';
+// import { URLPattern } from 'url-pattern';
+
+import { readJsonFile, writeJsonFile } from './fileHandler.js';
 import { generateNewUserId, generateNewPostId } from './newIdHandler.js';
 import { getUsers, getUserById, addUser, updateUser, deleteUser } from '../user/userHandler.js';
 import { getPosts, getPostById, addPost, updatePost, deletePost } from '../post/postHandler.js';
 
 /**
- * This function handles the CLI request
+ * This function manages a HTTP request
  *
- * @param {object} options
+ * @param {IncomingMessage} request
+ * @param {ServerResponse} response
  */
-export const requestHandler = async (options) => {
-  const { resource, method, id } = options;
+export const requestHandler = async (request, response) => {
+  const { headers, method, url } = request;
+  const { address, port } = request.socket.server.address();
+  const fullEndpoint = `http://${address}:${port}${url}`;
+  const path = url.split('/')[1];
 
-  const newPost = {
-    post_id: generateNewPostId(),
-    user_id: 11,
-    post_text: 'Phasellus in felis.',
-    post_date: '4/20/2021',
-    likes: 11111,
-    comments: 111,
-    hashtags: '#followme',
-    location: 'Milan',
-    post_image: 'https://robohash.org/ipsumullamaut.png?size=50x50&set=set1',
+  let data = {
+    status: ReasonPhrases.NOT_FOUND,
+    message: 'error',
   };
 
-  const newUser = {
-    id: generateNewUserId(),
-    first_name: 'User',
-    last_name: 'Test',
-    email: 'test@example.com',
-    gender: 'Female',
+  response.setHeader('Content-Type', 'application/json');
+
+  const handleUserRequest = async () => {
+    const usersPattern = new URLPattern({ pathname: '/users/:id' });
+    const usersEndpoint = usersPattern.exec(fullEndpoint);
+    const id = usersEndpoint?.pathname?.groups?.id;
+    const usersData = await readJsonFile('./data/users.json');
+    const users = JSON.parse(usersData);
+
+    switch (method) {
+      case 'GET':
+        if (id) {
+          const user = await getUserById(id);
+          if (user) {
+            response.statusCode = StatusCodes.OK;
+            response.end(JSON.stringify(user));
+          } else {
+            response.statusCode = StatusCodes.NOT_FOUND;
+            data.message = `No user found with id ${id}`;
+            response.end(JSON.stringify({ data }));
+          }
+        } else {
+          const users = await getUsers();
+          response.statusCode = StatusCodes.NOT_FOUND;
+          response.end(JSON.stringify({ users }));
+        }
+        break;
+
+      case 'POST':
+        const newUser = {
+          id: generateNewUserId(users),
+          first_name: 'User',
+          last_name: 'Test',
+          email: 'test.user@email.com',
+          gender: 'Female',
+        };
+
+        await addUser(newUser);
+
+        response.statusCode = StatusCodes.CREATED;
+        response.end(JSON.stringify({ user: newUser }));
+        break;
+
+      case 'PATCH':
+        if (id) {
+          const userToUpdate = await getUserById(id);
+
+          if (userToUpdate) {
+            // Params to update
+            userToUpdate.first_name = 'New first name';
+            userToUpdate.last_name = 'Some crazy last name';
+            userToUpdate.email = 'somenew@email.com';
+
+            await updateUser(userToUpdate);
+
+            response.statusCode = StatusCodes.CREATED;
+            response.end(JSON.stringify({ updatedUser: userToUpdate }));
+          } else {
+            data.status = ReasonPhrases.NOT_FOUND;
+            data.message = `No user found with id ${id}`;
+            response.statusCode = StatusCodes.NOT_FOUND;
+            response.end(JSON.stringify({ data }));
+          }
+        } else {
+          data.status = ReasonPhrases.NOT_FOUND;
+          response.statusCode = StatusCodes.NOT_FOUND;
+          data.message = `No user id is specified`;
+          response.end(JSON.stringify({ data }));
+        }
+        break;
+
+      case 'DELETE':
+        if (id) {
+          const userToDelete = await getUserById(id);
+
+          if (userToDelete) {
+            await deleteUser(id);
+
+            data.status = ReasonPhrases.NO_CONTENT;
+            data.message = `User with id ${id} is deleted successfully`;
+            response.statusCode = StatusCodes.NO_CONTENT;
+            response.end(JSON.stringify({ data }));
+          } else {
+            data.status = ReasonPhrases.NOT_FOUND;
+            data.message = `No user found with id ${id}`;
+            response.statusCode = StatusCodes.NOT_FOUND;
+            response.end(JSON.stringify({ data }));
+          }
+        } else {
+          data.status = ReasonPhrases.BAD_REQUEST;
+          data.message = `No user id is specified`;
+          response.statusCode = StatusCodes.BAD_REQUEST;
+          response.end(JSON.stringify({ data }));
+        }
+        break;
+
+      default:
+        break;
+    }
   };
 
-  switch (resource) {
+  const handlePostRequest = async () => {
+    const postsPattern = new URLPattern({ pathname: '/posts/:id' });
+    const postsEndpoint = postsPattern.exec(fullEndpoint);
+    const id = postsEndpoint?.pathname?.groups?.id;
+    const postsData = await readJsonFile('./data/posts.json');
+    const posts = JSON.parse(postsData);
+
+    switch (method) {
+      case 'GET':
+        if (id) {
+          const post = await getPostById(id);
+          if (post) {
+            response.statusCode = StatusCodes.OK;
+            response.end(JSON.stringify(post));
+          } else {
+            data.status = StatusCodes.NOT_FOUND;
+            data.message = `No post found with id ${id}`;
+            response.statusCode = StatusCodes.NOT_FOUND;
+            response.end(JSON.stringify({ data }));
+          }
+        } else {
+          const posts = await getPosts();
+          response.statusCode = StatusCodes.OK;
+          response.end(JSON.stringify({ posts }));
+        }
+        break;
+
+      case 'POST':
+        const newPost = {
+          post_id: generateNewPostId(posts),
+          user_id: 11,
+          post_text: 'Phasellus in felis. ',
+          post_date: '4/20/2021',
+          likes: 11111,
+          comments: 111,
+          hashtags: '#followme',
+          location: 'Milan',
+          post_image: 'https://robohash.org/ipsumullamaut.png?size=50x50&set=set1',
+        };
+
+        await addPost(newPost);
+
+        response.statusCode = StatusCodes.CREATED;
+        response.end(JSON.stringify({ newPost: newPost }));
+        break;
+
+      case 'PATCH':
+        if (id) {
+          const postToUpdate = await getPostById(id);
+
+          if (postToUpdate) {
+            // Params to update
+            postToUpdate.location = 'Some crazy new location';
+            // postToUpdate.post_text = 'Some new text';
+            // postToUpdate.hashtags = '#newhashtag';
+
+            await updatePost(postToUpdate);
+
+            response.statusCode = StatusCodes.CREATED;
+            response.end(JSON.stringify({ updatedPost: postToUpdate }));
+          } else {
+            data.status = ReasonPhrases.NOT_FOUND;
+            data.message = `No post found with id ${id}`;
+            response.statusCode = StatusCodes.NOT_FOUND;
+            response.end(JSON.stringify({ data }));
+          }
+        } else {
+          data.status = ReasonPhrases.NOT_FOUND;
+          data.message = `No post id is specified`;
+          response.statusCode = StatusCodes.NOT_FOUND;
+          response.end(JSON.stringify({ data }));
+        }
+        break;
+
+      case 'DELETE':
+        if (id) {
+          const postToDelete = await getPostById(id);
+
+          if (postToDelete) {
+            await deletePost(id);
+
+            response.statusCode = StatusCodes.NO_CONTENT;
+            response.end(JSON.stringify({ data }));
+          } else {
+            data.status = ReasonPhrases.NOT_FOUND;
+            data.message = `No post found with id ${id}`;
+            response.statusCode = StatusCodes.NOT_FOUND;
+            response.end(JSON.stringify({ data }));
+          }
+        } else {
+          response.statusCode = StatusCodes.BAD_REQUEST;
+          data.status = ReasonPhrases.BAD_REQUEST;
+          data.message = `No post id is specified`;
+          response.end(JSON.stringify({ data }));
+        }
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  switch (path) {
     case 'users':
-      switch (method) {
-        case 'GET':
-          if (id) {
-            const user = await getUserById(id);
-            if (user) {
-              console.log('User:');
-              console.log(user);
-            } else {
-              console.log(`No user found with id ${id}`);
-            }
-          } else {
-            const users = await getUsers();
-            console.log('Users:');
-            console.log(users);
-          }
-          break;
-
-        case 'POST':
-          await addUser(newUser);
-
-          console.log('New user created successfully:');
-          console.log(newUser);
-          break;
-
-        case 'PATCH':
-          if (id) {
-            const userToUpdate = await getUserById(id);
-
-            if (userToUpdate) {
-              // Params to update
-              userToUpdate.first_name = 'New first name';
-              userToUpdate.last_name = 'Some crazy last name';
-              userToUpdate.email = 'newemail@example.com';
-
-              await updateUser(userToUpdate);
-
-              console.log('User updated successfully:');
-              console.log(userToUpdate);
-            } else {
-              console.log(`No user found with id ${id}`);
-            }
-          } else {
-            console.log('No user id is specified');
-          }
-          break;
-
-        case 'DELETE':
-          if (id) {
-            const userToDelete = await getUserById(id);
-
-            if (userToDelete) {
-              await deleteUser(id);
-
-              console.log(`User with id ${id} deleted successfully.`);
-            } else {
-              console.log(`No user found with id ${id}`);
-            }
-          } else {
-            console.log('No user id is specified');
-          }
-          break;
-
-        default:
-          console.log('Invalid method specified.');
-          break;
-      }
+      await handleUserRequest();
       break;
 
     case 'posts':
-      switch (method) {
-        case 'GET':
-          if (id) {
-            const post = await getPostById(id);
-            if (post) {
-              console.log('Post:');
-              console.log(post);
-            } else {
-              console.log(`No post found with id ${id}`);
-            }
-          } else {
-            const posts = await getPosts();
-            console.log('Posts:');
-            console.log(posts);
-          }
-          break;
-
-        case 'POST':
-          await addPost(newPost);
-
-          console.log('New post created successfully:');
-          console.log(newPost);
-          break;
-
-        case 'PATCH':
-          if (id) {
-            const postToUpdate = await getPostById(id);
-
-            if (postToUpdate) {
-              // Params to update
-              postToUpdate.location = 'Some crazy new location';
-
-              await updatePost(postToUpdate);
-
-              console.log('Post updated successfully:');
-              console.log(postToUpdate);
-            } else {
-              console.log(`No post found with id ${id}`);
-            }
-          } else {
-            console.log('No post id is specified');
-          }
-          break;
-
-        case 'DELETE':
-          if (id) {
-            const postToDelete = await getPostById(id);
-
-            if (postToDelete) {
-              await deletePost(id);
-
-              console.log(`Post with id ${id} deleted successfully.`);
-            } else {
-              console.log(`No post found with id ${id}`);
-            }
-          } else {
-            console.log('No post id is specified');
-          }
-          break;
-
-        default:
-          console.log('Invalid method specified.');
-          break;
-      }
+      await handlePostRequest();
       break;
 
     default:
-      console.log('Invalid resource specified.');
       break;
   }
 };

@@ -12,6 +12,11 @@
     "learning",
     "cli"
   ],
-  "author": "Álvaro José Agámez Licha",
-  "license": "MIT"
+  "authors": "Álvaro José Agámez Licha, Yuliia Smirnova",
+  "license": "MIT",
+  "dependencies": {
+    "http": "^0.0.1-security",
+    "http-status-codes": "^2.2.0",
+    "urlpattern-polyfill": "^9.0.0"
+  }
 }

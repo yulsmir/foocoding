@@ -3,7 +3,7 @@
 import { readJsonFile, writeJsonFile } from '../utils/fileHandler.js';
 
 export const getUsers = async () => {
-  const usersData = await readJsonFile('./data/users.json');
+  const usersData = await readJsonFile('../data/users.json');
   return JSON.parse(usersData);
 };
 

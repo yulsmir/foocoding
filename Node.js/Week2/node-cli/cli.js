@@ -4,6 +4,8 @@ import { openSync, readSync, writeSync } from 'node:fs';
 import { parseArgs } from 'node:util';
 import { requestHandler } from './src/utils/cliRequestHandler.js';
 
+import { getUserById, updateUser } from './src/user/userHandler.js';
+
 const question = async (query) => {
   const readline = createInterface({
     input: stdin,
@@ -84,8 +86,32 @@ const main = async () => {
           // console.log('Server error occurred.');
           break;
         case 'PATCH':
-          // PATCH method logic for users
-          console.log('PATCH user');
+          const idAnswer = await question('Please enter the ID for the user you want to update: ');
+          const intIdAnswer = parseInt(idAnswer);
+
+          const userToUpdate = await getUserById(intIdAnswer);
+
+          if (userToUpdate) {
+            const userFieldsToUpdate = ['first_name', 'last_name', 'email', 'gender'];
+            const userFieldValuesToUpdate = {};
+
+            for (const field of userFieldsToUpdate) {
+              const answer = await question(`Enter new ${field}: `);
+              userFieldValuesToUpdate[field] = answer;
+            }
+
+            // Update the user object with the new values
+            const updatedUser = { ...userToUpdate, ...userFieldValuesToUpdate };
+
+            // Call the updateUser function to update the user in the data source
+            await updateUser(updatedUser);
+
+            console.log('The user was updated successfully.');
+            console.log('Updated User:');
+            console.log(updatedUser);
+          } else {
+            console.log(`No user found with ID ${intIdAnswer}.`);
+          }
           break;
         case 'DELETE':
           // DELETE method logic for users

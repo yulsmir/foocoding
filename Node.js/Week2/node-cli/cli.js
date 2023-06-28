@@ -73,18 +73,15 @@ const main = async () => {
           }
 
           const userResponse = await requestHandler({
+            resource: 'users',
             method: 'POST',
-            url: '/users',
             body: userFieldValues,
           });
 
-          if (userResponse.statusCode === 201) {
-            console.log('The new user was created successfully.');
-            console.log('Response:');
-            console.log(userResponse);
-          } else {
-            console.log('Server error occurred.');
-          }
+          console.log('The new user was created successfully.');
+          console.log('Response:');
+          console.log(userResponse);
+          // console.log('Server error occurred.');
           break;
         case 'PATCH':
           // PATCH method logic for users

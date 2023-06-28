@@ -16,7 +16,7 @@ export const readJsonFileSync = (filePath) => {
 
 export const writeJsonFileSync = (filePath, data) => {
   const fd = openSync(filePath, 'w');
-  const buffer = Buffer.from(JSON.stringify(data), 'utf-8');
+  const buffer = Buffer.from(JSON.stringify(data, null, 2), 'utf-8');
 
   writeSync(fd, buffer, 0, buffer.length);
 };

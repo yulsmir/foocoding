@@ -124,8 +124,31 @@ const main = async () => {
     case 'posts':
       switch (selectedMethod) {
         case 'GET':
-          // GET method logic for posts
+          const getAllAnswer = await question(
+            'You chose GET. Do you want to make a GET All request? (y/n): ',
+          );
+
+          if (getAllAnswer.toLowerCase() === 'y') {
+            // Call the getPosts function to retrieve all posts
+            const posts = await getPosts();
+
+            console.log('All posts:');
+            console.log(posts);
+          } else {
+            const idAnswer = await question('Please enter the ID for the GET By ID request: ');
+
+            // Call the getPostById function to retrieve the post by its ID
+            const post = await getPostById(idAnswer);
+
+            if (post) {
+              console.log('Post found:');
+              console.log(post);
+            } else {
+              console.log('Post not found.');
+            }
+          }
           break;
+
         case 'POST':
           const postFields = ['title', 'body', 'userId'];
           const postFieldValues = {};
@@ -135,32 +158,52 @@ const main = async () => {
             postFieldValues[field] = answer;
           }
 
-          const postResponse = await requestHandler({
-            method: 'POST',
-            url: '/posts',
-            body: postFieldValues,
-          });
+          // Call the addPost function to add a new post
+          await addPost(postFieldValues);
 
-          if (postResponse.statusCode === 201) {
-            console.log('The new post was created successfully.');
-            console.log('Response:');
-            console.log(postResponse);
+          console.log('The new post was created successfully.');
+          break;
+
+        case 'PATCH':
+          const idToUpdate = await question('Enter the ID of the post to update: ');
+
+          // Retrieve the existing post by its ID
+          const existingPost = await getPostById(idToUpdate);
+
+          if (existingPost) {
+            const updatedFields = {};
+
+            for (const field in existingPost) {
+              if (field !== 'post_id') {
+                const answer = await question(
+                  `Enter new ${field} (current: ${existingPost[field]}): `,
+                );
+                updatedFields[field] = answer;
+              }
+            }
+
+            const updatedPost = { ...existingPost, ...updatedFields };
+
+            // Call the updatePost function to update the post
+            await updatePost(updatedPost);
+
+            console.log(`Post with ID ${idToUpdate} has been updated successfully.`);
           } else {
-            console.log('Server error occurred.');
+            console.log(`Post with ID ${idToUpdate} does not exist.`);
           }
           break;
-        case 'PATCH':
-          // PATCH method logic for posts
-          break;
+
         case 'DELETE':
-          // DELETE method logic for posts
+          const idToDelete = await question('Enter the ID of the post to delete: ');
+
+          // Call the deletePost function to delete the post
+          await deletePost(idToDelete);
+
+          console.log(`Post with ID ${idToDelete} has been deleted successfully.`);
           break;
         default:
-          console.log('Invalid method specified.');
+          console.log('Invalid resource specified.');
       }
-      break;
-    default:
-      console.log('Invalid resource specified.');
   }
 };
 

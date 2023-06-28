@@ -4,7 +4,8 @@ import { openSync, readSync, writeSync } from 'node:fs';
 import { parseArgs } from 'node:util';
 import { requestHandler } from './src/utils/cliRequestHandler.js';
 
-import { getUserById, updateUser } from './src/user/userHandler.js';
+import { getUserById, updateUser, addUser, deleteUser } from './src/user/userHandler.js';
+import { getPosts, getPostById, addPost, updatePost, deletePost } from './src/post/postHandler.js';
 
 const question = async (query) => {
   const readline = createInterface({
@@ -74,16 +75,12 @@ const main = async () => {
             userFieldValues[field] = answer;
           }
 
-          const userResponse = await requestHandler({
-            resource: 'users',
-            method: 'POST',
-            body: userFieldValues,
-          });
+          // Call the addUser function to add the new user to the data source
+          await addUser(userFieldValues);
 
           console.log('The new user was created successfully.');
-          console.log('Response:');
-          console.log(userResponse);
-          // console.log('Server error occurred.');
+          console.log('User Details:');
+          console.log(userFieldValues);
           break;
         case 'PATCH':
           const idAnswer = await question('Please enter the ID for the user you want to update: ');
@@ -114,8 +111,11 @@ const main = async () => {
           }
           break;
         case 'DELETE':
-          // DELETE method logic for users
-          console.log('delete user');
+          const idToDelete = await question('Enter the ID of the user to delete: ');
+
+          await deleteUser(idToDelete);
+
+          console.log(`User with ID ${idToDelete} has been deleted successfully.`);
           break;
         default:
           console.log('Invalid method specified.');

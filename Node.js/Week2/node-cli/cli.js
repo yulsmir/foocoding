@@ -1,6 +1,5 @@
 import { createInterface } from 'node:readline/promises';
 import { stdin, stdout } from 'node:process';
-import { openSync, readSync, writeSync } from 'node:fs';
 import { parseArgs } from 'node:util';
 import { requestHandler } from './src/utils/cliRequestHandler.js';
 
@@ -53,9 +52,6 @@ const main = async () => {
               method: 'GET',
               resource: 'users',
             });
-
-            console.log('Response:');
-            console.log(response);
           } else {
             const idAnswer = await question('Please enter the ID for the GET By ID request: ');
             const intIdAnswer = parseInt(idAnswer);
@@ -67,7 +63,7 @@ const main = async () => {
           }
           break;
         case 'POST':
-          const userFields = ['first_name', 'last_name', 'email', 'gender'];
+          const userFields = ['id', 'first_name', 'last_name', 'email', 'gender'];
           const userFieldValues = {};
 
           for (const field of userFields) {
@@ -75,7 +71,7 @@ const main = async () => {
             userFieldValues[field] = answer;
           }
 
-          // Call the addUser function to add the new user to the data source
+          userFieldValues.id = parseInt(userFieldValues.id);
           await addUser(userFieldValues);
 
           console.log('The new user was created successfully.');
@@ -97,10 +93,8 @@ const main = async () => {
               userFieldValuesToUpdate[field] = answer;
             }
 
-            // Update the user object with the new values
             const updatedUser = { ...userToUpdate, ...userFieldValuesToUpdate };
 
-            // Call the updateUser function to update the user in the data source
             await updateUser(updatedUser);
 
             console.log('The user was updated successfully.');
@@ -129,7 +123,6 @@ const main = async () => {
           );
 
           if (getAllAnswer.toLowerCase() === 'y') {
-            // Call the getPosts function to retrieve all posts
             const posts = await getPosts();
 
             console.log('All posts:');
@@ -137,7 +130,6 @@ const main = async () => {
           } else {
             const idAnswer = await question('Please enter the ID for the GET By ID request: ');
 
-            // Call the getPostById function to retrieve the post by its ID
             const post = await getPostById(idAnswer);
 
             if (post) {
@@ -158,7 +150,6 @@ const main = async () => {
             postFieldValues[field] = answer;
           }
 
-          // Call the addPost function to add a new post
           await addPost(postFieldValues);
 
           console.log('The new post was created successfully.');
@@ -167,7 +158,6 @@ const main = async () => {
         case 'PATCH':
           const idToUpdate = await question('Enter the ID of the post to update: ');
 
-          // Retrieve the existing post by its ID
           const existingPost = await getPostById(idToUpdate);
 
           if (existingPost) {
@@ -183,8 +173,6 @@ const main = async () => {
             }
 
             const updatedPost = { ...existingPost, ...updatedFields };
-
-            // Call the updatePost function to update the post
             await updatePost(updatedPost);
 
             console.log(`Post with ID ${idToUpdate} has been updated successfully.`);
@@ -196,7 +184,6 @@ const main = async () => {
         case 'DELETE':
           const idToDelete = await question('Enter the ID of the post to delete: ');
 
-          // Call the deletePost function to delete the post
           await deletePost(idToDelete);
 
           console.log(`Post with ID ${idToDelete} has been deleted successfully.`);

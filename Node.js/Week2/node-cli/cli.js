@@ -19,51 +19,48 @@ const question = async (query) => {
 const { values } = parseArgs({});
 
 const options = {
-  resource: { type: 'string', default: 'users' },
-  method: { type: 'string', default: 'GET' },
+  resource: { type: 'string' },
+  method: { type: 'string' },
   all: { type: 'boolean' },
 };
 
 const { resource, method, all } = values;
 
 const main = async () => {
-  console.log('Hello! Make a choice to proceed:\n');
+  console.log('Hello! Choose options to access API:\n');
 
-  const resourceAnswer =
-    resource || (await question('What resource do you want to work with? (users/posts): '));
+  const resourceAnswer = await question('What resource do you want to work with? (users/posts): ');
   const selectedResource = resourceAnswer.toLowerCase();
 
-  const methodAnswer =
-    method ||
-    (await question('What method do you want to work with? (GET, POST, PATCH, DELETE): '));
+  const methodAnswer = await question(
+    'What method do you want to work with? (GET, POST, PATCH, DELETE): ',
+  );
   const selectedMethod = methodAnswer.toUpperCase();
 
   switch (selectedResource) {
     case 'users':
       switch (selectedMethod) {
         case 'GET':
-          const getAllAnswer =
-            all ||
-            (await question('You chose GET. Do you want to make a GET All request? (y/n): '));
+          const getAllAnswer = await question(
+            'You chose GET. Do you want to make a GET All request? (y/n): ',
+          );
 
           if (getAllAnswer.toLowerCase() === 'y') {
             const response = await requestHandler({
               method: 'GET',
-              url: '/users',
+              resource: 'users',
             });
 
             console.log('Response:');
             console.log(response);
           } else {
             const idAnswer = await question('Please enter the ID for the GET By ID request: ');
-
+            const intIdAnswer = parseInt(idAnswer);
             const response = await requestHandler({
+              resource: 'users',
+              id: intIdAnswer,
               method: 'GET',
-              url: `/users/${idAnswer}`,
             });
-
-            console.log('Response:');
-            console.log(response);
           }
           break;
         case 'POST':

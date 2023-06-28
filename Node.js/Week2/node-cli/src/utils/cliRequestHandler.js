@@ -13,7 +13,7 @@ export const requestHandler = async (options) => {
   const { resource, method, id } = options;
 
   const newPost = {
-    post_id: generateNewPostId(),
+    post_id: 10909080809,
     user_id: 11,
     post_text: 'Phasellus in felis.',
     post_date: '4/20/2021',
@@ -25,7 +25,7 @@ export const requestHandler = async (options) => {
   };
 
   const newUser = {
-    id: generateNewUserId(),
+    id: 4567890,
     first_name: 'User',
     last_name: 'Test',
     email: 'test@example.com',

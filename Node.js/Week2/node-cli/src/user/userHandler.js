@@ -7,6 +7,8 @@ import {
   writeJsonFileSync,
 } from '../utils/cliFileHandler.js';
 
+import { generateNewUserId } from '../utils/newIdHandler.js';
+
 const filePath = 'data/users.json';
 
 export const getUsers = async () => {
@@ -22,6 +24,8 @@ export const getUserById = async (id) => {
 
 export const addUser = async (user) => {
   const users = await getUsers();
+  const newId = generateNewUserId(Array.from(users));
+  user.id = newId;
   users.push(user);
   await writeJsonFile(filePath, users);
 };

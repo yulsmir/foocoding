@@ -1,6 +1,7 @@
 'use strict';
 
 import { readJsonFile, writeJsonFile } from '../utils/fileHandler.js';
+import { generateNewPostId } from '../utils/newIdHandler.js';
 
 export const getPosts = async () => {
   const postsData = await readJsonFile('./data/posts.json');
@@ -15,6 +16,8 @@ export const getPostById = async (id) => {
 
 export const addPost = async (post) => {
   const posts = await getPosts();
+  const newId = generateNewPostId(Array.from(posts));
+  post.post_id = newId;
   posts.push(post);
   await writeJsonFile('./data/posts.json', posts);
 };

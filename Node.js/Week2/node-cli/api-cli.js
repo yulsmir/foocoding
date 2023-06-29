@@ -53,7 +53,7 @@ const main = async () => {
           );
 
           if (getAllAnswer.toLowerCase() === 'y') {
-            const response = await getUsers();
+            await getUsers();
             console.log('Users:');
             console.log(users);
           } else {
@@ -79,7 +79,6 @@ const main = async () => {
           }
 
           await addUser(userFieldValues);
-          userFieldValues.id = generateNewUserId(Array.from(users));
 
           console.log('User Details:');
           console.log(userFieldValues);
@@ -171,8 +170,6 @@ const main = async () => {
             const answer = await question(`Enter ${field}: `);
             postFieldValues[field] = answer;
           }
-
-          postFieldValues.id = generateNewPostId(Array.from(posts));
 
           await addPost(postFieldValues);
 

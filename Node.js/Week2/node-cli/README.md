@@ -15,11 +15,12 @@ To run the application in production mode you can use the next command:
 ```npm run start```
 
 To run the application in development mode you can use the next command:
-
 ```npm run start:dev```
 
 Note: The application in development mode use the Node.js native watch feature to reload the application after file changes.
 
 ### CLI
-To run CLI API use:
-``` node api-cli.js```
+To run CLI API use  ``` node api-cli.js```
+
+TODO: Patch without empty value
+TODO: uniqueID fix

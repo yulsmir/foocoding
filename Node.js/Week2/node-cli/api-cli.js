@@ -3,9 +3,9 @@ import { stdin, stdout } from 'node:process';
 import { parseArgs } from 'node:util';
 import { requestHandler } from './src/utils/cliRequestHandler.js';
 
-import { getUserById, updateUser, addUser, deleteUser } from './src/user/userHandler.js';
-import { getPosts, getPostById, addPost, updatePost, deletePost } from './src/post/postHandler.js';
 import { generateNewUserId, generateNewPostId } from './src/utils/newIdHandler.js';
+import { getUsers, getUserById, addUser, updateUser, deleteUser } from './src/user/userHandler.js';
+import { getPosts, getPostById, addPost, updatePost, deletePost } from './src/post/postHandler.js';
 
 const question = async (query) => {
   const readline = createInterface({
@@ -49,18 +49,19 @@ const main = async () => {
           );
 
           if (getAllAnswer.toLowerCase() === 'y') {
-            const response = await requestHandler({
-              method: 'GET',
-              resource: 'users',
-            });
+            const users = await getUsers();
+            console.log('Users:');
+            console.log(users);
           } else {
             const idAnswer = await question('Please enter the ID for the GET By ID request: ');
             const intIdAnswer = parseInt(idAnswer);
-            const response = await requestHandler({
-              resource: 'users',
-              id: intIdAnswer,
-              method: 'GET',
-            });
+            const user = await getUserById(intIdAnswer);
+            if (user) {
+              console.log('User:');
+              console.log(user);
+            } else {
+              console.log(`No user found with id ${intIdAnswer}`);
+            }
           }
           break;
 
@@ -84,6 +85,7 @@ const main = async () => {
           console.log('User Details:');
           console.log(userFieldValues);
           break;
+
         case 'PATCH':
           const idAnswer = await question('Please enter the ID for the user you want to update: ');
           const intIdAnswer = parseInt(idAnswer);
@@ -115,12 +117,22 @@ const main = async () => {
           break;
 
         case 'DELETE':
-          const idToDelete = await question('Enter the ID of the user to delete: ');
+          const id = await question('Enter the ID of the user to delete: ');
+          if (id) {
+            const userToDelete = await getUserById(id);
 
-          await deleteUser(idToDelete);
+            if (userToDelete) {
+              await deleteUser(id);
 
-          console.log(`User with ID ${idToDelete} has been deleted successfully.`);
+              console.log(`User with id ${id} deleted successfully.`);
+            } else {
+              console.log(`No user found with id ${id}`);
+            }
+          } else {
+            console.log('No user id is specified');
+          }
           break;
+
         default:
           console.log('Invalid method specified.');
       }

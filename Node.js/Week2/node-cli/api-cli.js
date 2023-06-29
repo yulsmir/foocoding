@@ -53,6 +53,7 @@ const main = async () => {
           );
 
           if (getAllAnswer.toLowerCase() === 'y') {
+            const response = await getUsers();
             console.log('Users:');
             console.log(users);
           } else {
@@ -77,13 +78,8 @@ const main = async () => {
             userFieldValues[field] = answer;
           }
 
-          userFieldValues.id = generateNewUserId(Array.from(users));
-          const response = await addUser({
-            resource: 'users',
-            method: 'POST',
-          });
-
           await addUser(userFieldValues);
+          userFieldValues.id = generateNewUserId(Array.from(users));
 
           console.log('User Details:');
           console.log(userFieldValues);

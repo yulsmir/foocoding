@@ -4,7 +4,6 @@ import { createInterface } from 'node:readline/promises';
 import { stdin, stdout } from 'node:process';
 import { parseArgs } from 'node:util';
 
-import { generateNewUserId, generateNewPostId } from './src/utils/newIdHandler.js';
 import { getUsers, getUserById, addUser, updateUser, deleteUser } from './src/user/userHandler.js';
 import { getPosts, getPostById, addPost, updatePost, deletePost } from './src/post/postHandler.js';
 

@@ -1,7 +1,8 @@
+'user strict';
+
 import { createInterface } from 'node:readline/promises';
 import { stdin, stdout } from 'node:process';
 import { parseArgs } from 'node:util';
-import { requestHandler } from './src/utils/cliRequestHandler.js';
 
 import { generateNewUserId, generateNewPostId } from './src/utils/newIdHandler.js';
 import { getUsers, getUserById, addUser, updateUser, deleteUser } from './src/user/userHandler.js';
@@ -33,14 +34,15 @@ const main = async () => {
   console.log('Hello! Choose options to access API:\n');
 
   const resourceAnswer = await question('What resource do you want to work with? (users/posts): ');
-  const selectedResource = resourceAnswer.toLowerCase();
+  const resource = resourceAnswer.toLowerCase();
 
   const methodAnswer = await question(
     'What method do you want to work with? (GET, POST, PATCH, DELETE): ',
   );
   const selectedMethod = methodAnswer.toUpperCase();
-
-  switch (selectedResource) {
+  // TODO: move to cliRequest handler
+  // await requestHandler(options, resource, selectedMethod);
+  switch (resource) {
     case 'users':
       const users = await getUsers();
 
@@ -140,6 +142,8 @@ const main = async () => {
       break;
 
     case 'posts':
+      const posts = await getPosts();
+
       switch (selectedMethod) {
         case 'GET':
           const getAllAnswer = await question(
@@ -147,8 +151,6 @@ const main = async () => {
           );
 
           if (getAllAnswer.toLowerCase() === 'y') {
-            const posts = await getPosts();
-
             console.log('All posts:');
             console.log(posts);
           } else {
@@ -173,6 +175,8 @@ const main = async () => {
             const answer = await question(`Enter ${field}: `);
             postFieldValues[field] = answer;
           }
+
+          postFieldValues.id = generateNewPostId(Array.from(posts));
 
           await addPost(postFieldValues);
 

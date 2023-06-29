@@ -1,11 +1,6 @@
 'use strict';
 
-import {
-  readJsonFile,
-  writeJsonFile,
-  readJsonFileSync,
-  writeJsonFileSync,
-} from '../utils/cliFileHandler.js';
+import { readJsonFile, writeJsonFile } from '../utils/cliFileHandler.js';
 
 import { generateNewUserId } from '../utils/newIdHandler.js';
 

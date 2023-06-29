@@ -33,74 +33,73 @@ export const requestHandler = async (options) => {
   };
 
   switch (resource) {
-    case 'users':
-      switch (method) {
-        case 'GET':
-          if (id) {
-            const user = await getUserById(id);
-            if (user) {
-              console.log('User:');
-              console.log(user);
-            } else {
-              console.log(`No user found with id ${id}`);
-            }
-          } else {
-            const users = await getUsers();
-            console.log('Users:');
-            console.log(users);
-          }
-          break;
+    // case 'users':
+    // switch (method) {
+    // case 'GET':
+    //   if (id) {
+    //     const user = await getUserById(id);
+    //     if (user) {
+    //       console.log('User:');
+    //       console.log(user);
+    //     } else {
+    //       console.log(`No user found with id ${id}`);
+    //     }
+    //   } else {
+    //     const users = await getUsers();
+    //     console.log('Users:');
+    //     console.log(users);
+    //   }
+    //   break;
 
-        case 'POST':
-          await addUser(newUser);
+    // case 'POST':
+    //   await addUser(newUser);
 
-          console.log('New user created successfully:');
-          console.log(newUser);
-          break;
+    //   console.log('New user created successfully:');
+    //   console.log(newUser);
+    //   break;
 
-        case 'PATCH':
-          if (id) {
-            const userToUpdate = await getUserById(id);
+    // case 'PATCH':
+    //   if (id) {
+    //     const userToUpdate = await getUserById(id);
 
-            if (userToUpdate) {
-              // Params to update
-              userToUpdate.first_name = 'New first name';
-              userToUpdate.last_name = 'Some crazy last name';
-              userToUpdate.email = 'newemail@example.com';
+    //     if (userToUpdate) {
+    //       userToUpdate.first_name = 'New first name';
+    //       userToUpdate.last_name = 'Some crazy last name';
+    //       userToUpdate.email = 'newemail@example.com';
 
-              await updateUser(userToUpdate);
+    //       await updateUser(userToUpdate);
 
-              console.log('User updated successfully:');
-              console.log(userToUpdate);
-            } else {
-              console.log(`No user found with id ${id}`);
-            }
-          } else {
-            console.log('No user id is specified');
-          }
-          break;
+    //       console.log('User updated successfully:');
+    //       console.log(userToUpdate);
+    //     } else {
+    //       console.log(`No user found with id ${id}`);
+    //     }
+    //   } else {
+    //     console.log('No user id is specified');
+    //   }
+    //   break;
 
-        case 'DELETE':
-          if (id) {
-            const userToDelete = await getUserById(id);
+    // case 'DELETE':
+    //   if (id) {
+    //     const userToDelete = await getUserById(id);
 
-            if (userToDelete) {
-              await deleteUser(id);
+    //     if (userToDelete) {
+    //       await deleteUser(id);
 
-              console.log(`User with id ${id} deleted successfully.`);
-            } else {
-              console.log(`No user found with id ${id}`);
-            }
-          } else {
-            console.log('No user id is specified');
-          }
-          break;
+    //       console.log(`User with id ${id} deleted successfully.`);
+    //     } else {
+    //       console.log(`No user found with id ${id}`);
+    //     }
+    //   } else {
+    //     console.log('No user id is specified');
+    //   }
+    //   break;
 
-        default:
-          console.log('Invalid method specified.');
-          break;
-      }
-      break;
+    //   default:
+    //     console.log('Invalid method specified.');
+    //     break;
+    // }
+    // break;
 
     case 'posts':
       switch (method) {
@@ -132,7 +131,6 @@ export const requestHandler = async (options) => {
             const postToUpdate = await getPostById(id);
 
             if (postToUpdate) {
-              // Params to update
               postToUpdate.location = 'Some crazy new location';
 
               await updatePost(postToUpdate);

@@ -5,6 +5,7 @@ import { requestHandler } from './src/utils/cliRequestHandler.js';
 
 import { getUserById, updateUser, addUser, deleteUser } from './src/user/userHandler.js';
 import { getPosts, getPostById, addPost, updatePost, deletePost } from './src/post/postHandler.js';
+import { generateNewUserId, generateNewPostId } from './src/utils/newIdHandler.js';
 
 const question = async (query) => {
   const readline = createInterface({
@@ -62,8 +63,9 @@ const main = async () => {
             });
           }
           break;
+
         case 'POST':
-          const userFields = ['id', 'first_name', 'last_name', 'email', 'gender'];
+          const userFields = ['first_name', 'last_name', 'email', 'gender'];
           const userFieldValues = {};
 
           for (const field of userFields) {
@@ -72,9 +74,13 @@ const main = async () => {
           }
 
           userFieldValues.id = parseInt(userFieldValues.id);
+          const response = await addUser({
+            resource: 'users',
+            method: 'POST',
+          });
+
           await addUser(userFieldValues);
 
-          console.log('The new user was created successfully.');
           console.log('User Details:');
           console.log(userFieldValues);
           break;
@@ -83,27 +89,31 @@ const main = async () => {
           const intIdAnswer = parseInt(idAnswer);
 
           const userToUpdate = await getUserById(intIdAnswer);
+          if (idAnswer) {
+            const userToUpdate = await getUserById(intIdAnswer);
 
-          if (userToUpdate) {
-            const userFieldsToUpdate = ['first_name', 'last_name', 'email', 'gender'];
-            const userFieldValuesToUpdate = {};
+            if (userToUpdate) {
+              const userFieldsToUpdate = ['first_name', 'last_name', 'email', 'gender'];
+              const userFieldValuesToUpdate = {};
 
-            for (const field of userFieldsToUpdate) {
-              const answer = await question(`Enter new ${field}: `);
-              userFieldValuesToUpdate[field] = answer;
+              for (const field of userFieldsToUpdate) {
+                const answer = await question(`Enter new ${field}: `);
+                userFieldValuesToUpdate[field] = answer;
+              }
+
+              const updatedUser = { ...userToUpdate, ...userFieldValuesToUpdate };
+
+              await updateUser(updatedUser);
+
+              console.log('The user was updated successfully.');
+              console.log('Updated User:');
+              console.log(updatedUser);
+            } else {
+              console.log(`No user found with ID ${intIdAnswer}.`);
             }
-
-            const updatedUser = { ...userToUpdate, ...userFieldValuesToUpdate };
-
-            await updateUser(updatedUser);
-
-            console.log('The user was updated successfully.');
-            console.log('Updated User:');
-            console.log(updatedUser);
-          } else {
-            console.log(`No user found with ID ${intIdAnswer}.`);
           }
           break;
+
         case 'DELETE':
           const idToDelete = await question('Enter the ID of the user to delete: ');
 

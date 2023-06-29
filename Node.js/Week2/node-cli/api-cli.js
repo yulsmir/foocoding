@@ -42,6 +42,8 @@ const main = async () => {
 
   switch (selectedResource) {
     case 'users':
+      const users = await getUsers();
+
       switch (selectedMethod) {
         case 'GET':
           const getAllAnswer = await question(
@@ -49,7 +51,6 @@ const main = async () => {
           );
 
           if (getAllAnswer.toLowerCase() === 'y') {
-            const users = await getUsers();
             console.log('Users:');
             console.log(users);
           } else {
@@ -74,7 +75,7 @@ const main = async () => {
             userFieldValues[field] = answer;
           }
 
-          userFieldValues.id = parseInt(userFieldValues.id);
+          userFieldValues.id = generateNewUserId(Array.from(users));
           const response = await addUser({
             resource: 'users',
             method: 'POST',
@@ -137,6 +138,7 @@ const main = async () => {
           console.log('Invalid method specified.');
       }
       break;
+
     case 'posts':
       switch (selectedMethod) {
         case 'GET':

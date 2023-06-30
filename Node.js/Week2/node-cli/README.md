@@ -1,7 +1,5 @@
-# Node.js HTTP Server
-
-This repository shows how to create a Node.js HTTP from Scrath, implementing basic routing but trying to get the necessary functionality to show how this type of application works under the hood.
-
+# Node CLI
+Node http server with CRUD implemented. from week1 with CLI API.
 ## Requirements:
 Node.js 18.16.x or greater.
 

@@ -158,9 +158,18 @@ export const updatePostPrompt = async () => {
 };
 
 export const deletePostPrompt = async () => {
-  const idToDelete = await question('Enter the ID of the post to delete: ');
+  const id = await question('Enter the ID of the post to delete: ');
+  if (id) {
+    const postToDelete = await getPostById(id);
 
-  await deletePost(idToDelete);
+    if (postToDelete) {
+      await deletePost(id);
 
-  console.log(`Post with ID ${idToDelete} has been deleted successfully.`);
+      console.log(`Post with id ${id} deleted successfully.`);
+    } else {
+      console.log(`No post found with id ${id}`);
+    }
+  } else {
+    console.log('No post id is specified');
+  }
 };

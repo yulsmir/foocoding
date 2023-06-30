@@ -63,28 +63,28 @@ export const updateUserPrompt = async () => {
   const intIdAnswer = parseInt(idAnswer);
 
   const userToUpdate = await getUserById(intIdAnswer);
-  if (idAnswer) {
-    const userToUpdate = await getUserById(intIdAnswer);
+  if (userToUpdate) {
+    const userFieldsToUpdate = ['first_name', 'last_name', 'email', 'gender'];
+    const userFieldValuesToUpdate = {};
 
-    if (userToUpdate) {
-      const userFieldsToUpdate = ['first_name', 'last_name', 'email', 'gender'];
-      const userFieldValuesToUpdate = {};
-
-      for (const field of userFieldsToUpdate) {
-        const answer = await question(`Enter new ${field}: `);
+    for (const field of userFieldsToUpdate) {
+      const answer = await question(`Enter new ${field}:(current: ${userToUpdate[field]}) `);
+      if (answer !== '') {
         userFieldValuesToUpdate[field] = answer;
+      } else {
+        userFieldValuesToUpdate[field] = userToUpdate[field];
       }
-
-      const updatedUser = { ...userToUpdate, ...userFieldValuesToUpdate };
-
-      await updateUser(updatedUser);
-
-      console.log('The user was updated successfully.');
-      console.log('Updated User:');
-      console.log(updatedUser);
-    } else {
-      console.log(`No user found with ID ${intIdAnswer}.`);
     }
+
+    const updatedUser = { ...userToUpdate, ...userFieldValuesToUpdate };
+
+    await updateUser(updatedUser);
+
+    console.log('The user was updated successfully.');
+    console.log('Updated User:');
+    console.log(updatedUser);
+  } else {
+    console.log(`No user found with ID ${intIdAnswer}.`);
   }
 };
 
@@ -149,7 +149,11 @@ export const updatePostPrompt = async () => {
     for (const field in existingPost) {
       if (field !== 'post_id') {
         const answer = await question(`Enter new ${field} (current: ${existingPost[field]}): `);
-        updatedFields[field] = answer;
+        if (answer !== '') {
+          updatedFields[field] = answer;
+        } else {
+          updatedFields[field] = existingPost[field];
+        }
       }
     }
 

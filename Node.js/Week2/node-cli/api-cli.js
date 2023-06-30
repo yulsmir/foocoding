@@ -1,6 +1,4 @@
-'user strict';
 import { parseArgs } from 'node:util';
-
 import {
   displayUsers,
   displayUserById,
@@ -28,78 +26,177 @@ const { values } = parseArgs({
   strict: false,
 });
 
+const resource = values.resource;
+const method = values.method;
+const all = values.all;
+const id = values.id;
+
 const main = async () => {
-  console.log('Hello! Choose options to access API:\n');
+  if (resource && method) {
+    console.log('Command-line arguments detected:');
+    Object.entries(values).forEach(([param, value]) => {
+      console.log(`${param}: ${value}`);
+    });
 
-  const resourceAnswer = await question('What resource do you want to work with? (users/posts): ');
-  const resource = resourceAnswer.toLowerCase();
+    switch (resource) {
+      case 'users':
+        switch (method) {
+          case 'GET':
+            if (all) {
+              await displayUsers();
+            } else if (id) {
+              await displayUserById();
+            } else {
+              console.log('Invalid parameters for GET method.');
+            }
+            break;
 
-  const methodAnswer = await question(
-    'What method do you want to work with? (GET, POST, PATCH, DELETE): ',
-  );
-  const selectedMethod = methodAnswer.toUpperCase();
+          case 'POST':
+            await addUserPrompt();
+            break;
 
-  switch (resource) {
-    case 'users':
-      switch (selectedMethod) {
-        case 'GET':
-          const getAllAnswer = await question(
-            'You chose GET. Do you want to make a GET All request? (y/n): ',
-          );
+          case 'PATCH':
+            if (id) {
+              await updateUserPrompt();
+            } else {
+              console.log('Invalid parameters for PATCH method.');
+            }
+            break;
 
-          if (getAllAnswer.toLowerCase() === 'y') {
-            await displayUsers();
-          } else {
-            await displayUserById();
-          }
-          break;
+          case 'DELETE':
+            if (id) {
+              await deleteUserPrompt();
+            } else {
+              console.log('Invalid parameters for DELETE method.');
+            }
+            break;
 
-        case 'POST':
-          await addUserPrompt();
-          break;
+          default:
+            console.log('Invalid method specified.');
+        }
+        break;
 
-        case 'PATCH':
-          await updateUserPrompt();
-          break;
+      case 'posts':
+        switch (method) {
+          case 'GET':
+            if (all) {
+              await displayPosts();
+            } else if (id) {
+              await displayPostById();
+            } else {
+              console.log('Invalid parameters for GET method.');
+            }
+            break;
 
-        case 'DELETE':
-          await deleteUserPrompt();
-          break;
+          case 'POST':
+            await addPostPrompt();
+            break;
 
-        default:
-          console.log('Invalid method specified.');
-      }
-      break;
+          case 'PATCH':
+            if (id) {
+              await updatePostPrompt();
+            } else {
+              console.log('Invalid parameters for PATCH method.');
+            }
+            break;
 
-    case 'posts':
-      switch (selectedMethod) {
-        case 'GET':
-          const getAllAnswer = await question(
-            'You chose GET. Do you want to make a GET All request? (y/n): ',
-          );
+          case 'DELETE':
+            if (id) {
+              await deletePostPrompt();
+            } else {
+              console.log('Invalid parameters for DELETE method.');
+            }
+            break;
 
-          if (getAllAnswer.toLowerCase() === 'y') {
-            await displayPosts();
-          } else {
-            await displayPostById();
-          }
-          break;
+          default:
+            console.log('Invalid method specified.');
+        }
+        break;
 
-        case 'POST':
-          await addPostPrompt();
-          break;
+      default:
+        console.log('Invalid resource specified.');
+    }
+  } else {
+    console.log('No command-line arguments detected.');
 
-        case 'PATCH':
-          await updatePostPrompt();
-          break;
+    console.log('Hello! Choose options to access the API:\n');
 
-        case 'DELETE':
-          await deletePostPrompt();
-          break;
+    const resourceAnswer = await question(
+      'What resource do you want to work with? (users/posts): ',
+    );
+    const resource = resourceAnswer.toLowerCase();
 
-        default:
-          console.log('Invalid resource specified.');
-      }
+    const methodAnswer = await question(
+      'What method do you want to work with? (GET, POST, PATCH, DELETE): ',
+    );
+    const selectedMethod = methodAnswer.toUpperCase();
+
+    switch (resource) {
+      case 'users':
+        switch (selectedMethod) {
+          case 'GET':
+            const getAllAnswer = await question(
+              'You chose GET. Do you want to make a GET All request? (y/n): ',
+            );
+
+            if (getAllAnswer.toLowerCase() === 'y') {
+              await displayUsers();
+            } else {
+              await displayUserById();
+            }
+            break;
+
+          case 'POST':
+            await addUserPrompt();
+            break;
+
+          case 'PATCH':
+            await updateUserPrompt();
+            break;
+
+          case 'DELETE':
+            await deleteUserPrompt();
+            break;
+
+          default:
+            console.log('Invalid method specified.');
+        }
+        break;
+
+      case 'posts':
+        switch (selectedMethod) {
+          case 'GET':
+            const getAllAnswer = await question(
+              'You chose GET. Do you want to make a GET All request? (y/n): ',
+            );
+
+            if (getAllAnswer.toLowerCase() === 'y') {
+              await displayPosts();
+            } else {
+              await displayPostById();
+            }
+            break;
+
+          case 'POST':
+            await addPostPrompt();
+            break;
+
+          case 'PATCH':
+            await updatePostPrompt();
+            break;
+
+          case 'DELETE':
+            await deletePostPrompt();
+            break;
+
+          default:
+            console.log('Invalid method specified.');
+        }
+        break;
+
+      default:
+        console.log('Invalid resource specified.');
+    }
   }
 };
 

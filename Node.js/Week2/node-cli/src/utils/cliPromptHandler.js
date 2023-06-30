@@ -3,7 +3,6 @@ import { getPosts, getPostById, addPost, updatePost, deletePost } from '../post/
 
 import { createInterface } from 'node:readline/promises';
 import { stdin, stdout } from 'node:process';
-import { parseArgs } from 'node:util';
 
 export const question = async (query) => {
   const readline = createInterface({
@@ -16,19 +15,6 @@ export const question = async (query) => {
 
   return answer;
 };
-
-export const options = {
-  resource: { type: 'string' },
-  method: { type: 'string' },
-  all: { type: 'boolean' },
-  id: { type: 'boolean' },
-};
-
-const { values } = parseArgs({
-  options,
-  tokens: true,
-  strict: false,
-});
 
 export const displayUsers = async () => {
   const users = await getUsers();
@@ -130,7 +116,7 @@ export const displayPostById = async () => {
 };
 
 export const addPostPrompt = async () => {
-  const postFields = ['post_text', 'location', 'userId'];
+  const postFields = ['user_id', 'post_text', 'location'];
   const postFieldValues = {};
 
   for (const field of postFields) {

@@ -14,20 +14,6 @@
     "gender": "Male"
   },
   {
-    "id": 4,
-    "first_name": "Frederick",
-    "last_name": "Denisovich",
-    "email": "fdenisovich3@yandex.ru",
-    "gender": "Male"
-  },
-  {
-    "id": 5,
-    "first_name": "New first name",
-    "last_name": "Some crazy last name",
-    "email": "somenew@email.com",
-    "gender": "Male"
-  },
-  {
     "id": 6,
     "first_name": "Gwenneth",
     "last_name": "Robbs",
@@ -117,26 +103,5 @@
     "last_name": "Jirka",
     "email": "njirkah@paypal.com",
     "gender": "Male"
-  },
-  {
-    "id": 12345,
-    "first_name": "gji kn",
-    "last_name": "754309",
-    "email": "89u5i4 h",
-    "gender": ""
-  },
-  {
-    "id": 4567890,
-    "first_name": "User",
-    "last_name": "Test",
-    "email": "test@example.com",
-    "gender": "Female"
-  },
-  {
-    "first_name": "li",
-    "last_name": "li",
-    "email": "li",
-    "gender": "li",
-    "id": 4567891
   }
 ]

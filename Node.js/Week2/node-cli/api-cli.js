@@ -1,4 +1,5 @@
 'user strict';
+import { parseArgs } from 'node:util';
 
 import {
   displayUsers,
@@ -13,6 +14,19 @@ import {
   deletePostPrompt,
   question,
 } from './src/utils/cliPromptHandler.js';
+
+const options = {
+  resource: { type: 'string' },
+  method: { type: 'string' },
+  all: { type: 'boolean' },
+  id: { type: 'string' },
+};
+
+const { values } = parseArgs({
+  options,
+  tokens: true,
+  strict: false,
+});
 
 const main = async () => {
   console.log('Hello! Choose options to access API:\n');

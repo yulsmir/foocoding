@@ -30,6 +30,30 @@ const method = values.method;
 const all = values.all;
 const id = values.id;
 
+Object.entries(values).forEach(([param, value]) => {
+  switch (param) {
+    case 'resource':
+      console.log(`Resource: ${value}`);
+      break;
+
+    case 'method':
+      console.log(`Method: ${value}`);
+      break;
+
+    case 'all':
+      console.log(`All: ${value}`);
+      break;
+
+    case 'id':
+      console.log(`ID: ${value}`);
+      break;
+
+    default:
+      console.log(`Unknown parameter: ${param}`);
+      break;
+  }
+});
+
 switch (resource) {
   case 'users':
     switch (method) {

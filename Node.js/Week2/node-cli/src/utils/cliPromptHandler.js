@@ -125,7 +125,7 @@ export const displayPostById = async () => {
 };
 
 export const addPostPrompt = async () => {
-  const postFields = ['title', 'body', 'userId'];
+  const postFields = ['post_text', 'location', 'userId'];
   const postFieldValues = {};
 
   for (const field of postFields) {

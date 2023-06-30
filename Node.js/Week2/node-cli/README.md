@@ -3,7 +3,6 @@
 This repository shows how to create a Node.js HTTP from Scrath, implementing basic routing but trying to get the necessary functionality to show how this type of application works under the hood.
 
 ## Requirements:
-
 Node.js 18.16.x or greater.
 
 ### Setup

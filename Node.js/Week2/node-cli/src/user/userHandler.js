@@ -1,7 +1,6 @@
 'use strict';
 
 import { readJsonFile, writeJsonFile } from '../utils/cliFileHandler.js';
-
 import { generateNewUserId } from '../utils/newIdHandler.js';
 
 const filePath = 'data/users.json';

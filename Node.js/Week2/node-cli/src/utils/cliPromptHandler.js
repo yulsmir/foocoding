@@ -17,13 +17,18 @@ export const question = async (query) => {
   return answer;
 };
 
-const { values } = parseArgs({});
-
 export const options = {
   resource: { type: 'string' },
   method: { type: 'string' },
   all: { type: 'boolean' },
+  id: { type: 'boolean' },
 };
+
+const { values } = parseArgs({
+  options,
+  tokens: true,
+  strict: false,
+});
 
 export const displayUsers = async () => {
   const users = await getUsers();

@@ -1,0 +1,24 @@
+{
+  "name": "cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "start:dev": "node --watch app.js"
+  },
+  "keywords": [
+    "foocoding",
+    "learning",
+    "cli"
+  ],
+  "authors": "Álvaro José Agámez Licha, Yuliia Smirnova",
+  "license": "MIT",
+  "dependencies": {
+    "http": "^0.0.1-security",
+    "http-status-codes": "^2.2.0",
+    "urlpattern-polyfill": "^9.0.0"
+  }
+}

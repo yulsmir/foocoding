@@ -20,6 +20,7 @@ To run CLI API without parameters use  ```node api-cli.js``` and follow input qu
 
 ### CLI PARAMS
 To run CLI API with parameters:
+
 USERS: 
 - ```node api-cli.js --resource users --method GET --all```
 - ```node api-cli.js --resource users --method GET --id```

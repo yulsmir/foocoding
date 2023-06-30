@@ -10,7 +10,6 @@ import {
   addPostPrompt,
   updatePostPrompt,
   deletePostPrompt,
-  question,
 } from './src/utils/cliPromptHandler.js';
 
 const options = {
